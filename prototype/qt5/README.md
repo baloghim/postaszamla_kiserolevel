@@ -51,4 +51,4 @@ $env:POSTASZAMLA_EDPD_SOURCE = "C:\Munka\beerkezett_posta_kezeles"
 .venv-qt5\Scripts\python.exe -m unittest discover -s prototype/qt5/tests -v
 ```
 
-A branch Windows Server 2022 munkafolyamata a rögzített EDPD-forrással futtatja a Qt teszteket, elindítja az ablakot és rögzíti az indulási mérését. A jelenlegi Postaszámla regressziós tesztjei a meglévő Python-környezettel futnak. A Windows 10 1607 x64 célgépes ellenőrzése külön lépés. A fiktív PDF-előnézet DOCX-konverzióhoz vagy Word-automatizáláshoz nem kapcsolódik.
+A branch Windows Server 2022 munkafolyamata a rögzített EDPD-forrással futtatja a Qt teszteket, elindítja az ablakot és rögzíti az indulási mérését. A Full HD geometriaellenőrzés 1920 × 1080-as vagy nagyobb rendelkezésre álló területen fut. A kisebb Windows runner-kijelzőn a tényleges ablak, a panelosztás és a vezérlők működését ellenőrizzük. A jelenlegi Postaszámla regressziós tesztjei a meglévő Python-környezettel futnak. A Windows 10 1607 x64 célgépes ellenőrzése külön lépés. A fiktív PDF-előnézet DOCX-konverzióhoz vagy Word-automatizáláshoz nem kapcsolódik.

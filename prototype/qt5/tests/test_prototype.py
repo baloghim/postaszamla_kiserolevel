@@ -22,7 +22,9 @@ class PrototypeTests(unittest.TestCase):
 
     def setUp(self):
         self.window = MainWindow(self.appearance)
-        self.window.resize(1920, 1080)
+        available = self.app.primaryScreen().availableGeometry()
+        self.full_hd = available.width() >= 1920 and available.height() >= 1080
+        self.window.resize(min(1920, available.width()), min(1080, available.height()))
         self.window.show()
         self.app.processEvents()
         self.window.splitter.setSizes((960, 960))
@@ -40,14 +42,17 @@ class PrototypeTests(unittest.TestCase):
     def test_shared_luna_and_full_hd_split(self):
         self.assertEqual(qVersion(), "5.15.2")
         self.assertEqual(self.app.property("surfaceTheme"), THEME)
-        self.assertEqual((self.window.width(), self.window.height()), (1920, 1080))
+        self.assertTrue(self.window.isVisible())
+        if self.full_hd:
+            self.assertEqual((self.window.width(), self.window.height()), (1920, 1080))
         left, right = self.window.splitter.sizes()
         self.assertLessEqual(abs(left - right), 1)
         dialog = self.window.open_editor()
         self.app.processEvents()
         self.assertTrue(dialog.isVisible())
-        self.assertLess(dialog.width(), self.window.width())
-        self.assertLess(dialog.height(), self.window.height())
+        if self.full_hd:
+            self.assertLess(dialog.width(), self.window.width())
+            self.assertLess(dialog.height(), self.window.height())
         self.assertEqual(dialog.palette().color(QPalette.Highlight), self.window.palette().color(QPalette.Highlight))
         self.assertEqual(dialog.style().objectName(), self.window.style().objectName())
         if self.appearance.source:
