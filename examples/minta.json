@@ -1,0 +1,15 @@
+{
+  "start": "2026-10-24",
+  "end": "2026-10-31",
+  "reference": "MINTA-001/2026",
+  "sent": "2026-11-02",
+  "invoices": ["MINTA-SZ-001", "MINTA-SZ-002"],
+  "attachments": 2,
+  "dated": "2026-11-04",
+  "costs": {
+    "postal": {"operating": 0, "benefits": 71110},
+    "transport": {"operating": 0, "benefits": 176115},
+    "forwarding": {"operating": 0, "benefits": 0},
+    "mailbox": {"operating": 0, "benefits": 0}
+  }
+}
