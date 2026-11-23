@@ -47,11 +47,12 @@ def verify(package: Path, directory: Path) -> None:
                     ))):
                 raise RuntimeError(f"Váratlan adatfájl a Windows ZIP-ben: {filename}")
         icons = f"{APP}/_internal/postaszamla/icons"
+        originals = (set(ICON_NAMES) - {"fit-width", "pdf-missing", "pdf-present"}) | {"add", "pdf"}
         expected_icons = {
             *(f"{icons}/png/{size}.png" for size in ICON_SIZES),
-            *(f"{icons}/svg/{name}.svg" for name in ICON_NAMES),
-            *(f"{icons}/{name}" for name in ("COPYING", "COPYING.LESSER", "AUTHORS", "UPSTREAM-README.md",
-                                           "LICENSE-KDE-Classic.txt", "FORRAS.md")),
+            *(f"{icons}/original/{name}.png" for name in originals),
+            *(f"{icons}/{name}" for name in ("LGPL-2.1.txt", "LGPL-3.0.txt", "GPL-3.0.txt",
+                                           "UPSTREAM-README.md", "FORRAS.md")),
         }
         if missing := expected_icons - set(archive.namelist()):
             raise RuntimeError(f"Az ikoncsomag hiányos: {', '.join(sorted(missing))}")

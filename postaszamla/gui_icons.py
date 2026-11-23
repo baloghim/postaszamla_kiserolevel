@@ -2,13 +2,13 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
 
+from .gui_classic import ALTERNATE_BACKGROUND, ROW_BACKGROUND, SELECTED_BACKGROUND
+
 ICON_DIR = Path(__file__).with_name("icons")
-ICON_NAMES = ("about", "docx", "edit", "help", "new", "next", "open",
-              "pdf-missing", "pdf-present", "previous", "print", "refresh", "settings")
-ICON_SIZES = (16, 20, 24, 28, 30, 32, 36, 42, 48)
-ROW_BACKGROUND = "#ffffff"
-ALTERNATE_BACKGROUND = "#f5f8fb"
-SELECTED_BACKGROUND = "#c8e8f7"
+ICON_NAMES = ("about", "docx", "edit", "first", "fit-page", "fit-width", "help", "last", "new", "next",
+              "open", "pdf-missing", "pdf-present", "previous", "print", "refresh", "settings",
+              "zoom-in", "zoom-out")
+ICON_SIZES = (16, 20, 24, 28, 30, 32, 36, 42, 48, 56, 64)
 
 
 class Icons:

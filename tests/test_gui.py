@@ -7,7 +7,7 @@ from tkinter import ttk
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, call, patch
 
 from postaszamla.archive import read_record, save_record, sidecar
 from postaszamla.editor import LetterEditor
@@ -56,7 +56,7 @@ class TkTests(TestCase):
         self.assertEqual(panes.sashpos(0), stored.main_sash)
 
     def test_toolbar_order_groups_and_bundled_icons(self):
-        self.assertEqual(ttk.Style(self.root).theme_use(), "fusion-light")
+        self.assertEqual(ttk.Style(self.root).theme_use(), "classic-desktop")
         buttons = self.app.toolbar_buttons
         self.assertEqual([button.cget("text") for button in buttons], [
             "Új kísérőlevél", "Szerkesztés", "Megnyitás Wordben", "Nyomtatás",
@@ -69,6 +69,26 @@ class TkTests(TestCase):
         self.assertTrue(all(button.master == buttons[0].master for button in buttons[:5]))
         self.assertTrue(all(button.master == buttons[5].master for button in buttons[5:]))
         self.assertGreater(buttons[5].winfo_rootx(), buttons[0].winfo_rootx())
+
+    def test_main_panels_and_toolbar_callbacks(self):
+        app = self.app
+        self.assertEqual([str(panel.title_label.cget("text")) for panel in
+                          (app.list_panel, app.details_panel, app.preview)], [
+            "Kísérőlevelek", "A kijelölt kísérőlevél adatai", "Dokumentum-előnézet",
+        ])
+        self.assertGreaterEqual(app.details_panel.winfo_height(), app.details_panel.winfo_reqheight())
+        self.assertEqual(app.result_count.get(), "0 kísérőlevél")
+        buttons = app.toolbar_buttons
+        with patch.object(app, "edit") as edit:
+            buttons[0].invoke()
+            edit.assert_called_once_with(new=True)
+        with patch("postaszamla.gui.SettingsDialog") as settings:
+            buttons[5].invoke()
+            settings.assert_called_once()
+        with patch("postaszamla.gui.messagebox.showinfo") as show:
+            buttons[6].invoke()
+            buttons[7].invoke()
+            self.assertEqual([invocation.args[0] for invocation in show.call_args_list], ["Névjegy", "Súgó"])
 
     def test_pdf_indicators_and_selection(self):
         self.app.archive.mkdir()
@@ -91,16 +111,27 @@ class TkTests(TestCase):
         self.root.update()
         self.assertEqual(self.app.current.path, with_pdf)
         self.assertEqual(self.app.info["reference"].get(), LETTER.reference)
+        self.app.search.set("nincs-ilyen-fajl")
+        self.app.toolbar_buttons[4].invoke()
+        self.assertEqual(self.app.result_count.get(), "0 kísérőlevél")
+        self.assertFalse(self.app.tree.get_children())
 
     def test_document_selection_readonly_and_rejected_edit(self):
         self.app.archive.mkdir()
         path = save_record(self.app.archive, DEFAULT_TEMPLATE, LETTER)
         self.app.year.set(path.parent.name)
         self.app.refresh(preferred=path)
+        with patch("postaszamla.gui.word_action") as word, patch(
+            "postaszamla.gui.confirm_dialog", return_value=True
+        ) as confirm:
+            self.app.open_button.invoke()
+            self.app.print_button.invoke()
+            self.assertEqual(word.call_args_list, [call(path, printing=False), call(path, printing=True)])
+            confirm.assert_called_once()
         with patch("postaszamla.gui.confirm_dialog", return_value=False) as confirm, patch(
             "postaszamla.gui.LetterEditor"
         ) as editor:
-            self.app.edit()
+            self.app.edit_button.invoke()
             confirm.assert_called_once()
             editor.assert_not_called()
         self.assertEqual(self.app.info["reference"].get(), LETTER.reference)
@@ -201,3 +232,18 @@ class TkTests(TestCase):
         self.assertEqual(preview.page_text.get(), "1 / 2")
         self.assertLess(preview.canvas.yview()[1], 1.0)
         self.assertFalse(preview.xscroll.winfo_ismapped())
+
+        preview.view_buttons["last"].invoke()
+        self.assertEqual(preview.page_text.get(), "2 / 2")
+        preview.view_buttons["first"].invoke()
+        self.assertEqual(preview.page_text.get(), "1 / 2")
+        preview.view_buttons["fit-page"].invoke()
+        self.assertEqual(preview.zoom.get(), "Teljes oldal")
+        self.assertEqual(preview.canvas.yview(), (0.0, 1.0))
+        preview.set_zoom("100%")
+        preview.view_buttons["zoom-in"].invoke()
+        self.assertEqual(preview.zoom.get(), "125%")
+        preview.view_buttons["zoom-out"].invoke()
+        self.assertEqual(preview.zoom.get(), "100%")
+        preview.view_buttons["fit-width"].invoke()
+        self.assertEqual(preview.zoom.get(), "Szélesség")

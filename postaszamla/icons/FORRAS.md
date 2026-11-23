@@ -1,21 +1,28 @@
-# KDE Modern Classic ikonok
+# Crystal Remix ikonok
 
-A mellékelt ikonok Shaun Belcher KDE Modern Classic témájából származnak. Az SVG-k, az eredeti generátorforrás és a közreműködők adatai a rögzített forrásverzióban érhetők el. [Forrás és SVG-generátor, 466f093](https://github.com/nzoomed/kde-modern-classic/tree/466f093bf391f80c67cef60a24d4013be2536707)
+Az EDPD Menedzser 2.6.3 Crystal SVG nevű beállítása a KDE 3 Crystal Project és Crystal Clear grafikáit egyesítő Crystal Remix készletre épül. A Postaszámla ugyanabból a rögzített upstream változatból használ ikonokat. [EDPD 2.6.3 ikonforrások](https://github.com/baloghim/beerkezett_posta_kezeles/blob/v2.6.3/docs/ICONS.md) · [Crystal Remix forrás, f8863b5](https://github.com/dangvd/crystal-remix-icon-theme/tree/f8863b558b8eedf22caea0eabe18030bfcbe0783)
 
-Az ikonok licence LGPL-3.0-or-later. A csomag tartalmazza a licencszövegeket, a szerzői adatokat, a KDE Classic eredeti licencét és a téma fejlesztőinek tájékoztatóját. A Postaszámla alkalmazás az ikonfájlokat külön erőforrásként tölti be.
+Az eredeti ikonokat Everaldo Coelho, a Crystal Remix átdolgozását Viet Dang (Đặng Việt Dũng) készítette. Az upstream GNU LGPL licencet jelöl meg verziószám nélkül. A forrás közleményét, az LGPL 2.1 és LGPL 3.0 szövegét, valamint az utóbbihoz tartozó GPL 3.0 szöveget mellékeljük. A képek eredeti PNG-raszterek.
 
-| Alkalmazásbeli SVG | Eredeti ikon a téma `scalable/` mappájában |
+| Csomagolt eredeti | Útvonal a Crystal Remix készletben |
 | --- | --- |
-| `new` | `actions/document-new-from-template.svg` |
-| `edit` | `actions/edit-rename.svg` |
-| `open` | `actions/document-open.svg` |
-| `print` | `devices/document-print.svg` |
-| `refresh` | `actions/view-refresh.svg` |
-| `settings` | `actions/configure.svg` |
-| `about` | `actions/help-about.svg` |
-| `help` | `actions/help-browser.svg` |
-| `docx` | `mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg` |
-| `pdf-missing`, `pdf-present` | `mimetypes/application-pdf.svg` |
-| `previous`, `next` | `actions/go-previous.svg`, `actions/go-next.svg` |
+| `about` | `128x128/status/dialog-information.png` |
+| `add` | `32x32/actions/list-add.png` |
+| `docx` | `128x128/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png` |
+| `edit` | `32x32/actions/document-edit.png` |
+| `first` | `128x128/actions/go-first.png` |
+| `fit-page` | `32x32/actions/zoom-fit-best.png` |
+| `help` | `128x128/apps/help-browser.png` |
+| `last` | `128x128/actions/go-last.png` |
+| `new` | `32x32/actions/document-new.png` |
+| `next` | `128x128/actions/go-next.png` |
+| `open` | `32x32/actions/document-open.png` |
+| `pdf` | `128x128/mimetypes/application-pdf.png` |
+| `previous` | `128x128/actions/go-previous.png` |
+| `print` | `32x32/actions/document-print.png` |
+| `refresh` | `128x128/apps/system-software-update.png` |
+| `settings` | `128x128/actions/system-run.png` |
+| `zoom-in` | `32x32/actions/zoom-in.png` |
+| `zoom-out` | `32x32/actions/zoom-out.png` |
 
-A `pdf-present.svg` a téma piros PDF-ikonjának zöld átszínezése. A futtatáshoz a Tk alatt közvetlenül betölthető, több DPI-mérethez előállított PNG-ívek tartoznak. Az íveket név szerinti sorrendben az SVG-kből a `packaging/render_icons.py` állítja elő Inkscape és Pillow használatával. Ezek csak az ikonok újragenerálásához szükségesek.
+A Postaszámla zöld pluszt ad az új dokumentum ikonjához, két színnel jelöli a PDF állapotát, és oldalirányú nyilakkal egészíti ki a szélességre igazítás ikonját. A módosítások forrása a `packaging/render_icons.py` program. A futtatáshoz a Tk által betölthető PNG-ívek tartoznak. A Pillow csak az újrageneráláshoz kell.

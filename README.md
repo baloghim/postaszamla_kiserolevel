@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.3.6
+# Postaszámla-kísérőlevél v0.4.0
 
 A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetb
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
-- [Hordozható Windows x64 alkalmazás v0.3.6 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.6/Postaszamla-v0.3.6-win64.zip)
-- [A v0.3.6 változásai képernyőképekkel](docs/kiadasok/v0.3.6/README.md)
+- [Hordozható Windows x64 alkalmazás v0.4.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.4.0/Postaszamla-v0.4.0-win64.zip)
+- [A v0.4.0 változásai képernyőképekkel](docs/kiadasok/v0.4.0/README.md)
 
 ## Asztali alkalmazás
 
@@ -30,7 +30,9 @@ py -3.11 -m venv .venv
 
 Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
 
-A világos, Fusion-jellegű téma a meglévő Tkinter/ttk felületre épül. A Qt Fusion a Qt grafikus keretrendszer saját témája. Az eszköztár és a dokumentumlista külön csomagolt KDE Modern Classic ikonokat használ, több DPI-mérethez. Az ikonlicenc LGPL-3.0-or-later. [Ikonforrások, átszínezések és licenc](postaszamla/icons/FORRAS.md)
+A főablak Tkinter/ttk alapú XP/KDE 3 megjelenést használ. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Full HD főablak](docs/main-window-xp.png)
+
+A beépített művelet- és dokumentumikonok az EDPD által is használt Crystal Remix készletből származnak. Az eredeti PNG-k, a felhasznált forrásverzió és a GNU LGPL licencanyagok a csomagba kerülnek. [Ikonforrások és licenc](postaszamla/icons/FORRAS.md)
 
 ### Hordozható beállítások
 
