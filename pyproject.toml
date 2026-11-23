@@ -1,6 +1,6 @@
 [project]
 name = "postaszamla-kiserolevel"
-version = "0.3.0"
+version = "0.3.1"
 description = "Postaszámla-kísérőlevél generálása"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
@@ -17,4 +17,4 @@ packages = ["postaszamla"]
 postaszamla = ["templates/minta.docx"]
 
 [project.optional-dependencies]
-desktop = ["PyMuPDF==1.26.7", "pywin32==311; sys_platform == 'win32'"]
+desktop = ["pypdfium2==5.15.2", "pywin32==311; sys_platform == 'win32'"]

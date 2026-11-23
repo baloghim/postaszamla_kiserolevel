@@ -1,6 +1,7 @@
 import os
 import shutil
 import sys
+from contextlib import closing
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -55,7 +56,7 @@ def text_preview(path: Path) -> str:
 def prepare_preview(path: Path) -> tuple[str, bytes | str]:
     if sys.platform == "win32":
         try:
-            import pymupdf  # noqa: F401
+            import pypdfium2  # noqa: F401
             return "pdf", word_pdf(path)
         except Exception:
             # The text fallback can still display documents when Office or PDF rendering is unavailable.
@@ -64,18 +65,25 @@ def prepare_preview(path: Path) -> tuple[str, bytes | str]:
 
 
 def render_pdf(data: bytes, page: int, zoom: str, width: int, height: int):
-    import pymupdf
+    import pypdfium2
 
-    with pymupdf.open(stream=data, filetype="pdf") as document:
-        current = document[page]
-        scale = width / current.rect.width
+    with pypdfium2.PdfDocument(data) as document, closing(document[page]) as current:
+        page_width, page_height = current.get_size()
+        scale = width / page_width
         if zoom == "Teljes oldal":
-            scale = min(scale, height / current.rect.height)
+            scale = min(scale, height / page_height)
         elif zoom.endswith("%"):
             scale = float(zoom[:-1]) / 100 * 96 / 72
         scale = max(0.1, min(scale, 4.0))
-        image = current.get_pixmap(matrix=pymupdf.Matrix(scale, scale), alpha=False)
-        return len(document), image.tobytes("png")
+        with closing(current.render(scale=scale, rev_byteorder=True)) as image:
+            # Tk can load raw RGB PPM. Remove each PDFium row's alignment padding.
+            row_size = image.width * 3
+            raster = bytes(image.buffer)
+            header = f"P6\n{image.width} {image.height}\n255\n".encode("ascii")
+            return len(document), header + b"".join(
+                raster[offset:offset + row_size]
+                for offset in range(0, image.stride * image.height, image.stride)
+            )
 
 
 def word_action(path: Path, *, printing: bool = False) -> None:

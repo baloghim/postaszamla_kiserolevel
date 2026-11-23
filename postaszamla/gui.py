@@ -177,7 +177,7 @@ class PreviewPanel(ttk.Labelframe):
         height = max(100, self.canvas.winfo_height() - 24)
         try:
             self.page_count, pixels = render_pdf(self.data, self.page, self.zoom.get(), width, height)
-            self.image = tk.PhotoImage(data=pixels, format="png")
+            self.image = tk.PhotoImage(data=pixels, format="ppm")
         except Exception:
             self.data = None
             self.page_count = 0
@@ -539,7 +539,7 @@ class Application:
         SettingsDialog(self.root, self.settings, self.base, save)
 
     def about(self):
-        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.0", parent=self.root)
+        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.1", parent=self.root)
 
     def help(self):
         messagebox.showinfo(

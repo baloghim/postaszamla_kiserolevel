@@ -1,3 +1,4 @@
+from io import BytesIO
 import time
 import tkinter as tk
 from pathlib import Path
@@ -102,13 +103,15 @@ class TkTests(TestCase):
 
     def test_pdf_preview_pages_and_zoom(self):
         try:
-            import pymupdf
+            import pypdfium2
         except ImportError:
-            self.skipTest("A PyMuPDF asztali kiegészítő nincs telepítve.")
-        with pymupdf.open() as document:
-            document.new_page().insert_text((30, 30), "Minta 1")
-            document.new_page().insert_text((30, 30), "Minta 2")
-            self.app.preview.data = document.tobytes()
+            self.skipTest("A PDFium asztali kiegészítő nincs telepítve.")
+        contents = BytesIO()
+        with pypdfium2.PdfDocument.new() as document:
+            document.new_page(595, 842).close()
+            document.new_page(595, 842).close()
+            document.save(contents)
+        self.app.preview.data = contents.getvalue()
         self.app.preview.draw_page()
         self.assertEqual(self.app.preview.page_text.get(), "1 / 2")
         self.app.preview.turn(1)

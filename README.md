@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.3.0
+# Postaszámla-kísérőlevél v0.3.1
 
 A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,12 +6,14 @@ A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetb
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
-- [A v0.3.0 forráskódja ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/tags/v0.3.0.zip)
-- [A v0.3.0 változásai képernyőképekkel](docs/kiadasok/v0.3.0/README.md)
+- [Hordozható Windows x64 alkalmazás v0.3.1 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.1/Postaszamla-v0.3.1-win64.zip)
+- [A v0.3.1 változásai képernyőképekkel](docs/kiadasok/v0.3.1/README.md)
 
 ## Asztali alkalmazás
 
-A projektkönyvtárból, Windows parancssorban:
+A hordozható ZIP teljes tartalmát csomagold ki egy írható mappába. A `Postaszamla\Postaszamla.exe` indításához a mellette található `_internal` mappa szükséges. A csomag saját Python-futtatókörnyezetet tartalmaz. A `beallitasok.json` az első indításkor jön létre az EXE mellett.
+
+Forrásból a projektkönyvtárban, Windows parancssorban:
 
 ```bat
 py -3.11 -m venv .venv
@@ -26,7 +28,7 @@ py -3.11 -m venv .venv
 
 ### Hordozható beállítások
 
-A forrásból a fenti paranccsal indítva a `beallitasok.json` a projekt gyökerébe kerül. Egy későbbi, becsomagolt változat az EXE mellett fogja tárolni. A relatív útvonalak alapja ugyanez a könyvtár. A `beallitasok.example.json` másolható kiindulópontként. Ha a tényleges konfiguráció hiányzik, a program alapbeállításokkal újra létrehozza. Sérült fájlról mentés készül, és az alkalmazás felajánlja a visszaállítást.
+A forrásból a fenti paranccsal indítva a `beallitasok.json` a projekt gyökerébe kerül. A hordozható változat az EXE mellett tárolja. A relatív útvonalak alapja ugyanez a könyvtár. A `beallitasok.example.json` másolható kiindulópontként. Ha a tényleges konfiguráció hiányzik, a program alapbeállításokkal újra létrehozza. Sérült fájlról mentés készül, és az alkalmazás felajánlja a visszaállítást.
 
 Az üres sablonmező a csomag fiktív mintasablonját választja. Az alapértelmezett dokumentumtár a programkönyvtárbeli `dokumentumok` mappa. Az oszlopszélességeket, ablaktulajdonságokat, panelméreteket és nagyítást a program bezáráskor menti. A következő indításkor mindig az aktuális év jelenik meg.
 
@@ -38,9 +40,9 @@ Jóváhagyott szerkesztéskor a korábbi DOCX és adatfájl ellenőrzött másol
 
 ### Előnézet és nyomtatás
 
-Windowson a háttérben futó Word COM-automatizálás csak olvasható ideiglenes DOCX-másolatból PDF-et készít. A többoldalas PDF-et a PyMuPDF jeleníti meg. Az alapértelmezett nézet az oldalszélességhez igazodik. Az eredeti Word-fájl és az esetleges meglévő PDF változatlan marad. A Word-alapú előnézet hibája esetén, illetve Linuxon a program szöveges betekintést ad, ha a DOCX olvasható. A megnyitás és a nyomtatás a Windows DOCX-fájltársítását használja; a célgépen ezt állítsd Wordre.
+Windowson a háttérben futó Word COM-automatizálás csak olvasható ideiglenes DOCX-másolatból PDF-et készít. A többoldalas PDF-et a PDFium jeleníti meg. Az alapértelmezett nézet az oldalszélességhez igazodik. Az eredeti Word-fájl és az esetleges meglévő PDF változatlan marad. A Word-alapú előnézet hibája esetén, illetve Linuxon a program szöveges betekintést ad, ha a DOCX olvasható. A megnyitás és a nyomtatás a Windows DOCX-fájltársítását használja; a célgépen ezt állítsd Wordre.
 
-A CPython 3.11-hez elérhető a `pywin32 311` és a `PyMuPDF 1.26.7` 64 bites Windows-csomagja. A Linuxos Tk-folyamatot Full HD virtuális kijelzőn, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek. A PyMuPDF AGPL vagy kereskedelmi licenc alatt érhető el. [PyMuPDF licenc](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)
+A CPython 3.11-hez elérhető a `pywin32 311` és a `pypdfium2 5.15.2` 64 bites Windows-csomagja. A Linuxos Tk-folyamatot Full HD virtuális kijelzőn, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek.
 
 ## Parancssori telepítés és mintagenerálás
 
@@ -105,7 +107,7 @@ Egy sablonon belül minden kötelező helyőrző pontosan egyszer szerepeljen. A
 
 A célgéphez a 64 bites CPython 3.11 a kiindulási verzió. A CPython 3.11 Windows-dokumentációja Windows 8.1-től jelöl támogatást. A rögzített `python-docx 1.2.0` és `typing-extensions 4.15.0` platformfüggetlen csomagja, valamint az `lxml 6.1.0` CPython 3.11-es, 64 bites Windows-csomagja letölthető. A telepítést és a dokumentumgenerálást Linuxon, Python 3.12 alatt ellenőriztük. [CPython Windows-dokumentáció](https://github.com/python/cpython/blob/3.11/Doc/using/windows.rst)
 
-A későbbi EXE-csomagolás vizsgálatához a PyInstaller 6.11.1 dokumentált követelményei lefedik a Python 3.11-et és a Windows 8 vagy újabb rendszereket. A konkrét Windows 10 1607-es gépen külön ellenőrizendő a Python, a natív lxml és a későbbi EXE futása. [PyInstaller 6.11.1 követelményei](https://github.com/pyinstaller/pyinstaller/blob/v6.11.1/README.rst)
+A Windows x64 csomag CPython 3.11.9 és PyInstaller 6.11.1 használatával készül. A PyInstaller dokumentált Windows-támogatása Windows 8-tól indul. A `vX.Y.Z` címke Windows Server 2022 GitHub runneren futtatja a teszteket és a PyInstaller buildet. A közzététel előtt a munkafolyamat leteszteli a kicsomagolt EXE-t. A Windows 10 1607 és a Word 2016 együttes működéséhez célgépes próba szükséges. [PyInstaller 6.11.1 követelményei](https://github.com/pyinstaller/pyinstaller/blob/v6.11.1/README.rst)
 
 A mellékelt hivatali sablont fiktív bemenettel szerkezetileg ellenőriztük. Az egylapos tördelés és a nyomtatási kép ellenőrzéséhez nyisd meg a helyben generált DOCX-et Word 2016-ban.
 
