@@ -72,7 +72,7 @@ def main(tag: str, output: Path) -> None:
             "--onedir", "--windowed", "--name", APP, "--contents-directory", "_internal",
             "--paths", str(ROOT), "--distpath", str(temp / "dist"),
             "--workpath", str(temp / "work"), "--specpath", str(temp),
-            "--add-data", "postaszamla/templates/minta.docx:postaszamla/templates",
+            "--add-data", f"{ROOT / 'postaszamla/templates/minta.docx'};postaszamla/templates",
             "--collect-data", "pypdfium2", "--collect-all", "pypdfium2_raw",
             "--hidden-import", "win32timezone",
         ]

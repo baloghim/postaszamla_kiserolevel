@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.3.2
+# Postaszámla-kísérőlevél v0.3.3
 
 A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetb
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
-- [Hordozható Windows x64 alkalmazás v0.3.2 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.2/Postaszamla-v0.3.2-win64.zip)
-- [A v0.3.2 változásai képernyőképekkel](docs/kiadasok/v0.3.2/README.md)
+- [Hordozható Windows x64 alkalmazás v0.3.3 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.3/Postaszamla-v0.3.3-win64.zip)
+- [A v0.3.3 változásai képernyőképekkel](docs/kiadasok/v0.3.3/README.md)
 
 ## Asztali alkalmazás
 

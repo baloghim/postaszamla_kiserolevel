@@ -539,7 +539,7 @@ class Application:
         SettingsDialog(self.root, self.settings, self.base, save)
 
     def about(self):
-        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.2", parent=self.root)
+        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.3", parent=self.root)
 
     def help(self):
         messagebox.showinfo(
