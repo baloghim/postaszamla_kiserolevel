@@ -1,13 +1,13 @@
-# Postaszámla-kísérőlevél v0.4.0
+# Postaszámla-kísérőlevél v0.5.0
 
-A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
+A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
 ## Letöltés és változások
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
-- [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
-- [Hordozható Windows x64 alkalmazás v0.4.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.4.0/Postaszamla-v0.4.0-win64.zip)
-- [A v0.4.0 változásai képernyőképekkel](docs/kiadasok/v0.4.0/README.md)
+- [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest/download/postaszamla-forras.zip)
+- [Hordozható Windows x64 alkalmazás v0.5.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.5.0/Postaszamla-v0.5.0-win64.zip)
+- [A v0.5.0 változásai képernyőképekkel](docs/kiadasok/v0.5.0/README.md)
 
 ## Asztali alkalmazás
 
@@ -16,7 +16,7 @@ A hordozható ZIP teljes tartalmát csomagold ki egy írható mappába. A `Posta
 Forrásból a projektkönyvtárban, Windows parancssorban:
 
 ```bat
-py -3.11 -m venv .venv
+py -3.10 -m venv .venv
 .venv\Scripts\python.exe -m pip install ".[desktop]"
 .venv\Scripts\python.exe -m postaszamla.gui
 ```
@@ -30,7 +30,7 @@ py -3.11 -m venv .venv
 
 Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
 
-A főablak Tkinter/ttk alapú XP/KDE 3 megjelenést használ. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Full HD főablak](docs/main-window-xp.png)
+A főablak, a levélszerkesztő és a beállítások ugyanazt az XP Luna Blue stílust használják. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Full HD főablak](docs/kiadasok/v0.5.0/foablak.png)
 
 A beépített művelet- és dokumentumikonok az EDPD által is használt Crystal Remix készletből származnak. Az eredeti PNG-k, a felhasznált forrásverzió és a GNU LGPL licencanyagok a csomagba kerülnek. [Ikonforrások és licenc](postaszamla/icons/FORRAS.md)
 
@@ -50,14 +50,14 @@ Jóváhagyott szerkesztéskor a korábbi DOCX és adatfájl ellenőrzött másol
 
 Windowson a háttérben futó Word COM-automatizálás csak olvasható ideiglenes DOCX-másolatból PDF-et készít. A többoldalas PDF-et a PDFium jeleníti meg. Az alapértelmezett nézet az oldalszélességhez igazodik. Az eredeti Word-fájl és az esetleges meglévő PDF változatlan marad. A Word-alapú előnézet hibája esetén, illetve Linuxon a program szöveges betekintést ad, ha a DOCX olvasható. A megnyitás és a nyomtatás a Windows DOCX-fájltársítását használja; a célgépen ezt állítsd Wordre.
 
-A CPython 3.11-hez elérhető a `pywin32 311` és a `pypdfium2 5.15.2` 64 bites Windows-csomagja. A Linuxos Tk-folyamatot Full HD virtuális kijelzőn, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek.
+A Qt-felületet Linuxon Full HD felbontásban, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek.
 
 ## Parancssori telepítés és mintagenerálás
 
 A tároló gyökerében, Windows parancssorban:
 
 ```bat
-py -3.11 -m venv .venv
+py -3.10 -m venv .venv
 .venv\Scripts\python.exe -m pip install .
 .venv\Scripts\python.exe -m postaszamla examples\minta.json --output output
 .venv\Scripts\python.exe -m unittest discover -s tests -v
@@ -65,7 +65,7 @@ py -3.11 -m venv .venv
 
 A minta eredménye az `output/2026/postaszámla_2026.10.24-10.31_ellátási_ki_be_szallitas.docx` fájl. A végösszeg 247 225 Ft. A `--output` a dokumentumtár gyökérmappáját adja meg. A program az elszámolási időszak kezdőévének almappájába ment, évhatáron átnyúló időszaknál is. Az almappa szükség esetén létrejön. A korábbi közvetlen mentéshez add meg a `--flat-output` kapcsolót. Ha a célfájl már létezik, a program hibaüzenettel leáll, és megőrzi a meglévő fájlt.
 
-Linuxon a parancsokban a `py -3.11` helyett `python3`, a virtuális környezet Pythonjához pedig `.venv/bin/python` használható a támogatott Python-verziókkal.
+Linuxon a parancsokban a `py -3.10` helyett `python3`, a virtuális környezet Pythonjához pedig `.venv/bin/python` használható a támogatott Python-verziókkal.
 
 ## Saját adatok és sablon
 
@@ -113,11 +113,15 @@ Egy sablonon belül minden kötelező helyőrző pontosan egyszer szerepeljen. A
 
 ## Windows 10 1607 és Office 2016
 
-A célgéphez a 64 bites CPython 3.11 a kiindulási verzió. A CPython 3.11 Windows-dokumentációja Windows 8.1-től jelöl támogatást. A rögzített `python-docx 1.2.0` és `typing-extensions 4.15.0` platformfüggetlen csomagja, valamint az `lxml 6.1.0` CPython 3.11-es, 64 bites Windows-csomagja letölthető. A telepítést és a dokumentumgenerálást Linuxon, Python 3.12 alatt ellenőriztük. [CPython Windows-dokumentáció](https://github.com/python/cpython/blob/3.11/Doc/using/windows.rst)
+A Windows x64 csomag CPython 3.10.11, PySide2 és shiboken2 5.15.2.1 (Qt 5.15.2), valamint PyInstaller 6.11.1 használatával készül. A Word-előnézethez `pywin32 311`, a PDF megjelenítéséhez `pypdfium2 5.15.2` tartozik. A parancssori dokumentumgenerálás Python 3.10–3.12 alatt használható. A Qt-felület forrásból történő futtatásához Python 3.10 x64 szükséges.
 
-A Windows x64 csomag CPython 3.11.9 és PyInstaller 6.11.1 használatával készül. A PyInstaller dokumentált Windows-támogatása Windows 8-tól indul. A `vX.Y.Z` címke Windows Server 2022 GitHub runneren futtatja a teszteket és a PyInstaller buildet. A közzététel előtt a munkafolyamat leteszteli a kicsomagolt EXE-t. A Windows 10 1607 és a Word 2016 együttes működéséhez célgépes próba szükséges. [PyInstaller 6.11.1 követelményei](https://github.com/pyinstaller/pyinstaller/blob/v6.11.1/README.rst)
+A `vX.Y.Z` címke a Windows Server 2022 GitHub-runneren futtatja a teszteket és a PyInstaller buildet. A munkafolyamat a közzététel előtt elindítja a kicsomagolt EXE-t, ellenőrzi a beállításfájlt és mindkét Qt-ablakot, majd fiktív dokumentummal próbálja ki a DOCX-mentést és a PDF-megjelenítést. A Windows 10 1607 és a Word 2016 együttes működéséhez célgépes próba szükséges. [CPython 3.10.11](https://www.python.org/downloads/release/python-31011/) · [PyInstaller 6.11.1 követelményei](https://github.com/pyinstaller/pyinstaller/blob/v6.11.1/README.rst)
 
-A mellékelt hivatali sablont fiktív bemenettel szerkezetileg ellenőriztük. Az egylapos tördelés és a nyomtatási kép ellenőrzéséhez nyisd meg a helyben generált DOCX-et Word 2016-ban.
+A hordozható csomag dinamikusan betöltött Qt 5 könyvtárakat és licencanyagokat tartalmaz. A grafikai stílus Luna-alapú, a Postaszámlához igazított téma. A saját, helyi EDPD 2.6.3 munkapéldányból az eredeti stílus, az arányos táblázat és a referenciaikonkészlet betölthető a `--edpd-source` kapcsolóval, például `python -m postaszamla.gui --edpd-source C:\forras\beerkezett_posta_kezeles`. [Qt 5.15.2 forrás](https://download.qt.io/archive/qt/5.15/5.15.2/single/) · [Qt for Python forráskiadások](https://download.qt.io/official_releases/QtForPython/pyside2/)
+
+A korábbi Tkinter-változat forrása a [legacy/tkinter](https://github.com/baloghim/postaszamla_kiserolevel/tree/legacy/tkinter) ágon érhető el.
+
+A csomag fiktív mintasablont tartalmaz. A saját hivatali sablont a Beállításokban választhatod ki. Az egylapos tördelés és a nyomtatási kép ellenőrzéséhez nyisd meg a helyben generált DOCX-et Word 2016-ban.
 
 ## Adatvédelem
 

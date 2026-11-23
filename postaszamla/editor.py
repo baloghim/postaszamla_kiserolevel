@@ -1,11 +1,10 @@
-import re
 import tkinter as tk
 from datetime import date
 from tkinter import messagebox, ttk
 
-from .config import parse_date
 from .filename import make_filename
 from .finance import calculate, forints
+from .forms import amount, form_date
 from .models import Cost, Costs, SERVICES
 from .records import Invoice, Record, period, total_costs
 
@@ -15,21 +14,6 @@ HEADINGS = ("Szolgáltatás megnevezése", "Működési (Ft)", "Ellátás (Ft)",
 
 def display_date(value: date) -> str:
     return f"{value:%Y.%m.%d.}"
-
-
-def form_date(value: str, label: str) -> date:
-    text = value.strip()
-    if re.fullmatch(r"[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.?", text):
-        text = text.rstrip(".").replace(".", "-")
-    return parse_date(text, label)
-
-
-def amount(value: str) -> int:
-    if not value.strip():
-        return 0
-    if not re.fullmatch(r"[0-9]+|[0-9]{1,3}(?:[ \u00a0\u202f][0-9]{3})+", value.strip()):
-        raise ValueError("A költség mezőbe nemnegatív egész forintösszeget írjon.")
-    return int("".join(value.split()))
 
 
 def center_dialog(dialog, parent, width=None, height=None):

@@ -5,11 +5,13 @@ from pathlib import Path
 from PySide2.QtGui import QColor, QIcon, QPalette, QPixmap
 from PySide2.QtWidgets import QComboBox, QHeaderView, QLabel, QTableWidget, QVBoxLayout, QWidget
 
-ICON_DIR = Path(__file__).resolve().parents[2] / "postaszamla" / "icons"
+ICON_DIR = Path(__file__).resolve().parents[1] / "icons"
 # Sprite layout from the existing Postaszámla Crystal Remix assets.
 ICON_NAMES = ("about", "docx", "edit", "first", "fit-page", "fit-width", "help", "last", "new", "next",
               "open", "pdf-missing", "pdf-present", "previous", "print", "refresh", "settings",
               "zoom-in", "zoom-out")
+
+ICON_SIZES = (16, 20, 24, 28, 30, 32, 36, 42, 48, 56, 64)
 
 THEME = "Windows XP Luna Blue"
 REFERENCE_ICONS = {
@@ -50,9 +52,9 @@ class Appearance:
     def __init__(self, app, edpd_checkout=None):
         self.table = ProportionalTable
         self.combo = QComboBox
-        self.viewer = None
         self.reference_icons = None
         self.cache = {}
+        self.sheets = {}
         self.source = None
         if edpd_checkout is None:
             apply_standalone_theme(app)
@@ -74,14 +76,12 @@ class Appearance:
             widgets = importlib.import_module("edpd.ui.themes.widgets")
             icons = importlib.import_module("edpd.ui.icons")
             tables = importlib.import_module("edpd.ui.proportional_table")
-            preview = importlib.import_module("edpd.ui.pdf_viewer")
             appearance.apply_style("Fusion", THEME)
             if themes.manager().name != THEME or not app.styleSheet():
                 raise RuntimeError("Az EDPD Luna témáját nem sikerült betölteni.")
             self.reference_icons = icons.IconThemeManager()
             self.table = tables.ProportionalTable
             self.combo = widgets.SurfaceComboBox
-            self.viewer = preview.PDFViewer
             self.source = root
         finally:
             sys.path.remove(str(root))
@@ -95,8 +95,9 @@ class Appearance:
             icon = QIcon()
             index = ICON_NAMES.index(name)
             for size in (16, 24, 32, 48, 64):
-                sheet = QPixmap(str(ICON_DIR / "png" / f"{size}.png"))
-                icon.addPixmap(sheet.copy(index * size, 0, size, size))
+                if size not in self.sheets:
+                    self.sheets[size] = QPixmap(str(ICON_DIR / "png" / f"{size}.png"))
+                icon.addPixmap(self.sheets[size].copy(index * size, 0, size, size))
         self.cache[name] = icon
         return icon
 

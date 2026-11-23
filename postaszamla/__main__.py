@@ -14,6 +14,10 @@ class HungarianParser(argparse.ArgumentParser):
 
 
 def main() -> int:
+    if len(sys.argv) == 1:
+        from .gui import main as desktop
+
+        return desktop()
     parser = HungarianParser(
         prog="python -m postaszamla",
         description="Postaszámla-kísérőlevél készítése JSON-adatokból.",

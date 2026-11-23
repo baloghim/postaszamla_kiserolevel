@@ -48,8 +48,11 @@ def sidecar(path: Path) -> Path:
 
 
 def digest(path: Path) -> str:
+    checksum = hashlib.sha256()
     with path.open("rb") as stream:
-        return hashlib.file_digest(stream, "sha256").hexdigest()
+        for chunk in iter(lambda: stream.read(256 * 1024), b""):
+            checksum.update(chunk)
+    return checksum.hexdigest()
 
 
 @dataclass(frozen=True)

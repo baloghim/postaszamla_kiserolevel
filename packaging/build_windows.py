@@ -8,7 +8,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
-from postaszamla.gui_icons import ICON_NAMES, ICON_SIZES
+from postaszamla.qt.appearance import ICON_NAMES, ICON_SIZES
 
 ROOT = Path(__file__).resolve().parent.parent
 APP = "Postaszamla"
@@ -19,7 +19,7 @@ def copy_notices(bundle: Path) -> None:
     licenses.mkdir()
     python_license = Path(sys.base_prefix) / "LICENSE.txt"
     shutil.copy2(python_license, licenses / "Python.txt")
-    for name in ("python-docx", "lxml", "typing-extensions", "pypdfium2", "pywin32", "pyinstaller"):
+    for name in ("python-docx", "lxml", "typing-extensions", "pypdfium2", "pywin32", "PySide2", "shiboken2", "pyinstaller"):
         package = distribution(name)
         for path in package.files or ():
             if re.search(r"licen[cs]e|copying|notice", str(path), re.IGNORECASE):
@@ -56,6 +56,10 @@ def verify(package: Path, directory: Path) -> None:
         }
         if missing := expected_icons - set(archive.namelist()):
             raise RuntimeError(f"Az ikoncsomag hiányos: {', '.join(sorted(missing))}")
+        filenames = {Path(name).name.casefold() for name in archive.namelist()}
+        for required in ("qt5core.dll", "qt5widgets.dll", "qwindows.dll"):
+            if required not in filenames:
+                raise RuntimeError(f"A Windows Qt 5-csomagból hiányzik: {required}")
         archive.extractall(directory)
     application = directory / APP / f"{APP}.exe"
     with application.open("rb") as binary:
@@ -88,7 +92,7 @@ def main(tag: str, output: Path) -> None:
             "--add-data", f"{ROOT / 'postaszamla/templates/minta.docx'};postaszamla/templates",
             "--add-data", f"{ROOT / 'postaszamla/icons'};postaszamla/icons",
             "--collect-data", "pypdfium2", "--collect-all", "pypdfium2_raw",
-            "--hidden-import", "win32timezone",
+            "--hidden-import", "win32timezone", "--exclude-module", "tkinter",
         ]
         for name in ("vcruntime140.dll", "vcruntime140_1.dll"):
             runtime = Path(sys.base_prefix) / name

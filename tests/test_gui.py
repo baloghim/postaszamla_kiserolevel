@@ -11,7 +11,7 @@ from unittest.mock import Mock, call, patch
 
 from postaszamla.archive import read_record, save_record, sidecar
 from postaszamla.editor import LetterEditor
-from postaszamla.gui import Application
+from postaszamla.gui_tk import Application
 from postaszamla.settings import load_settings
 from postaszamla.preview import text_preview
 from postaszamla.template import DEFAULT_TEMPLATE
@@ -29,7 +29,7 @@ class TkTests(TestCase):
         self.addCleanup(directory.cleanup)
         self.addCleanup(self.cleanup_root)
         self.base = Path(directory.name)
-        preview = patch("postaszamla.gui.prepare_preview", side_effect=lambda path: ("text", text_preview(path)))
+        preview = patch("postaszamla.gui_tk.prepare_preview", side_effect=lambda path: ("text", text_preview(path)))
         preview.start()
         self.addCleanup(preview.stop)
         self.app = Application(self.root, self.base)
@@ -82,10 +82,10 @@ class TkTests(TestCase):
         with patch.object(app, "edit") as edit:
             buttons[0].invoke()
             edit.assert_called_once_with(new=True)
-        with patch("postaszamla.gui.SettingsDialog") as settings:
+        with patch("postaszamla.gui_tk.SettingsDialog") as settings:
             buttons[5].invoke()
             settings.assert_called_once()
-        with patch("postaszamla.gui.messagebox.showinfo") as show:
+        with patch("postaszamla.gui_tk.messagebox.showinfo") as show:
             buttons[6].invoke()
             buttons[7].invoke()
             self.assertEqual([invocation.args[0] for invocation in show.call_args_list], ["Névjegy", "Súgó"])
@@ -121,15 +121,15 @@ class TkTests(TestCase):
         path = save_record(self.app.archive, DEFAULT_TEMPLATE, LETTER)
         self.app.year.set(path.parent.name)
         self.app.refresh(preferred=path)
-        with patch("postaszamla.gui.word_action") as word, patch(
-            "postaszamla.gui.confirm_dialog", return_value=True
+        with patch("postaszamla.gui_tk.word_action") as word, patch(
+            "postaszamla.gui_tk.confirm_dialog", return_value=True
         ) as confirm:
             self.app.open_button.invoke()
             self.app.print_button.invoke()
             self.assertEqual(word.call_args_list, [call(path, printing=False), call(path, printing=True)])
             confirm.assert_called_once()
-        with patch("postaszamla.gui.confirm_dialog", return_value=False) as confirm, patch(
-            "postaszamla.gui.LetterEditor"
+        with patch("postaszamla.gui_tk.confirm_dialog", return_value=False) as confirm, patch(
+            "postaszamla.gui_tk.LetterEditor"
         ) as editor:
             self.app.edit_button.invoke()
             confirm.assert_called_once()
