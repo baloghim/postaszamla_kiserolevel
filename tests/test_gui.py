@@ -80,6 +80,8 @@ class TkTests(TestCase):
         self.app.year.set(with_pdf.parent.name)
         self.app.refresh()
         self.root.update()
+        self.app.tree.xview_moveto(1.0)
+        self.root.update()
         badges = [label for label in self.app.pdf_badges.labels if label.winfo_ismapped()]
         self.assertEqual(len(badges), 2)
         for label in badges:

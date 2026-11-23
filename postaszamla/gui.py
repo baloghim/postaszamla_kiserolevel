@@ -5,7 +5,7 @@ from datetime import date
 from pathlib import Path
 from queue import Empty, Queue
 from threading import Thread
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, font, messagebox, ttk
 
 from .archive import documents, initial_year, read_record, save_record, year_folders
 from .editor import LetterEditor, center_dialog, confirm_dialog, display_date
@@ -374,7 +374,7 @@ class Application:
         self.left_panes.sashpos(0, self.settings.list_sash or self.left_panes.winfo_height() * 2 // 3)
 
     def start_sash_drag(self, event):
-        if self.main_panes.identify(event.x, event.y) == 0:
+        if str(self.main_panes.identify(event.x, event.y)) == "0":
             self.sash_start = self.main_panes.sashpos(0)
 
     def end_sash_drag(self, event):
@@ -475,11 +475,15 @@ class Application:
         self.tree.bind("<Return>", lambda event: self.open_in_word())
         self.doc_icon = self.icons.get("docx", 20)
         self.tree.tag_configure("alternate", background=ALTERNATE_BACKGROUND)
+        heading_font = font.Font(root=self.root, font=ttk.Style(self.root).lookup("Treeview.Heading", "font"))
+        heading_margin = round(self.root.winfo_fpixels("0.26i"))
         for index, (key, label) in enumerate(zip(COLUMNS, ("Fájlnév", "Időszak", "Számlák", "PDF"), strict=True)):
+            minimum = max(45, heading_font.measure(label) + heading_margin)
             col = "#0" if index == 0 else key
             self.tree.heading(col, text=label, anchor="w" if index == 0 else "center",
                               command=lambda k=key: self.sort(k))
-            self.tree.column(col, width=self.settings.columns[index], minwidth=45, stretch=(index == 0),
+            self.tree.column(col, width=max(minimum, self.settings.columns[index]),
+                             minwidth=minimum, stretch=(index == 0),
                              anchor="w" if index < 2 else "center")
         legend = ttk.Frame(listing)
         legend.pack(anchor="w", pady=(4, 0))
@@ -615,7 +619,7 @@ class Application:
                 self.preview.zoom.set(settings.zoom)
                 self.preview.draw_page()
                 for col, width in zip(("#0", *COLUMNS[1:]), settings.columns, strict=True):
-                    self.tree.column(col, width=width)
+                    self.tree.column(col, width=max(width, self.tree.column(col, "minwidth")))
                 self.maximize()
                 self.root.after_idle(self.restore_sashes)
             self.refresh()
@@ -623,7 +627,7 @@ class Application:
         SettingsDialog(self.root, self.settings, self.base, save)
 
     def about(self):
-        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.5", parent=self.root)
+        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.6", parent=self.root)
 
     def help(self):
         messagebox.showinfo(

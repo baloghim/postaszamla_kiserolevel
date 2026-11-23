@@ -32,7 +32,15 @@ jobs:
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
           python -m pip install --only-binary=:all: ".[desktop]" "PyInstaller==6.11.1" "pyinstaller-hooks-contrib==2024.10"
-          python -m unittest discover -s tests -v
+          $PSNativeCommandUseErrorActionPreference = $false
+          $tests = python -m unittest discover -s tests -v 2>&1
+          $result = $LASTEXITCODE
+          $tests | ForEach-Object { Write-Host $_ }
+          if ($result -ne 0) {
+            $summary = ($tests | Select-Object -Last 28) -join "%0A"
+            Write-Host "::error::$summary"
+            exit $result
+          }
 
       - name: Kiadási jegyzet és forrás-ZIP
         shell: bash
