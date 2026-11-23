@@ -78,12 +78,21 @@ def main(tag: str, output: Path) -> None:
         ]
         for name in ("vcruntime140.dll", "vcruntime140_1.dll"):
             runtime = Path(sys.base_prefix) / name
-            if not runtime.is_file():
-                raise FileNotFoundError(runtime)
-            command.extend(("--add-binary", f"{runtime};."))
-        subprocess.run([*command, str(ROOT / "packaging" / "windows_entry.py")],
-                       cwd=ROOT, check=True)
+            if runtime.is_file():
+                command.extend(("--add-binary", f"{runtime};."))
+        build = subprocess.run(
+            [*command, str(ROOT / "packaging" / "windows_entry.py")],
+            cwd=ROOT, encoding="utf-8", errors="replace",
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        )
+        print(build.stdout)
+        if build.returncode:
+            tail = "\n".join(build.stdout.splitlines()[-12:])
+            raise RuntimeError(f"A PyInstaller kilépési kódja: {build.returncode}\n{tail}")
         dist = temp / "dist"
+        for name in ("vcruntime140.dll", "vcruntime140_1.dll"):
+            if not (dist / APP / "_internal" / name).is_file():
+                raise FileNotFoundError(f"A csomagból hiányzik a Visual C++ futtatókörnyezet: {name}")
         copy_notices(dist / APP)
         package = Path(shutil.make_archive(str(temp / f"{APP}-{tag}-win64"), "zip", dist, APP))
         verify(package, temp / "extracted")
@@ -92,4 +101,9 @@ def main(tag: str, output: Path) -> None:
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], Path(sys.argv[2]).resolve())
+    try:
+        main(sys.argv[1], Path(sys.argv[2]).resolve())
+    except Exception as error:
+        detail = f"{type(error).__name__}: {error}".replace("%", "%25")
+        print("::error::" + detail.replace("\r", "%0D").replace("\n", "%0A"), flush=True)
+        raise
