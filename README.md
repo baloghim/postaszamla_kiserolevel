@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.3.4
+# Postaszámla-kísérőlevél v0.3.5
 
 A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetb
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
-- [Hordozható Windows x64 alkalmazás v0.3.4 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.4/Postaszamla-v0.3.4-win64.zip)
-- [A v0.3.4 változásai képernyőképekkel](docs/kiadasok/v0.3.4/README.md)
+- [Hordozható Windows x64 alkalmazás v0.3.5 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.3.5/Postaszamla-v0.3.5-win64.zip)
+- [A v0.3.5 változásai képernyőképekkel](docs/kiadasok/v0.3.5/README.md)
 
 ## Asztali alkalmazás
 
@@ -25,6 +25,12 @@ py -3.11 -m venv .venv
 2. Az **Új kísérőlevél** ablakban add meg a közös adatokat, majd rögzíts minden számlát külön. A dátumok `ÉÉÉÉ.HH.NN.` vagy `ÉÉÉÉ-HH-NN` alakban adhatók meg. Az időszak, a szolgáltatásonkénti összegek és a fájlnév folyamatosan frissülnek.
 3. A listában év és fájlnév szerint kereshetsz, az oszlopfejlécekkel pedig rendezhetsz. A PDF-jelzés az azonos alapnevű fájl jelenlétét mutatja. A kijelölt DOCX előnézete automatikusan betöltődik.
 4. A program ellenőrzött adatfájllal rendelkező levelekhez kínál szerkesztést. A belépés és a mentés megerősítést igényel. A régi vagy Wordben utólag módosított DOCX-ek előnézetben és Wordben nyithatók meg.
+
+### A főablak megjelenése
+
+Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
+
+A világos, Fusion-jellegű téma a meglévő Tkinter/ttk felületre épül. A Qt Fusion a Qt grafikus keretrendszer saját témája. Az eszköztár és a dokumentumlista külön csomagolt KDE Modern Classic ikonokat használ, több DPI-mérethez. Az ikonlicenc LGPL-3.0-or-later. [Ikonforrások, átszínezések és licenc](postaszamla/icons/FORRAS.md)
 
 ### Hordozható beállítások
 

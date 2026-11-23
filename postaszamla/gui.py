@@ -9,6 +9,9 @@ from tkinter import filedialog, messagebox, ttk
 
 from .archive import documents, initial_year, read_record, save_record, year_folders
 from .editor import LetterEditor, center_dialog, confirm_dialog, display_date
+from .gui_icons import (
+    ALTERNATE_BACKGROUND, ROW_BACKGROUND, SELECTED_BACKGROUND, Icons, PdfBadges, Tooltip,
+)
 from .preview import prepare_preview, render_pdf, word_action
 from .settings import InvalidSettings, Settings, backup_settings, load_settings, program_directory
 
@@ -18,31 +21,50 @@ COLUMNS = ("filename", "period", "count", "pdf")
 UNAVAILABLE = "Nem érhető el"
 
 
-def display_period(period):
-    return " – ".join(map(display_date, period)) if period else "—"
+def display_period(period, *, compact=False):
+    if not period:
+        return "—"
+    start, end = period
+    end_label = f"{end:%m.%d.}" if compact and start.year == end.year else display_date(end)
+    return f"{display_date(start)} – {end_label}"
 
 
 def apply_theme(root):
     style = ttk.Style(root)
-    style.theme_use("clam")
-    style.configure(".", font=("Segoe UI", 10), background="#edf3f6", foreground="#172b39")
-    style.configure("TButton", padding=(10, 8), relief="flat", background="#dfe9ef")
-    style.map("TButton", background=[("active", "#d0e3ea")])
-    style.configure("Accent.TButton", background="#086f71", foreground="white", font=("Segoe UI", 10, "bold"))
-    style.map("Accent.TButton", background=[("active", "#0b8584")], foreground=[("active", "white")])
-    style.configure("Title.TLabel", font=("Segoe UI", 17, "bold"), foreground="#123846")
+    if "fusion-light" not in style.theme_names():
+        style.theme_create("fusion-light", parent="clam")
+    style.theme_use("fusion-light")
+    family = "Segoe UI" if sys.platform == "win32" else "DejaVu Sans"
+    style.configure(".", font=(family, 10), background="#edf2f6", foreground="#172635",
+                    bordercolor="#bbc7d2", lightcolor="#f8fbfd", darkcolor="#d9e1e8",
+                    fieldbackground="#ffffff", selectbackground=SELECTED_BACKGROUND)
+    style.configure("TButton", padding=(10, 7), relief="flat", background="#eef3f7")
+    style.map("TButton", background=[("pressed", "#c9dce7"), ("active", "#dfebf3")])
+    style.configure("Toolbar.TButton", relief="raised", padding=(10, 6))
+    for accent in ("Accent.TButton", "Accent.Toolbar.TButton"):
+        style.configure(accent, background="#086f71", foreground="white",
+                        bordercolor="#086365", darkcolor="#07575a", lightcolor="#2c8d8e",
+                        font=(family, 10, "bold"))
+        style.map(accent, background=[("pressed", "#07585b"), ("active", "#0b8182")],
+                  foreground=[("active", "white")])
+    style.configure("Accent.Toolbar.TButton", padding=(10, 6), relief="raised")
+    style.configure("Title.TLabel", font=(family, 17, "bold"), foreground="#123846")
+    style.configure("TLabelframe.Label", font=(family, 10, "bold"))
     style.configure("Muted.TLabel", foreground="#456273")
-    style.configure("TableHead.TLabel", background="#d9e6ee", font=("Segoe UI", 10, "bold"))
+    style.configure("Tooltip.TLabel", background="#ffffff", relief="solid", borderwidth=1)
+    style.configure("TableHead.TLabel", background="#d9e6ee", font=(family, 10, "bold"))
     style.configure("Cell.TLabel", background="#f9fcfd")
-    style.configure("Total.TLabel", background="#dcefe5", foreground="#075651", font=("Segoe UI", 10, "bold"))
-    style.configure("Treeview", rowheight=max(25, int(root.winfo_fpixels("0.32i"))),
-                    background="#f9fcfd", fieldbackground="#f9fcfd")
-    style.configure("Treeview.Heading", background="#d9e6ee", padding=7, font=("Segoe UI", 10, "bold"))
-    style.map("Treeview", background=[("selected", "#c6e4ef")], foreground=[("selected", "#123846")])
+    style.configure("Total.TLabel", background="#dcefe5", foreground="#075651", font=(family, 10, "bold"))
+    style.configure("Treeview", rowheight=max(25, round(root.winfo_fpixels("0.31i"))),
+                    background=ROW_BACKGROUND, fieldbackground=ROW_BACKGROUND,
+                    selectforeground="#172635")
+    style.configure("Treeview.Heading", background="#e0e9f1", padding=7, font=(family, 10, "bold"))
+    style.map("Treeview", background=[("selected", SELECTED_BACKGROUND)],
+              foreground=[("selected", "#123846")])
 
 
 class PreviewPanel(ttk.Labelframe):
-    def __init__(self, parent, zoom):
+    def __init__(self, parent, zoom, icons):
         super().__init__(parent, text="Dokumentum-előnézet", padding=8)
         self.zoom = tk.StringVar(value=zoom)
         self.path = self.data = self.image = None
@@ -53,12 +75,14 @@ class PreviewPanel(ttk.Labelframe):
         self.resize_job = None
         controls = ttk.Frame(self)
         controls.pack(fill="x", pady=(0, 5))
-        self.prev_button = ttk.Button(controls, width=3, text="‹", command=lambda: self.turn(-1))
+        self.prev_button = ttk.Button(controls, image=icons.get("previous", 16), command=lambda: self.turn(-1))
         self.prev_button.pack(side="left")
         self.page_text = tk.StringVar(value="—")
         ttk.Label(controls, width=8, anchor="center", textvariable=self.page_text).pack(side="left")
-        self.next_button = ttk.Button(controls, width=3, text="›", command=lambda: self.turn(1))
+        self.next_button = ttk.Button(controls, image=icons.get("next", 16), command=lambda: self.turn(1))
         self.next_button.pack(side="left")
+        Tooltip(self.prev_button, "Előző oldal")
+        Tooltip(self.next_button, "Következő oldal")
         self.zoom_picker = ttk.Combobox(controls, state="readonly", width=13, textvariable=self.zoom, values=ZOOMS)
         self.zoom_picker.pack(side="right")
         self.zoom_picker.bind("<<ComboboxSelected>>", lambda event: self.draw_page())
@@ -70,13 +94,12 @@ class PreviewPanel(ttk.Labelframe):
         body.columnconfigure(0, weight=1)
         self.canvas = tk.Canvas(body, background="#dce6ed", highlightthickness=0)
         self.canvas.grid(row=0, column=0, sticky="nsew")
-        self.text = tk.Text(body, wrap="word", padx=20, pady=20, font=("Segoe UI", 11),
+        self.text = tk.Text(body, wrap="word", padx=20, pady=20, font=(("Segoe UI" if sys.platform == "win32" else "DejaVu Sans"), 11),
                             background="white", foreground="#172b39", state="disabled")
         self.yscroll = ttk.Scrollbar(body, command=self.canvas.yview)
         self.yscroll.grid(row=0, column=1, sticky="ns")
-        xscroll = ttk.Scrollbar(body, orient="horizontal", command=self.canvas.xview)
-        xscroll.grid(row=1, column=0, sticky="ew")
-        self.canvas.configure(yscrollcommand=self.yscroll.set, xscrollcommand=xscroll.set)
+        self.xscroll = ttk.Scrollbar(body, orient="horizontal", command=self.canvas.xview)
+        self.canvas.configure(yscrollcommand=self.yscroll.set, xscrollcommand=self.xscroll.set)
         self.canvas.bind("<Configure>", self.size_changed)
         self.canvas.bind("<MouseWheel>", lambda event: self.canvas.yview_scroll(-event.delta // 120, "units"))
         self.canvas.bind("<Button-4>", lambda event: self.canvas.yview_scroll(-1, "units"))
@@ -117,6 +140,7 @@ class PreviewPanel(ttk.Labelframe):
         self.page = self.page_count = 0
         self.canvas.delete("all")
         self.canvas.configure(scrollregion=(0, 0, 0, 0))
+        self.xscroll.grid_remove()
         self.text.grid_remove()
         self.canvas.yview_moveto(0)
         self.canvas.xview_moveto(0)
@@ -170,25 +194,35 @@ class PreviewPanel(ttk.Labelframe):
         self.page_text.set(f"{self.page + 1} / {self.page_count}" if self.page_count else "—")
 
     def draw_page(self):
-        self.resize_job = None
+        if self.resize_job:
+            self.after_cancel(self.resize_job)
+            self.resize_job = None
+        viewport = self.canvas.winfo_width()
         if not self.data:
             return
-        width = max(100, self.canvas.winfo_width() - 24)
-        height = max(100, self.canvas.winfo_height() - 24)
+        margin = min(12, (viewport - 1) // 2)
+        width = viewport - 2 * margin
+        height = max(1, self.canvas.winfo_height() - 24)
         try:
             self.page_count, pixels = render_pdf(self.data, self.page, self.zoom.get(), width, height)
             self.image = tk.PhotoImage(data=pixels, format="ppm")
         except Exception:
             self.data = None
             self.page_count = 0
+            self.xscroll.grid_remove()
             self.controls()
             self.status.set("A PDF-oldal nem jeleníthető meg. Nyissa meg a dokumentumot Wordben.")
             return
         self.canvas.delete("all")
-        canvas_width = max(self.image.width(), width)
-        self.canvas.create_image((canvas_width - self.image.width()) / 2 + 12, 12,
+        content_width = self.image.width() + 2 * margin if self.image.width() > viewport else viewport
+        self.canvas.create_image((content_width - self.image.width()) // 2, 12,
                                  anchor="nw", image=self.image)
-        self.canvas.configure(scrollregion=(0, 0, canvas_width + 24, self.image.height() + 24))
+        self.canvas.configure(scrollregion=(0, 0, content_width, self.image.height() + 24))
+        if content_width > viewport:
+            self.xscroll.grid(row=1, column=0, sticky="ew")
+        else:
+            self.xscroll.grid_remove()
+            self.canvas.xview_moveto(0)
         self.controls()
 
 
@@ -281,13 +315,16 @@ class Application:
         self.info = {}
         self.last_query_job = None
         apply_theme(root)
+        self.icons = Icons(root)
+        self.root.iconphoto(True, self.icons.get("docx", 24))
+        self.sash_start = None
         root.geometry(self.settings.geometry or "1200x760")
         self.build()
         if self.settings.window_state == "zoomed":
             self.maximize()
         self.refresh()
         self.preview.select(None)
-        self.root.after_idle(self.restore_sashes)
+        self.initial_pane_binding = self.main_panes.bind("<Map>", self.initial_panes_mapped, add=True)
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.root.bind("<Control-n>", lambda event: self.edit(new=True))
         self.root.bind("<Control-f>", lambda event: self.search_entry.focus_set())
@@ -327,45 +364,81 @@ class Application:
             except tk.TclError:
                 pass
 
+    def initial_panes_mapped(self, event):
+        self.main_panes.unbind("<Map>", self.initial_pane_binding)
+        self.root.after_idle(self.restore_sashes)
+
     def restore_sashes(self):
-        self.main_panes.sashpos(0, self.settings.main_sash or self.main_panes.winfo_width() // 2)
+        available = self.left_panes.winfo_width() + self.preview.winfo_width()
+        self.main_panes.sashpos(0, self.settings.main_sash or available // 2)
         self.left_panes.sashpos(0, self.settings.list_sash or self.left_panes.winfo_height() * 2 // 3)
 
-    def build(self):
+    def start_sash_drag(self, event):
+        if self.main_panes.identify(event.x, event.y) == 0:
+            self.sash_start = self.main_panes.sashpos(0)
+
+    def end_sash_drag(self, event):
+        position = self.main_panes.sashpos(0)
+        if self.sash_start is not None and position != self.sash_start:
+            self.settings.main_sash = position
+        self.sash_start = None
+
+    def build_toolbar(self):
         bar = ttk.Frame(self.root, padding=(12, 10))
         bar.pack(fill="x")
+        left = ttk.Frame(bar)
+        right = ttk.Frame(bar)
+        bar.columnconfigure(1, weight=1)
         controls = (
-            ("＋ Új kísérőlevél", lambda: self.edit(new=True), "Accent.TButton"),
-            ("✎ Szerkesztés", self.edit, "TButton"),
-            ("Megnyitás Wordben", self.open_in_word, "TButton"),
-            ("Nyomtatás", lambda: self.open_in_word(printing=True), "TButton"),
-            ("↻ Frissítés", self.refresh, "TButton"),
-            ("⚙ Beállítások", self.configure, "TButton"),
-            ("Névjegy", self.about, "TButton"),
-            ("Súgó", self.help, "TButton"),
+            ("new", "Új kísérőlevél", lambda: self.edit(new=True), "Új kísérőlevél létrehozása (Ctrl+N)"),
+            ("edit", "Szerkesztés", self.edit, "A kijelölt kísérőlevél szerkesztése"),
+            ("open", "Megnyitás Wordben", self.open_in_word, "A kijelölt DOCX megnyitása Wordben"),
+            ("print", "Nyomtatás", lambda: self.open_in_word(printing=True), "A kijelölt dokumentum nyomtatása"),
+            ("refresh", "Frissítés", self.refresh, "A dokumentumlista frissítése (F5)"),
+            ("settings", "Beállítások", self.configure, "A dokumentumtár és az alkalmazás beállításai"),
+            ("about", "Névjegy", self.about, "A program verziószáma és adatai"),
+            ("help", "Súgó", self.help, "Használati útmutató és gyorsbillentyűk (F1)"),
         )
-        buttons = []
-        for index, (text, action, style) in enumerate(controls):
-            button = ttk.Button(bar, text=text, command=action, style=style)
-            buttons.append(button)
-            button.grid(row=0, column=index, padx=3, pady=2, sticky="ew")
-        self.edit_button, self.open_button, self.print_button = buttons[1:4]
+        self.toolbar_buttons = []
+        for index, (icon, text, action, tooltip) in enumerate(controls):
+            button = ttk.Button(left if index < 5 else right, text=text, command=action,
+                                image=self.icons.get(icon, 24), compound="left",
+                                style="Accent.Toolbar.TButton" if index == 0 else "Toolbar.TButton")
+            self.toolbar_buttons.append(button)
+            Tooltip(button, tooltip)
+        self.edit_button, self.open_button, self.print_button = self.toolbar_buttons[1:4]
 
-        def wrap(event):
-            narrow = event.width < sum(button.winfo_reqwidth() + 6 for button in buttons)
-            for index, button in enumerate(buttons):
-                row, col = divmod(index, 4) if narrow else (0, index)
-                button.grid_configure(row=row, column=col)
+        def arrange(event=None):
+            available = (event.width if event else self.root.winfo_width()) - 24
+            total = sum(button.winfo_reqwidth() + 8 for button in self.toolbar_buttons)
+            narrow = available < total
+            left.grid(row=0, column=0, columnspan=3 if narrow else 1, sticky="w")
+            right.grid(row=1 if narrow else 0, column=2, sticky="e")
+            for group in (self.toolbar_buttons[:5], self.toolbar_buttons[5:]):
+                row = column = occupied = 0
+                for button in group:
+                    required = button.winfo_reqwidth() + 8
+                    if narrow and occupied and occupied + required > available:
+                        row, column, occupied = row + 1, 0, 0
+                    button.grid(row=row, column=column, padx=4, pady=2, sticky="ew")
+                    column += 1
+                    occupied += required
 
-        bar.bind("<Configure>", wrap)
+        bar.bind("<Configure>", arrange)
+        self.root.after_idle(arrange)
+
+    def build(self):
+        self.build_toolbar()
         ttk.Label(self.root, textvariable=self.footer, style="Muted.TLabel", padding=(14, 5)).pack(
             side="bottom", fill="x")
         self.main_panes = ttk.Panedwindow(self.root, orient="horizontal")
         self.main_panes.pack(fill="both", expand=True, padx=12, pady=(0, 4))
         self.left_panes = ttk.Panedwindow(self.main_panes, orient="vertical")
-        self.preview = PreviewPanel(self.main_panes, self.settings.zoom)
+        self.preview = PreviewPanel(self.main_panes, self.settings.zoom, self.icons)
         self.main_panes.add(self.left_panes, weight=1)
         self.main_panes.add(self.preview, weight=1)
+        self.main_panes.bind("<ButtonPress-1>", self.start_sash_drag, add=True)
+        self.main_panes.bind("<ButtonRelease-1>", self.end_sash_drag, add=True)
         listing = ttk.Labelframe(self.left_panes, text="Kísérőlevelek", padding=8)
         details = ttk.Labelframe(self.left_panes, text="A kijelölt kísérőlevél adatai", padding=8)
         self.left_panes.add(listing, weight=3)
@@ -390,21 +463,29 @@ class Application:
         scroll.grid(row=0, column=1, sticky="ns")
         xscroll = ttk.Scrollbar(holder, orient="horizontal", command=self.tree.xview)
         xscroll.grid(row=1, column=0, sticky="ew")
-        self.tree.configure(yscrollcommand=scroll.set, xscrollcommand=xscroll.set)
-        self.tree.bind("<<TreeviewSelect>>", self.select)
+        self.pdf_badges = PdfBadges(self.tree, self.icons)
+
+        def scroll_updated(scrollbar, first, last):
+            scrollbar.set(first, last)
+            self.pdf_badges.schedule()
+
+        self.tree.configure(yscrollcommand=lambda *fractions: scroll_updated(scroll, *fractions),
+                            xscrollcommand=lambda *fractions: scroll_updated(xscroll, *fractions))
+        self.tree.bind("<<TreeviewSelect>>", self.select, add=True)
         self.tree.bind("<Return>", lambda event: self.open_in_word())
-        self.doc_icon = tk.PhotoImage(width=15, height=17)
-        self.doc_icon.put("#2168a6", to=(1, 0, 14, 17))
-        self.doc_icon.put("#f8fbfd", to=(4, 3, 11, 14))
-        for y in (5, 8, 11):
-            self.doc_icon.put("#2168a6", to=(5, y, 10, y+1))
+        self.doc_icon = self.icons.get("docx", 20)
+        self.tree.tag_configure("alternate", background=ALTERNATE_BACKGROUND)
         for index, (key, label) in enumerate(zip(COLUMNS, ("Fájlnév", "Időszak", "Számlák", "PDF"), strict=True)):
             col = "#0" if index == 0 else key
-            self.tree.heading(col, text=label, command=lambda k=key: self.sort(k))
+            self.tree.heading(col, text=label, anchor="w" if index == 0 else "center",
+                              command=lambda k=key: self.sort(k))
             self.tree.column(col, width=self.settings.columns[index], minwidth=45, stretch=(index == 0),
                              anchor="w" if index < 2 else "center")
-        ttk.Label(listing, text="✓ PDF: van kapcsolódó fájl     × PDF: hiányzik",
-                  style="Muted.TLabel").pack(anchor="w", pady=(4, 0))
+        legend = ttk.Frame(listing)
+        legend.pack(anchor="w", pady=(4, 0))
+        for key, label in (("pdf-present", "Van PDF"), ("pdf-missing", "Nincs PDF")):
+            ttk.Label(legend, text=label, image=self.icons.get(key, 16), compound="left",
+                      style="Muted.TLabel").pack(side="left", padx=(0, 12))
         for index, (key, label) in enumerate((
             ("reference", "Iktatószám"), ("clerk", "Ügyintéző"), ("signer", "Aláíró"),
             ("position", "Beosztás"), ("dated", "Keltezés"), ("sent", "Megküldés dátuma"),
@@ -451,13 +532,16 @@ class Application:
         for index, entry in enumerate(entries):
             key = str(index)
             self.entries[key] = entry
-            self.tree.insert("", "end", iid=key, text=entry.path.name, image=self.doc_icon, values=(
-                display_period(entry.period), f"{entry.count} db" if entry.count is not None else "—",
-                "🟩 ✓ PDF" if entry.pdf else "🟥 × PDF",
-            ))
+            self.tree.insert("", "end", iid=key, text=entry.path.name, image=self.doc_icon,
+                             tags=("alternate",) if index % 2 else (), values=(
+                                 display_period(entry.period, compact=True),
+                                 f"{entry.count} db" if entry.count is not None else "—",
+                                 "Van" if entry.pdf else "Nincs",
+                             ))
             if entry.path == active:
                 self.tree.selection_set(key)
                 self.tree.see(key)
+        self.pdf_badges.schedule()
         self.select(force=True)
 
     def select(self, event=None, *, force=False):
@@ -539,7 +623,7 @@ class Application:
         SettingsDialog(self.root, self.settings, self.base, save)
 
     def about(self):
-        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.4", parent=self.root)
+        messagebox.showinfo("Névjegy", TITLE + "\nv0.3.5", parent=self.root)
 
     def help(self):
         messagebox.showinfo(
@@ -557,7 +641,6 @@ class Application:
         self.settings.window_state = "zoomed" if state == "zoomed" else "normal"
         if self.settings.window_state == "normal":
             self.settings.geometry = self.root.geometry()
-        self.settings.main_sash = self.main_panes.sashpos(0)
         self.settings.list_sash = self.left_panes.sashpos(0)
         self.settings.columns = tuple(self.tree.column(col, "width") for col in ("#0", *COLUMNS[1:]))
         self.settings.zoom = self.preview.zoom.get()
@@ -570,8 +653,16 @@ class Application:
         self.root.destroy()
 
 
+def create_root():
+    if sys.platform == "win32":
+        from ctypes import windll
+
+        windll.user32.SetProcessDPIAware()
+    return tk.Tk()
+
+
 def main():
-    root = tk.Tk()
+    root = create_root()
     Application(root, program_directory())
     root.mainloop()
 

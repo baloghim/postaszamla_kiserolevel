@@ -1,6 +1,6 @@
 [project]
 name = "postaszamla-kiserolevel"
-version = "0.3.4"
+version = "0.3.5"
 description = "Postaszámla-kísérőlevél generálása"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
@@ -14,7 +14,7 @@ build-backend = "setuptools.build_meta"
 packages = ["postaszamla"]
 
 [tool.setuptools.package-data]
-postaszamla = ["templates/minta.docx"]
+postaszamla = ["templates/minta.docx", "icons/*", "icons/svg/*.svg", "icons/png/*.png"]
 
 [project.optional-dependencies]
 desktop = ["pypdfium2==5.15.2", "pywin32==311; sys_platform == 'win32'"]

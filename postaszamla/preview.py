@@ -2,6 +2,7 @@ import os
 import shutil
 import sys
 from contextlib import closing
+from math import nextafter
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -74,7 +75,9 @@ def render_pdf(data: bytes, page: int, zoom: str, width: int, height: int):
             scale = min(scale, height / page_height)
         elif zoom.endswith("%"):
             scale = float(zoom[:-1]) / 100 * 96 / 72
-        scale = max(0.1, min(scale, 4.0))
+        if not zoom.endswith("%"):
+            scale = nextafter(scale, 0.0)
+        scale = min(scale, 4.0)
         with closing(current.render(scale=scale, rev_byteorder=True)) as image:
             # Tk can load raw RGB PPM. Remove each PDFium row's alignment padding.
             row_size = image.width * 3

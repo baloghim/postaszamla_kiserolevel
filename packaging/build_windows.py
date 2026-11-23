@@ -8,6 +8,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
+from postaszamla.gui_icons import ICON_NAMES, ICON_SIZES
+
 ROOT = Path(__file__).resolve().parent.parent
 APP = "Postaszamla"
 
@@ -44,6 +46,15 @@ def verify(package: Path, directory: Path) -> None:
                         "/pypdfium2_raw/version.json",
                     ))):
                 raise RuntimeError(f"Váratlan adatfájl a Windows ZIP-ben: {filename}")
+        icons = f"{APP}/_internal/postaszamla/icons"
+        expected_icons = {
+            *(f"{icons}/png/{size}.png" for size in ICON_SIZES),
+            *(f"{icons}/svg/{name}.svg" for name in ICON_NAMES),
+            *(f"{icons}/{name}" for name in ("COPYING", "COPYING.LESSER", "AUTHORS", "UPSTREAM-README.md",
+                                           "LICENSE-KDE-Classic.txt", "FORRAS.md")),
+        }
+        if missing := expected_icons - set(archive.namelist()):
+            raise RuntimeError(f"Az ikoncsomag hiányos: {', '.join(sorted(missing))}")
         archive.extractall(directory)
     application = directory / APP / f"{APP}.exe"
     with application.open("rb") as binary:
@@ -74,6 +85,7 @@ def main(tag: str, output: Path) -> None:
             "--paths", str(ROOT), "--distpath", str(temp / "dist"),
             "--workpath", str(temp / "work"), "--specpath", str(temp),
             "--add-data", f"{ROOT / 'postaszamla/templates/minta.docx'};postaszamla/templates",
+            "--add-data", f"{ROOT / 'postaszamla/icons'};postaszamla/icons",
             "--collect-data", "pypdfium2", "--collect-all", "pypdfium2_raw",
             "--hidden-import", "win32timezone",
         ]

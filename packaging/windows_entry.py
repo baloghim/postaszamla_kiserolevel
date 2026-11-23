@@ -5,7 +5,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from traceback import format_exc
 
-from postaszamla.gui import Application, main
+from postaszamla.gui import Application, create_root, main
 from postaszamla.settings import program_directory
 
 
@@ -20,7 +20,7 @@ def smoke_test() -> None:
     from postaszamla.models import Cost, Costs, Letter
     from postaszamla.preview import render_pdf
 
-    root = tk.Tk()
+    root = create_root()
     try:
         Application(root, program_directory())
         root.update()

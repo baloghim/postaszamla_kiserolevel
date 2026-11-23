@@ -1,6 +1,9 @@
+from dataclasses import replace
+from datetime import timedelta
 from io import BytesIO
 import time
 import tkinter as tk
+from tkinter import ttk
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
@@ -9,6 +12,7 @@ from unittest.mock import Mock, patch
 from postaszamla.archive import read_record, save_record, sidecar
 from postaszamla.editor import LetterEditor
 from postaszamla.gui import Application
+from postaszamla.settings import load_settings
 from postaszamla.preview import text_preview
 from postaszamla.template import DEFAULT_TEMPLATE
 
@@ -35,6 +39,56 @@ class TkTests(TestCase):
         if self.root.winfo_exists():
             self.root.update_idletasks()
             self.root.destroy()
+
+    def test_initial_split_and_saved_drag(self):
+        app = self.app
+        panes = app.main_panes
+        self.assertLessEqual(abs(app.left_panes.winfo_width() - app.preview.winfo_width()), 1)
+        original = panes.sashpos(0)
+        panes.event_generate("<ButtonPress-1>", x=original + 1, y=50)
+        panes.sashpos(0, original + 70)
+        panes.event_generate("<ButtonRelease-1>", x=original + 71, y=50)
+        app.settings.save(self.base)
+        stored = load_settings(self.base)
+        self.assertEqual(stored.main_sash, original + 70)
+        panes.sashpos(0, original - 30)
+        app.restore_sashes()
+        self.assertEqual(panes.sashpos(0), stored.main_sash)
+
+    def test_toolbar_order_groups_and_bundled_icons(self):
+        self.assertEqual(ttk.Style(self.root).theme_use(), "fusion-light")
+        buttons = self.app.toolbar_buttons
+        self.assertEqual([button.cget("text") for button in buttons], [
+            "Új kísérőlevél", "Szerkesztés", "Megnyitás Wordben", "Nyomtatás",
+            "Frissítés", "Beállítások", "Névjegy", "Súgó",
+        ])
+        for button in buttons:
+            self.assertTrue(button.cget("image"))
+            self.assertEqual(str(button.cget("compound")), "left")
+        self.assertEqual(len({button.winfo_reqheight() for button in buttons}), 1)
+        self.assertTrue(all(button.master == buttons[0].master for button in buttons[:5]))
+        self.assertTrue(all(button.master == buttons[5].master for button in buttons[5:]))
+        self.assertGreater(buttons[5].winfo_rootx(), buttons[0].winfo_rootx())
+
+    def test_pdf_indicators_and_selection(self):
+        self.app.archive.mkdir()
+        with_pdf = save_record(self.app.archive, DEFAULT_TEMPLATE, LETTER)
+        invoice = LETTER.invoices[0]
+        next_invoice = replace(invoice, end=invoice.end + timedelta(days=1))
+        save_record(self.app.archive, DEFAULT_TEMPLATE, replace(LETTER, invoices=(next_invoice,)))
+        with_pdf.with_suffix(".pdf").touch()
+        self.app.year.set(with_pdf.parent.name)
+        self.app.refresh()
+        self.root.update()
+        badges = [label for label in self.app.pdf_badges.labels if label.winfo_ismapped()]
+        self.assertEqual(len(badges), 2)
+        for label in badges:
+            expected = self.app.pdf_badges.icons[self.app.tree.set(label.item, "pdf")]
+            self.assertEqual(label.cget("image"), str(expected))
+        self.app.pdf_badges.select(badges[-1].item)
+        self.root.update()
+        self.assertEqual(self.app.current.path, with_pdf)
+        self.assertEqual(self.app.info["reference"].get(), LETTER.reference)
 
     def test_document_selection_readonly_and_rejected_edit(self):
         self.app.archive.mkdir()
@@ -108,8 +162,8 @@ class TkTests(TestCase):
             self.skipTest("A PDFium asztali kiegészítő nincs telepítve.")
         contents = BytesIO()
         with pypdfium2.PdfDocument.new() as document:
-            document.new_page(595, 842).close()
-            document.new_page(595, 842).close()
+            document.new_page(595, 1600).close()
+            document.new_page(842, 595).close()
             document.save(contents)
         self.app.preview.data = contents.getvalue()
         self.app.preview.draw_page()
@@ -119,3 +173,29 @@ class TkTests(TestCase):
         self.app.preview.zoom.set("50%")
         self.app.preview.draw_page()
         self.assertIsNotNone(self.app.preview.image)
+        preview = self.app.preview
+        preview.zoom.set("200%")
+        preview.draw_page()
+        self.root.update()
+        self.assertTrue(preview.xscroll.winfo_ismapped())
+        self.assertLess(preview.canvas.xview()[1], 1.0)
+        preview.zoom.set("Szélesség")
+        preview.draw_page()
+        self.root.update()
+        self.assertFalse(preview.xscroll.winfo_ismapped())
+        self.assertEqual(preview.canvas.xview(), (0.0, 1.0))
+
+        original = preview.image.width()
+        panes = self.app.main_panes
+        panes.sashpos(0, panes.sashpos(0) + 100)
+        deadline = time.monotonic() + 3
+        while preview.image.width() == original and time.monotonic() < deadline:
+            self.root.update()
+            time.sleep(.025)
+        self.assertLess(preview.image.width(), original)
+        self.assertFalse(preview.xscroll.winfo_ismapped())
+        preview.turn(-1)
+        self.root.update()
+        self.assertEqual(preview.page_text.get(), "1 / 2")
+        self.assertLess(preview.canvas.yview()[1], 1.0)
+        self.assertFalse(preview.xscroll.winfo_ismapped())
