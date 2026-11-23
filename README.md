@@ -2,6 +2,13 @@
 
 A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
+## Letöltés és változások
+
+- [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
+- [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/heads/main.zip)
+- [A v0.3.0 forráskódja ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/archive/refs/tags/v0.3.0.zip)
+- [A v0.3.0 változásai képernyőképekkel](docs/kiadasok/v0.3.0/README.md)
+
 ## Asztali alkalmazás
 
 A projektkönyvtárból, Windows parancssorban:
