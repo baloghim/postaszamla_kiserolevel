@@ -39,7 +39,8 @@ def verify(package: Path, directory: Path) -> None:
             if (path.name.casefold().startswith("beallitasok.json")
                     or path.suffix.casefold() in {".json", ".pdf", ".doc", ".docx"}
                     and not filename.endswith((
-                        "/postaszamla/templates/minta.docx", "/pypdfium2/version.json",
+                        "/postaszamla/templates/minta.docx", "/docx/templates/default.docx",
+                        "/pypdfium2/version.json",
                         "/pypdfium2_raw/version.json",
                     ))):
                 raise RuntimeError(f"Váratlan adatfájl a Windows ZIP-ben: {filename}")
