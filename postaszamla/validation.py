@@ -10,14 +10,14 @@ def validate_period(start: date, end: date) -> None:
         raise ValueError("Az elszámolási időszak vége korábbi a kezdeténél.")
 
 
-def validate_costs(costs: Costs) -> None:
+def validate_costs(costs: Costs, *, allow_zero: bool = False) -> None:
     any_amount = False
     for (name, _), cost in zip(SERVICES, costs.rows(), strict=True):
         for column, amount in (("Működési", cost.operating), ("Ellátás", cost.benefits)):
             if type(amount) is not int or amount < 0:
                 raise ValueError(f"{name}, {column}: nemnegatív egész forintösszeg szükséges.")
             any_amount |= amount > 0
-    if not any_amount:
+    if not any_amount and not allow_zero:
         raise ValueError("Legalább egy költségtételnek nullánál nagyobbnak kell lennie.")
 
 

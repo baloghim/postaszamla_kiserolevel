@@ -1,8 +1,41 @@
-# Postaszámla-kísérőlevél v0.2.0
+# Postaszámla-kísérőlevél v0.3.0
 
-A parancssori program JSON-adatokból szerkeszthető DOCX-kísérőlevelet készít. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
+A Tkinter asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
-## Telepítés és mintagenerálás
+## Asztali alkalmazás
+
+A projektkönyvtárból, Windows parancssorban:
+
+```bat
+py -3.11 -m venv .venv
+.venv\Scripts\python.exe -m pip install ".[desktop]"
+.venv\Scripts\python.exe -m postaszamla.gui
+```
+
+1. A **Beállítások** ablakban válaszd ki az éves almappákat tartalmazó dokumentumtárat és a hivatali DOCX-sablont. Itt előre megadhatod az ügyintéző, az aláíró és a beosztás alapértékeit.
+2. Az **Új kísérőlevél** ablakban add meg a közös adatokat, majd rögzíts minden számlát külön. A dátumok `ÉÉÉÉ.HH.NN.` vagy `ÉÉÉÉ-HH-NN` alakban adhatók meg. Az időszak, a szolgáltatásonkénti összegek és a fájlnév folyamatosan frissülnek.
+3. A listában év és fájlnév szerint kereshetsz, az oszlopfejlécekkel pedig rendezhetsz. A PDF-jelzés az azonos alapnevű fájl jelenlétét mutatja. A kijelölt DOCX előnézete automatikusan betöltődik.
+4. A program ellenőrzött adatfájllal rendelkező levelekhez kínál szerkesztést. A belépés és a mentés megerősítést igényel. A régi vagy Wordben utólag módosított DOCX-ek előnézetben és Wordben nyithatók meg.
+
+### Hordozható beállítások
+
+A forrásból a fenti paranccsal indítva a `beallitasok.json` a projekt gyökerébe kerül. Egy későbbi, becsomagolt változat az EXE mellett fogja tárolni. A relatív útvonalak alapja ugyanez a könyvtár. A `beallitasok.example.json` másolható kiindulópontként. Ha a tényleges konfiguráció hiányzik, a program alapbeállításokkal újra létrehozza. Sérült fájlról mentés készül, és az alkalmazás felajánlja a visszaállítást.
+
+Az üres sablonmező a csomag fiktív mintasablonját választja. Az alapértelmezett dokumentumtár a programkönyvtárbeli `dokumentumok` mappa. Az oszlopszélességeket, ablaktulajdonságokat, panelméreteket és nagyítást a program bezáráskor menti. A következő indításkor mindig az aktuális év jelenik meg.
+
+### Adatfájl és mentés
+
+A DOCX melletti azonos alapnevű `*.postaszamla.json` UTF-8 JSON. A gyökérmezők `version` (jelenleg 1), `docx_sha256` és `letter`. A `letter` tartalmazza a `reference`, `clerk`, `signer`, `position`, `dated`, `sent` és `invoices` mezőt. A számlák tömbjének elemei `number`, `start`, `end` és `costs` mezőket tartalmaznak. A dátumok ISO-formátumúak, a költségmezők megegyeznek a parancssori minta mezőivel. A kezdő nullás számlaszámok szövegek. Az összesítés mindig újraszámítható a számlákból. A DOCX és az adatfájl csak együtt kezelhető szerkeszthető levélként.
+
+Jóváhagyott szerkesztéskor a korábbi DOCX és adatfájl ellenőrzött másolatát a dokumentumtár `.postaszamla-backups` almappája őrzi. Ha megváltozik a fájlnév, a korábbi DOCX és adatfájl csak az új pár ellenőrzése után kerül ki az éves mappából. Másik levél fájljai és a meglévő PDF-ek érintetlenek maradnak. Futás közbeni írási hiba esetén a program visszagörgeti az addigi műveleteket. A folyamat kényszerített megszakításakor megmaradhat egy `.postaszamla-lock` mappa. Ilyenkor az alkalmazás új mentést nem kezd. A mentett párt és az esetleges biztonsági másolatot kézzel kell ellenőrizni, majd a zárolást csak akkor eltávolítani, ha biztosan nem fut mentés.
+
+### Előnézet és nyomtatás
+
+Windowson a háttérben futó Word COM-automatizálás csak olvasható ideiglenes DOCX-másolatból PDF-et készít. A többoldalas PDF-et a PyMuPDF jeleníti meg. Az alapértelmezett nézet az oldalszélességhez igazodik. Az eredeti Word-fájl és az esetleges meglévő PDF változatlan marad. A Word-alapú előnézet hibája esetén, illetve Linuxon a program szöveges betekintést ad, ha a DOCX olvasható. A megnyitás és a nyomtatás a Windows DOCX-fájltársítását használja; a célgépen ezt állítsd Wordre.
+
+A CPython 3.11-hez elérhető a `pywin32 311` és a `PyMuPDF 1.26.7` 64 bites Windows-csomagja. A Linuxos Tk-folyamatot Full HD virtuális kijelzőn, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek. A PyMuPDF AGPL vagy kereskedelmi licenc alatt érhető el. [PyMuPDF licenc](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)
+
+## Parancssori telepítés és mintagenerálás
 
 A tároló gyökerében, Windows parancssorban:
 
@@ -71,4 +104,4 @@ A mellékelt hivatali sablont fiktív bemenettel szerkezetileg ellenőriztük. A
 
 ## Adatvédelem
 
-A tároló nyilvános. Az eredeti hivatali sablonokat, valós számlaszámokat, bemeneti adatfájlokat és elkészült leveleket a Git-tárolón kívül tartsd. A Git alapértelmezett kizárásai lefedik az `output/` mappát, a `*.local.json` adatfájlokat és az érdemi Office- és PDF-kimeneteket. A Gitbe csak szándékosan kiválasztott, fiktív mintaadatok és a nyilvános mintasablon kerüljenek.
+A tároló nyilvános. A `beallitasok.json`, a számlaadatfájlok és a mentési másolatok helyben maradnak, és a Git kizárja őket. Az eredeti hivatali sablonokat, valós számlaszámokat, bemeneti adatfájlokat és elkészült leveleket a Git-tárolón kívül tartsd. A Git alapértelmezett kizárásai lefedik az `output/` mappát, a `*.local.json` adatfájlokat és az érdemi Office- és PDF-kimeneteket. A Gitbe csak szándékosan kiválasztott, fiktív mintaadatok és a nyilvános mintasablon kerüljenek.

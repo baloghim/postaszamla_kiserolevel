@@ -2,8 +2,8 @@ from .models import Costs
 from .validation import validate_costs
 
 
-def calculate(costs: Costs) -> tuple[tuple[int, int, int], ...]:
-    validate_costs(costs)
+def calculate(costs: Costs, *, allow_zero: bool = False) -> tuple[tuple[int, int, int], ...]:
+    validate_costs(costs, allow_zero=allow_zero)
     rows = tuple(
         (cost.operating, cost.benefits, cost.operating + cost.benefits)
         for cost in costs.rows()
