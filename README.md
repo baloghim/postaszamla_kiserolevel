@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.1.0
+# Postaszámla-kísérőlevél v0.2.0
 
 A parancssori program JSON-adatokból szerkeszthető DOCX-kísérőlevelet készít. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -13,7 +13,7 @@ py -3.11 -m venv .venv
 .venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-A minta eredménye az `output/postaszámla_2026.10.24-10.31_ellátási_ki_be_szallitas.docx` fájl. A végösszeg 247 225 Ft. A megadott mentési mappa szükség esetén létrejön. Ha a célfájl már létezik, a program hibaüzenettel leáll, és megőrzi a meglévő fájlt.
+A minta eredménye az `output/2026/postaszámla_2026.10.24-10.31_ellátási_ki_be_szallitas.docx` fájl. A végösszeg 247 225 Ft. A `--output` a dokumentumtár gyökérmappáját adja meg. A program az elszámolási időszak kezdőévének almappájába ment, évhatáron átnyúló időszaknál is. Az almappa szükség esetén létrejön. A korábbi közvetlen mentéshez add meg a `--flat-output` kapcsolót. Ha a célfájl már létezik, a program hibaüzenettel leáll, és megőrzi a meglévő fájlt.
 
 Linuxon a parancsokban a `py -3.11` helyett `python3`, a virtuális környezet Pythonjához pedig `.venv/bin/python` használható a támogatott Python-verziókkal.
 
@@ -26,8 +26,9 @@ Az `examples/minta.json` fiktív adatokkal mutatja be a formátumot. Saját hasz
 | `start`, `end` | Az időszak kezdő- és záródátuma ÉÉÉÉ-HH-NN alakban |
 | `reference` | Iktatószám |
 | `sent`, `dated` | A megküldés dátuma és a keltezés ÉÉÉÉ-HH-NN alakban |
-| `invoices` | Egy vagy több számlaszám szöveges JSON-listája |
-| `attachments` | A mellékletek darabszáma |
+| `invoices` | Egy vagy több számlaszám szöveges JSON-listája, a kívánt sorrendben. A kezdő nullák megmaradnak. |
+| `clerk`, `signer`, `position` | Ügyintéző, aláíró és az aláíró beosztása. A hivatali sablonhoz kötelezők. |
+| `attachments` | Elhagyható. A régi mintasablonnal felülbírálhatja a számlákból számított darabszámot. A hivatali sablon mindig a számlák darabszámát használja. |
 | `costs` | A `postal`, `transport`, `forwarding` és `mailbox` sorok `operating` és `benefits` összege egész forintban |
 
 Egyes tételeknél megengedett a nulla. A teljes táblázat nem lehet nulla, és negatív érték nem adható meg. A sorösszegeket és az oszlopösszegeket a motor számítja ki. Ha az időszak átnyúlik az évhatáron, mindkét év megjelenik a fájlnévben. Az oszlopösszegek alapján az ellátási és a működési jelölés, a szolgáltatási sorok alapján pedig a ki-, beszállítás, a belföldi utánküldés és a fiókbérlet jelölése kerülhet a fájlnévbe, ebben a sorrendben.
@@ -38,7 +39,27 @@ Az alapértelmezett [mintasablon](postaszamla/templates/minta.docx) a csomag ré
 .venv\Scripts\python.exe -m postaszamla "D:\Hivatali\adatok.local.json" --output "D:\Hivatali\Levelek" --template "D:\Hivatali\sablon.docx"
 ```
 
-A sablont Wordben módosíthatod. A fejlécet, címzettet, megszólítást, aláírást és a változatlan ügyviteli adatokat a sablonban állítsd be. A `{{REFERENCE}}`, `{{PERIOD}}`, `{{SENT}}`, `{{INVOICES}}`, `{{ATTACHMENTS}}` és `{{DATED}}` helyőrzők mindegyike pontosan egyszer szerepeljen közvetlen bekezdésszövegben. A költségtáblázat első két sora fejléc. Az utána következő öt sor első oszlopának felirata maradjon a mintával azonos, a másik három oszlopba rendre `{{B1}}`, `{{C1}}`, `{{D1}}` kerül, és így tovább az ötödik sorig. A formázást a sablon adja, a motor külön fájlba ment.
+A számlaszámok például `["00001", "00002", "00003"]` alakban adhatók meg. A hivatali levélben ez „00001, 00002 és 00003” formában jelenik meg, és a „számla” szó a darabszámhoz igazodik. A megküldés dátuma például „2026. november 4-én”, a keltezés pedig „2026. november 23.” alakú.
+
+### Hivatali DOCX helyőrzői
+
+| Helyőrző | Beillesztett érték |
+| --- | --- |
+| `{{iktatoszam}}` | Iktatószám |
+| `{{ugyintezo}}` | Ügyintéző neve |
+| `{{darabszam}}` | Számlaszámok darabszáma |
+| `{{erkezett_datum}}` | A megküldés magyarul toldalékolt dátuma |
+| `{{postaszamla_szamok}}` | Számlaszámok felsorolása megadási sorrendben |
+| `{{tobbes}}` | `a` vagy `ák` a `száml{{tobbes}}` kifejezésben |
+| `{{dátum}}` | A levél keltezése |
+| `{{alairo}}` | Aláíró neve |
+| `{{beosztas}}` | Aláíró beosztása |
+
+A költségtáblázat két fejlécsora után a B, C és D oszlopba rendre `{{mukodesi1}}`, `{{ellatas1}}` és `{{osszesen1}}` kerül. Az öt szolgáltatási és összesítő sorban a sorszám 1-től 5-ig fut. Az A oszlop sorcímei maradjanak a mintával egyezőek, opcionális sorszámozással. A hivatali sablon második fejlécsorában a D oszlop képlete Wordben javítható `D. (B.+C.)` alakra. A Python a D oszlopban minden esetben összead.
+
+Az eredeti, nagybetűs mezőket használó fiktív mintasablon továbbra is működik. Ebben a `{{REFERENCE}}`, `{{PERIOD}}`, `{{SENT}}`, `{{INVOICES}}`, `{{ATTACHMENTS}}` és `{{DATED}}` mezők, valamint a táblázatban a `{{B1}}`, `{{C1}}`, `{{D1}}` és a további számozott mezők szerepelnek.
+
+Egy sablonon belül minden kötelező helyőrző pontosan egyszer szerepeljen. A külalakot és a változatlan szövegeket Wordben szerkesztheted. A motor az eredeti sablonból külön DOCX-fájlt hoz létre.
 
 ## Windows 10 1607 és Office 2016
 
@@ -46,7 +67,7 @@ A célgéphez a 64 bites CPython 3.11 a kiindulási verzió. A CPython 3.11 Wind
 
 A későbbi EXE-csomagolás vizsgálatához a PyInstaller 6.11.1 dokumentált követelményei lefedik a Python 3.11-et és a Windows 8 vagy újabb rendszereket. A konkrét Windows 10 1607-es gépen külön ellenőrizendő a Python, a natív lxml és a későbbi EXE futása. [PyInstaller 6.11.1 követelményei](https://github.com/pyinstaller/pyinstaller/blob/v6.11.1/README.rst)
 
-A mintasablon A4-es és fiktív arculatú. Az eredeti hivatalos megjelenést, az egylapos tördelést és a nyomtatási képet a végleges, helyi sablonnal Word 2016-ban kell ellenőrizni.
+A mellékelt hivatali sablont fiktív bemenettel szerkezetileg ellenőriztük. Az egylapos tördelés és a nyomtatási kép ellenőrzéséhez nyisd meg a helyben generált DOCX-et Word 2016-ban.
 
 ## Adatvédelem
 

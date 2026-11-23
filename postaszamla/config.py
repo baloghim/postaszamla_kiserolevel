@@ -36,9 +36,12 @@ def load_letter(path: Path) -> Letter:
             reference=data["reference"],
             sent=parse_date(data["sent"], "Megküldés dátuma"),
             invoices=tuple(invoices),
-            attachments=data["attachments"],
+            attachments=data.get("attachments"),
             dated=parse_date(data["dated"], "Keltezés"),
             costs=costs,
+            clerk=data.get("clerk"),
+            signer=data.get("signer"),
+            position=data.get("position"),
         )
     except KeyError as error:
         raise ValueError(f"Hiányzó adatmező: {error.args[0]}.") from error

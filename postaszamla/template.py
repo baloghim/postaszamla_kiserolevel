@@ -6,14 +6,20 @@ from zipfile import ZipFile
 from docx import Document
 from docx.oxml.ns import qn
 from docx.table import Table
-from docx.text.paragraph import Paragraph
 
 from .models import SERVICES
 
 DEFAULT_TEMPLATE = Path(__file__).with_name("templates") / "minta.docx"
-TOKEN = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
+TOKEN = re.compile(r"\{\{([^{}]*)\}\}")
+LEGACY_TABLE_TOKENS = tuple(tuple(f"{column}{row}" for column in "BCD") for row in range(1, 6))
 TABLE_TOKENS = tuple(
-    tuple(f"{column}{row}" for column in "BCD") for row in range(1, 6)
+    tuple(f"{column}{row}" for column in ("mukodesi", "ellatas", "osszesen"))
+    for row in range(1, 6)
+)
+LEGACY_FIELDS = ("REFERENCE", "PERIOD", "SENT", "INVOICES", "ATTACHMENTS", "DATED")
+OFFICE_FIELDS = (
+    "iktatoszam", "ugyintezo", "darabszam", "erkezett_datum", "postaszamla_szamok",
+    "tobbes", "dátum", "alairo", "beosztas",
 )
 
 
@@ -28,10 +34,11 @@ def open_template(path: Path):
     return document
 
 
-def expense_table(document) -> Table:
+def expense_table(document, table_tokens: tuple[tuple[str, ...], ...]) -> Table:
+    markers = set().union(*table_tokens)
     tables = [
         table for table in document.tables
-        if any(TOKEN.search(cell.text) and "{{B1}}" in cell.text
+        if any(markers.intersection(TOKEN.findall(cell.text))
                for row in table.rows for cell in row.cells)
     ]
     if len(tables) != 1:
@@ -39,44 +46,85 @@ def expense_table(document) -> Table:
     table = tables[0]
     if len(table.columns) != 4 or len(table.rows) != 7:
         raise ValueError("A költségtáblázat négyoszlopos, két fejléc- és öt adatsoros legyen.")
+
     labels = [name for name, _ in SERVICES] + ["Mindösszesen"]
-    for row, label, tokens in zip(table.rows[2:], labels, TABLE_TOKENS, strict=True):
-        if [cell.text.strip() for cell in row.cells] != [
-            label, *(f"{{{{{token}}}}}" for token in tokens)
-        ]:
-            raise ValueError(f"Hibás költségtáblázat-sor a sablonban: {label}.")
+    for index, (row, label, tokens) in enumerate(
+        zip(table.rows[2:], labels, table_tokens, strict=True), start=1
+    ):
+        expected = [f"{{{{{token}}}}}" for token in tokens]
+        cells = [cell.text.strip() for cell in row.cells]
+        if not cells or cells[0] not in (label, f"{index}. {label}") or cells[1:] != expected:
+            raise ValueError(f"Hibás költségtáblázat-sor: {label}. Várt helyőrzők: {', '.join(expected)}.")
     return table
 
 
+def paragraphs(document):
+    for part in document.part.package.parts:
+        if part.content_type.endswith((".document.main+xml", ".header+xml", ".footer+xml")):
+            yield from part.element.iter(qn("w:p"))
+
+
+def text_spans(paragraph):
+    """Collect text nodes with offsets without rewriting any Word runs."""
+    spans = []
+    chunks = []
+    offset = 0
+    for node in paragraph.xpath("./w:r/* | ./w:hyperlink/w:r/*"):
+        if node.tag == qn("w:rPr"):
+            continue
+        if node.tag == qn("w:t"):
+            chunk = node.text or ""
+            if chunk:
+                spans.append((offset, offset + len(chunk), node))
+        else:
+            chunk = "\n"
+        chunks.append(chunk)
+        offset += len(chunk)
+    return "".join(chunks), spans
+
+
+def paragraph_text(paragraph):
+    # Nested text boxes have their own paragraphs.
+    return "".join(node.text or "" for node in paragraph.iter(qn("w:t"))
+                   if next(node.iterancestors(qn("w:p")), None) is paragraph)
+
+
+def validate_tokens(document):
+    seen = Counter()
+    for paragraph in paragraphs(document):
+        seen.update(TOKEN.findall(paragraph_text(paragraph)))
+    legacy = bool(seen.keys() & set(LEGACY_FIELDS)) and not bool(seen.keys() & set(OFFICE_FIELDS))
+    fields = LEGACY_FIELDS if legacy else OFFICE_FIELDS
+    table_tokens = LEGACY_TABLE_TOKENS if legacy else TABLE_TOKENS
+    expected = set(fields).union(*table_tokens)
+    problems = []
+    for label, names in (
+        ("Hiányzó helyőrzők", expected - seen.keys()),
+        ("Ismeretlen helyőrzők", seen.keys() - expected),
+        ("Ismétlődő helyőrzők", {name for name in expected if seen[name] > 1}),
+    ):
+        if names:
+            problems.append(f"{label}: " + ", ".join(f"{{{{{name}}}}}" for name in sorted(names)))
+    if problems:
+        raise ValueError(". ".join(problems) + ".")
+    return legacy, table_tokens
+
+
 def replace_tokens(document, values: dict[str, str]) -> None:
-    paragraphs = [
-        Paragraph(element, part)
-        for part in document.part.package.parts
-        if part.content_type.endswith((".document.main+xml", ".header+xml", ".footer+xml"))
-        for element in part.element.iter(qn("w:p"))
-    ]
-    seen = Counter(
-        match.group(1) for paragraph in paragraphs for match in TOKEN.finditer(paragraph.text)
-    )
-    if seen != Counter(values.keys()):
-        raise ValueError("A sablon helyőrzői eltérnek az előírt készlettől. "
-                         "Minden helyőrző pontosan egyszer szerepeljen.")
-    for paragraph in paragraphs:
-        runs = paragraph.runs
-        source = "".join(run.text for run in runs)
-        offset = 0
-        spans = []
-        for run in runs:
-            spans.append((offset, offset + len(run.text), run))
-            offset += len(run.text)
-        matches = list(TOKEN.finditer(source))
-        if [match.group(1) for match in matches] != TOKEN.findall(paragraph.text):
-            raise ValueError("A sablon helyőrzői közvetlenül a bekezdés szövegében legyenek.")
-        for match in reversed(matches):
-            for start, end, run in spans:
-                if start == end or end <= match.start() or start >= match.end():
+    for paragraph in paragraphs(document):
+        source, spans = text_spans(paragraph)
+        for match in reversed(list(TOKEN.finditer(source))):
+            for start, end, node in spans:
+                if end <= match.start() or start >= match.end():
                     continue
                 left = max(0, match.start() - start)
                 right = min(end - start, match.end() - start)
                 replacement = values[match.group(1)] if start <= match.start() else ""
-                run.text = run.text[:left] + replacement + run.text[right:]
+                node.text = node.text[:left] + replacement + node.text[right:]
+                if node.text and node.text != node.text.strip():
+                    node.set(qn("xml:space"), "preserve")
+
+    for paragraph in paragraphs(document):
+        match = TOKEN.search(paragraph_text(paragraph))
+        if match:
+            raise ValueError(f"Kitöltetlen helyőrző maradt a dokumentumban: {match.group(0)}.")

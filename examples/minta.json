@@ -4,7 +4,9 @@
   "reference": "MINTA-001/2026",
   "sent": "2026-11-02",
   "invoices": ["MINTA-SZ-001", "MINTA-SZ-002"],
-  "attachments": 2,
+  "clerk": "Minta Anna",
+  "signer": "Minta Klára",
+  "position": "pénzügyi vezető",
   "dated": "2026-11-04",
   "costs": {
     "postal": {"operating": 0, "benefits": 71110},

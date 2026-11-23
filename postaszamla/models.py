@@ -34,6 +34,18 @@ class Letter:
     reference: str
     sent: date
     invoices: tuple[str, ...]
-    attachments: int
+    attachments: int | None
     dated: date
     costs: Costs
+
+    clerk: str | None = None
+    signer: str | None = None
+    position: str | None = None
+
+    @property
+    def invoice_count(self) -> int:
+        return len(self.invoices)
+
+    @property
+    def attachment_count(self) -> int:
+        return self.invoice_count if self.attachments is None else self.attachments
