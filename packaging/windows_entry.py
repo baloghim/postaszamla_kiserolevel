@@ -8,6 +8,22 @@ from traceback import format_exc
 from postaszamla.gui import main
 
 
+def has_native_window_icon(window) -> bool:
+    from ctypes import WinDLL, c_int, c_ssize_t, c_void_p
+    from ctypes.wintypes import HWND, LPARAM, UINT, WPARAM
+
+    user32 = WinDLL("user32")
+    send_message = user32.SendMessageW
+    send_message.argtypes = (HWND, UINT, WPARAM, LPARAM)
+    send_message.restype = c_ssize_t
+    get_class_icon = user32.GetClassLongPtrW
+    get_class_icon.argtypes = (HWND, c_int)
+    get_class_icon.restype = c_void_p
+    handle = int(window.winId())
+    wm_geticon, icon_big, gclp_hicon = 0x007F, 1, -14
+    return bool(send_message(handle, wm_geticon, icon_big, 0) or get_class_icon(handle, gclp_hicon))
+
+
 def smoke_test() -> None:
     import pypdfium2
     import pythoncom
@@ -46,7 +62,7 @@ def smoke_test() -> None:
     if len(themes) != 12:
         raise RuntimeError("A csomagolt ikontémák száma eltér a várt tizenkettőtől.")
     identity = app.windowIcon().pixmap(32, 32).toImage()
-    if identity.isNull():
+    if identity.isNull() or not has_native_window_icon(startup):
         raise RuntimeError("A csomagolt alkalmazásikon nem töltődött be.")
     for theme in themes:
         appearance.apply(appearance.current_style, theme)
@@ -57,7 +73,7 @@ def smoke_test() -> None:
             expected = appearance.icons.describe(role)["kind"] != "none"
             if appearance.icon(role).pixmap(22, 22).isNull() == expected:
                 raise RuntimeError(f"Hibás csomagolt ikonszerep: {theme} / {role}.")
-        if app.windowIcon().pixmap(32, 32).toImage() != identity:
+        if startup.windowIcon().pixmap(32, 32).toImage() != identity:
             raise RuntimeError("Az alkalmazásikon megváltozott az ikontémával.")
     appearance.apply(DEFAULT_UI_STYLE, DEFAULT_ICON_THEME)
     startup.close()

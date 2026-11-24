@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.7.1
+# Postaszámla-kísérőlevél v0.8.0
 
 A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest/download/postaszamla-forras.zip)
-- [Hordozható Windows x64 alkalmazás v0.7.1 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.7.1/Postaszamla-v0.7.1-win64.zip)
-- [A v0.7.1 változásai képernyőképekkel](docs/kiadasok/v0.7.1/README.md)
+- [Hordozható Windows x64 alkalmazás v0.8.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.8.0/Postaszamla-v0.8.0-win64.zip)
+- [A v0.8.0 változásai képernyőképekkel](docs/kiadasok/v0.8.0/README.md)
 
 ## Asztali alkalmazás
 
@@ -30,13 +30,13 @@ py -3.10 -m venv .venv
 
 Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
 
-Az alapértelmezett XP Luna Blue arculat a főablakra és a párbeszédablakokra is érvényes. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Windows XP Luna Blue főablak](docs/kiadasok/v0.7.1/crystal-svg.png)
+Az alapértelmezett XP Luna Blue arculat a főablakra és a párbeszédablakokra is érvényes. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Postás zöld főablak](docs/kiadasok/v0.8.0/postas-zold-foablak.png)
 
 Az EDPD Menedzser 2.6.3 tizenkét ikontémája beépítve elérhető. Az eredeti fájlok, a forrásverziók és a témánkénti licencanyagok a csomag részei. [Ikonleltár és helyettesítések](docs/icon-audit.md) · [Eredet és licencek](docs/edpd-grafika.md)
 
 ### Hordozható beállítások
 
-A **Beállítások → Megjelenés** alatt a **Felületi stílus** és az **Ikontéma** külön választható. A beépített Windows XP Luna Blue, Longhorn Blue és Longhorn Slate mellett az elérhető gyári Qt-stílusok is megjelennek. A **Mentés** azonnal alkalmazza a választásokat, a **Mégse** megőrzi az aktuális beállításokat. A hordozható JSON `ui_style` és `icon_theme` mezői tárolják a választást. Új beállításfájl esetén az alapérték XP Luna Blue és Crystal SVG.
+A **Beállítások → Megjelenés** alatt a **Felületi stílus** és az **Ikontéma** külön választható. A beépített Windows XP Luna Blue, Longhorn Blue, Longhorn Slate és Postás zöld mellett az elérhető gyári Qt-stílusok is megjelennek. A **Mentés** azonnal alkalmazza a választásokat, a **Mégse** megőrzi az aktuális beállításokat. A hordozható JSON `ui_style` és `icon_theme` mezői tárolják a választást. Új beállításfájl esetén az alapérték XP Luna Blue és Crystal SVG.
 
 A forrásból a fenti paranccsal indítva a `beallitasok.json` a projekt gyökerébe kerül. A hordozható változat az EXE mellett tárolja. A relatív útvonalak alapja ugyanez a könyvtár. A `beallitasok.example.json` másolható kiindulópontként. Ha a tényleges konfiguráció hiányzik, a program alapbeállításokkal újra létrehozza. Sérült fájlról mentés készül, és az alkalmazás felajánlja a visszaállítást.
 

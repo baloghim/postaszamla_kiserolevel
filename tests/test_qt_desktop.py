@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from gc import collect
 from hashlib import sha256
 from pathlib import Path
@@ -166,11 +167,62 @@ class QtDesktopTests(TestCase):
         self.assertEqual(second.pixelColor(second.width() // 2, second.height() // 2), QColor(Qt.blue))
         self.assertFalse(viewer.scroll.horizontalScrollBar().isVisible())
 
-        self.window.appearance.apply("windows")
-        self.app.processEvents()
-        self.assertEqual(viewer.page_label.text(), "2 / 2")
-        page = viewer.label.pixmap().toImage()
-        self.assertEqual(page.pixelColor(page.width() // 2, page.height() // 2), QColor(Qt.blue))
+        for style in ("postas-zold", "windows"):
+            self.window.appearance.apply(style)
+            self.app.processEvents()
+            self.assertEqual(viewer.page_label.text(), "2 / 2")
+            page = viewer.label.pixmap().toImage()
+            self.assertEqual(page.pixelColor(page.width() // 2, page.height() // 2), QColor(Qt.blue))
+
+    def test_postas_green_reuses_longhorn_rules_and_reopens_from_settings(self):
+        from postaszamla.qt.appearance import Appearance
+        from postaszamla.qt.edpd_graphics.surface_styles import POSTAS_GREEN
+        from postaszamla.qt.edpd_graphics.themes.styles import stylesheet
+        from postaszamla.qt.settings_dialog import SettingsDialog
+        from postaszamla.qt.window import MainWindow
+
+        blue = stylesheet("Longhorn Blue")
+        green = stylesheet(POSTAS_GREEN)
+        colors = re.compile(r"#[0-9a-f]{6}\b")
+        self.assertNotEqual(blue, green)
+        self.assertEqual(colors.sub("<color>", blue), colors.sub("<color>", green))
+
+        def choose(dialog):
+            index = dialog.style_choice.findText(POSTAS_GREEN)
+            self.assertGreaterEqual(index, 0)
+            dialog.style_choice.setCurrentIndex(index)
+            dialog.save()
+            return dialog.result()
+
+        with patch.object(SettingsDialog, "exec_", choose):
+            self.window.configure()
+        self.assertEqual(self.app.styleSheet(), green)
+        self.assertEqual(load_settings(self.base).ui_style, "postas-zold")
+
+        self.window.close()
+        self.window = MainWindow(Appearance(self.app), self.base)
+        self.assertEqual(self.app.property("surfaceTheme"), POSTAS_GREEN)
+        self.assertEqual(self.app.styleSheet(), green)
+
+    def test_about_shows_the_fixed_application_icon(self):
+        icons = self.window.appearance.icons
+        identity = icons.icon("application").pixmap(32, 32).toImage()
+        self.assertFalse(identity.isNull())
+        seen = []
+
+        def check_about():
+            about = self.app.activeModalWidget()
+            try:
+                seen.append(about.iconPixmap().toImage())
+                icons.set_theme("Oxygen")
+                seen.append(about.iconPixmap().toImage())
+                seen.append(about.windowIcon().pixmap(32, 32).toImage())
+            finally:
+                about.accept()
+
+        QTimer.singleShot(0, check_about)
+        self.window.about()
+        self.assertEqual(seen, [identity] * 3)
 
     def test_live_style_selection_keeps_archive_and_settings(self):
         from postaszamla.qt.appearance import SURFACES, THEME

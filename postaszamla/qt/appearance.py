@@ -4,10 +4,11 @@ from postaszamla.settings import DEFAULT_UI_STYLE
 
 from .edpd_graphics.appearance import apply_style
 from .edpd_graphics.icons import ICON_ROLE, IconThemeManager
-from .edpd_graphics.surface_styles import DEFAULT_SURFACE, LUNA as THEME
+from .edpd_graphics.surface_styles import DEFAULT_SURFACE, LUNA as THEME, POSTAS_GREEN
 from .edpd_graphics.themes.widgets import SurfaceComboBox
 
-SURFACES = {DEFAULT_UI_STYLE: THEME, "longhorn-blue": "Longhorn Blue", "longhorn-slate": "Longhorn Slate"}
+SURFACES = {DEFAULT_UI_STYLE: THEME, "longhorn-blue": "Longhorn Blue", "longhorn-slate": "Longhorn Slate",
+            "postas-zold": POSTAS_GREEN}
 FACTORY_STYLES = (("fusion", "Fusion"), ("windows", "Windows"), ("windowsvista", "Windows Vista"))
 
 
@@ -89,7 +90,8 @@ class Appearance:
             box.setIconPixmap(self.icon(role).pixmap(32, 32))
 
         refresh(dialog)
-        self.icons.subscribe(dialog, refresh)
+        if role != "application":
+            self.icons.subscribe(dialog, refresh)
         for button, icon in ((QMessageBox.Yes, "confirm"), (QMessageBox.No, "cancel"),
                              (QMessageBox.Ok, "confirm"), (QMessageBox.Cancel, "cancel")):
             if widget := dialog.button(button):

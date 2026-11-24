@@ -20,7 +20,7 @@ from .icon_widgets import IconLineEdit
 from .settings_dialog import SettingsDialog
 from .viewer import Preview
 
-VERSION = "0.7.1"
+VERSION = "0.8.0"
 PDF_COLORS = {True: "#167235", False: "#ad2525"}
 PDF_SELECTED_COLORS = {True: "#c0ffd0", False: "#ffeaea"}
 
@@ -167,7 +167,8 @@ class MainWindow(QMainWindow):
     def about(self):
         style = dict(style_choices())[self.appearance.current_style]
         self.appearance.message(QMessageBox.Information, self, "Névjegy",
-                                f"Postaszámla – Kísérőlevelek v{VERSION}\nPySide2 · {style}\n{self.appearance.icons.name}")
+                                f"Postaszámla – Kísérőlevelek v{VERSION}\nPySide2 · {style}\n{self.appearance.icons.name}",
+                                role="application")
 
     def build_archive(self):
         content = QWidget()

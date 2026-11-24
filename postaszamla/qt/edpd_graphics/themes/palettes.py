@@ -1,5 +1,5 @@
 """Small colour tables; Longhorn shares QSS, Luna has its own control surfaces."""
-from ..surface_styles import LUNA
+from ..surface_styles import LUNA, POSTAS_GREEN
 PALETTES = {
     'Longhorn Blue': dict(window='#e8f1fe', top='#f9fcff', middle='#dcecff', bottom='#bed5f4',
         edge='#789dcc', shine='#ffffff', title_top='#94c6f9', title_mid='#467fca',
@@ -13,6 +13,12 @@ PALETTES = {
         text='#202c3d', alternate='#edf1f7', selection='#c7d5e8', selection_edge='#627fa4',
         hover_top='#f8fbff', hover_bottom='#bdcde1', pressed='#9caec7', disabled='#717d8d',
         viewport='#606a79', field='#ffffff'),
+    POSTAS_GREEN: dict(window='#e9f3ea', top='#f8fdf8', middle='#dcecdf', bottom='#bed8c2',
+        edge='#719b78', shine='#ffffff', title_top='#3b8258', title_mid='#256a45',
+        title_bottom='#165336', title_edge='#1c5d3e', title_text='#ffffff',
+        text='#17392a', alternate='#f0f7f0', selection='#c7e6cc', selection_edge='#9b854a',
+        hover_top='#fffdf0', hover_bottom='#efe0b0', pressed='#d2dea5', disabled='#63796a',
+        viewport='#63796c', field='#ffffff'),
     LUNA: dict(window='#ece9d8', top='#fffef7', middle='#f4f1e2', bottom='#e2dfce',
         edge='#7f9db9', shine='#ffffff', title_top='#5d9bff', title_mid='#1259e4',
         title_bottom='#003bb4', title_edge='#003caa', title_text='#ffffff',
