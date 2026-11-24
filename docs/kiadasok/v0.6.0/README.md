@@ -6,7 +6,7 @@ A stílus a hordozható `beallitasok.json` fájl `ui_style` mezőjébe kerül. H
 
 ## Képernyőképek
 
-A képek a futó Qt 5 alkalmazásról készültek Windows Server 2022 alatt, azonos ablakmérettel és fiktív adatokkal.
+A képek a futó Qt 5 alkalmazásról készültek Windows Server 2022 alatt, fiktív adatokkal. Mind a négy főablak képe 1000 × 688 képpontos.
 
 ### Windows XP Luna Blue
 
