@@ -2,12 +2,13 @@ from dataclasses import replace
 
 from PySide2.QtWidgets import (
     QDialog, QDialogButtonBox, QFileDialog, QFormLayout, QGridLayout, QGroupBox,
-    QLabel, QLineEdit, QMessageBox, QPushButton, QVBoxLayout,
+    QLabel, QMessageBox, QPushButton, QVBoxLayout,
 )
 
 from postaszamla.settings import DEFAULT_ICON_THEME, DEFAULT_UI_STYLE, Settings
 
 from .appearance import style_choices
+from .icon_widgets import IconLineEdit
 
 
 class SettingsDialog(QDialog):
@@ -18,7 +19,6 @@ class SettingsDialog(QDialog):
         self.settings = settings
         self.base = base
         self.appearance = appearance
-        appearance.icons.bind(self, "settings", "setWindowIcon")
         self.reset_requested = False
         layout = QVBoxLayout(self)
         form = QGridLayout()
@@ -29,7 +29,7 @@ class SettingsDialog(QDialog):
             ("clerk", "Ügyintéző"), ("signer", "Aláíró"), ("position", "Aláíró beosztása"),
         )):
             form.addWidget(QLabel(label), row, 0)
-            field = QLineEdit(getattr(settings, key))
+            field = IconLineEdit(appearance.icons, getattr(settings, key))
             self.fields[key] = field
             form.addWidget(field, row, 1)
             if key in ("archive", "template"):

@@ -3,7 +3,7 @@ from PySide2.QtWidgets import QHeaderView, QLabel, QMessageBox, QStyleFactory, Q
 from postaszamla.settings import DEFAULT_UI_STYLE
 
 from .edpd_graphics.appearance import apply_style
-from .edpd_graphics.icons import IconThemeManager
+from .edpd_graphics.icons import ICON_ROLE, IconThemeManager
 from .edpd_graphics.surface_styles import DEFAULT_SURFACE, LUNA as THEME
 from .edpd_graphics.themes.widgets import SurfaceComboBox
 
@@ -51,6 +51,7 @@ class Appearance:
         self.table = ProportionalTable
         self.combo = SurfaceComboBox
         self.icons = IconThemeManager()
+        app.setWindowIcon(self.icons.icon("application"))
         self.apply(DEFAULT_UI_STYLE)
 
     def apply(self, requested, icon_theme=None):
@@ -78,10 +79,11 @@ class Appearance:
         action.triggered.connect(callback)
         return self.icons.bind(action, role)
 
-    def message(self, kind, parent, title, text, buttons=QMessageBox.Ok, default=QMessageBox.NoButton):
+    def message(self, kind, parent, title, text, buttons=QMessageBox.Ok, default=QMessageBox.NoButton, *, role=None):
         dialog = QMessageBox(kind, title, text, buttons, parent)
         dialog.setDefaultButton(default)
-        role = "about" if kind == QMessageBox.Information else "question" if kind == QMessageBox.Question else "warning"
+        role = role or {QMessageBox.Information: "about", QMessageBox.Question: "question"}.get(kind, "warning")
+        dialog.setProperty(ICON_ROLE, role)
 
         def refresh(box):
             box.setIconPixmap(self.icon(role).pixmap(32, 32))

@@ -2,7 +2,9 @@
 
 A beépített felületek és ikonkészletek az EDPD Menedzser v2.6.3 `543845a5e60eacc43253ea8e28fdd33e611ea4a6` commitjából származnak. A Postaszámla a saját `postaszamla.qt.edpd_graphics` névterében használja a palettákat, a QSS-szabályokat, a stílusváltót és a manifestalapú ikonbetöltőt. Az ikontémák 22 és 40 pixeles PNG-jei, a Crystal SVG futásidejű méretei és az eredeti állományok a kiadásban is megtalálhatók. [EDPD v2.6.3](https://github.com/baloghim/beerkezett_posta_kezeles/tree/v2.6.3)
 
-## Postaszámla-szerepek
+## Szerep-hozzárendelések a v0.7.0 kiadásban
+
+A jelenlegi hozzárendelések és a rögzített alkalmazásikon forrása a [v0.7.1 ikonleltárban](icon-audit.md) szerepel.
 
 | Művelet | EDPD-szerep vagy Qt-helyettesítés |
 | --- | --- |

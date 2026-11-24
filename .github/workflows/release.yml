@@ -34,6 +34,7 @@ jobs:
           $PSNativeCommandUseErrorActionPreference = $true
           python -m pip install --only-binary=:all: ".[desktop,edpd-compat]" "PyInstaller==6.11.1" "pyinstaller-hooks-contrib==2024.10"
           python -c "import fitz; assert fitz.VersionBind == '1.23.26'"
+          python packaging/icon_report.py --check
           $PSNativeCommandUseErrorActionPreference = $false
           $tests = python -m unittest discover -s tests -v 2>&1
           $result = $LASTEXITCODE

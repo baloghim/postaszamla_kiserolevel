@@ -3,10 +3,11 @@ from datetime import date
 from pathlib import Path
 
 from PySide2.QtCore import QSize, Qt, QTimer
+from PySide2.QtGui import QColor, QPalette
 from PySide2.QtWidgets import (
-    QAbstractItemView, QApplication, QDialog, QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QMessageBox, QSizePolicy,
-    QSplitter, QTableWidgetItem, QToolBar, QVBoxLayout, QWidget,
+    QAbstractItemView, QApplication, QDialog, QGridLayout, QHBoxLayout, QLabel, QMainWindow,
+    QMessageBox, QSizePolicy, QSplitter, QStyle, QStyledItemDelegate, QTableWidgetItem,
+    QToolBar, QVBoxLayout, QWidget,
 )
 
 from postaszamla.archive import documents, initial_year, read_record, save_record, year_folders
@@ -15,14 +16,27 @@ from postaszamla.settings import InvalidSettings, Settings, backup_settings, loa
 
 from .appearance import panel, style_choices
 from .editor import LetterDialog
+from .icon_widgets import IconLineEdit
 from .settings_dialog import SettingsDialog
 from .viewer import Preview
 
-VERSION = "0.7.0"
+VERSION = "0.7.1"
+PDF_COLORS = {True: "#167235", False: "#ad2525"}
+PDF_SELECTED_COLORS = {True: "#c0ffd0", False: "#ffeaea"}
 
 
 def period_label(dates):
     return " – ".join(f"{day:%Y.%m.%d.}" for day in dates) if dates else "—"
+
+
+class PDFStatusDelegate(QStyledItemDelegate):
+    def initStyleOption(self, option, index):
+        super().initStyleOption(option, index)
+        present = index.data(Qt.UserRole)
+        if present is not None and option.state & QStyle.State_Selected:
+            background = option.palette.color(QPalette.Highlight)
+            colors = PDF_SELECTED_COLORS if background.lightness() < 140 else PDF_COLORS
+            option.palette.setColor(QPalette.HighlightedText, QColor(colors[present]))
 
 
 class MainWindow(QMainWindow):
@@ -35,7 +49,6 @@ class MainWindow(QMainWindow):
         self.settings_writable = True
         self.settings = self.start_settings()
         appearance.apply(self.settings.ui_style, self.settings.icon_theme)
-        appearance.icons.bind(self, "docx", "setWindowIcon")
         self.visible_rows = []
         self.current = None
         self.metadata = None
@@ -147,7 +160,7 @@ class MainWindow(QMainWindow):
             ("about", "Névjegy", self.about),
             ("help", "Súgó", lambda: self.appearance.message(
                 QMessageBox.Information, self, "Súgó", "A Beállításokban adja meg a dokumentumtárat és a Word-sablont. "
-                "A leveleket év és fájlnév szerint keresheti.")),
+                "A leveleket év és fájlnév szerint keresheti.", role="help")),
         ):
             self.appearance.action(toolbar, icon, text, callback)
 
@@ -165,7 +178,7 @@ class MainWindow(QMainWindow):
         self.year = self.appearance.combo()
         filter_row.addWidget(self.year)
         filter_row.addWidget(QLabel("Fájlnév keresése"))
-        self.search = QLineEdit()
+        self.search = IconLineEdit(self.appearance.icons)
         self.search.setClearButtonEnabled(True)
         filter_row.addWidget(self.search, 1)
         layout.addLayout(filter_row)
@@ -184,6 +197,7 @@ class MainWindow(QMainWindow):
         self.table.verticalHeader().hide()
         self.table.verticalHeader().setDefaultSectionSize(34)
         self.table.setIconSize(QSize(20, 20))
+        self.table.setItemDelegateForColumn(3, PDFStatusDelegate(self.table))
         self.table.cellDoubleClicked.connect(lambda *_: self.open_editor(use_selection=True))
         self.table.itemSelectionChanged.connect(self.select)
         self.appearance.icons.subscribe(self.table, self.refresh_archive_icons)
@@ -257,7 +271,8 @@ class MainWindow(QMainWindow):
             self.table.clearSelection()
             for row, entry in enumerate(self.visible_rows):
                 count = f"{entry.count} db" if entry.count is not None else "—"
-                for column, text in enumerate((entry.path.name, period_label(entry.period), count, "")):
+                for column, text in enumerate((entry.path.name, period_label(entry.period), count,
+                                               "Van" if entry.pdf else "Nincs")):
                     item = QTableWidgetItem(text)
                     if column == 0:
                         item.setIcon(self.appearance.icon("docx"))
@@ -266,6 +281,8 @@ class MainWindow(QMainWindow):
                         item.setTextAlignment(Qt.AlignCenter)
                     if column == 3:
                         item.setIcon(self.appearance.icon("pdf-present" if entry.pdf else "pdf-missing"))
+                        item.setData(Qt.UserRole, bool(entry.pdf))
+                        item.setForeground(QColor(PDF_COLORS[bool(entry.pdf)]))
                         item.setToolTip("Van kapcsolódó PDF" if entry.pdf else "Nincs kapcsolódó PDF")
                     self.table.setItem(row, column, item)
                 if entry.path == current:

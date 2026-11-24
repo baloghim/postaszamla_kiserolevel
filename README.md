@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.7.0
+# Postaszámla-kísérőlevél v0.7.1
 
 A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest/download/postaszamla-forras.zip)
-- [Hordozható Windows x64 alkalmazás v0.7.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.7.0/Postaszamla-v0.7.0-win64.zip)
-- [A v0.7.0 változásai képernyőképekkel](docs/kiadasok/v0.7.0/README.md)
+- [Hordozható Windows x64 alkalmazás v0.7.1 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.7.1/Postaszamla-v0.7.1-win64.zip)
+- [A v0.7.1 változásai képernyőképekkel](docs/kiadasok/v0.7.1/README.md)
 
 ## Asztali alkalmazás
 
@@ -30,9 +30,9 @@ py -3.10 -m venv .venv
 
 Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
 
-Az alapértelmezett XP Luna Blue arculat a főablakra és a párbeszédablakokra is érvényes. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Windows XP Luna Blue főablak](docs/kiadasok/v0.7.0/xp-luna-blue.png)
+Az alapértelmezett XP Luna Blue arculat a főablakra és a párbeszédablakokra is érvényes. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Windows XP Luna Blue főablak](docs/kiadasok/v0.7.1/crystal-svg.png)
 
-Az EDPD Menedzser 2.6.3 tizenkét ikontémája beépítve elérhető. Az eredeti fájlok, a forrásverziók és a témánkénti licencanyagok a csomag részei. [Eredet, licencek és ikon-hozzárendelések](docs/edpd-grafika.md)
+Az EDPD Menedzser 2.6.3 tizenkét ikontémája beépítve elérhető. Az eredeti fájlok, a forrásverziók és a témánkénti licencanyagok a csomag részei. [Ikonleltár és helyettesítések](docs/icon-audit.md) · [Eredet és licencek](docs/edpd-grafika.md)
 
 ### Hordozható beállítások
 

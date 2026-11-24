@@ -15,6 +15,7 @@ from postaszamla.models import Cost, Costs, SERVICES
 from postaszamla.records import Invoice, Record, period, total_costs
 
 from .appearance import panel
+from .icon_widgets import IconLineEdit
 EMPTY_COSTS = Costs(*(Cost(0, 0) for _ in SERVICES))
 SERVICE_NAMES = tuple(name for name, _ in SERVICES) + ("Mindösszesen",)
 EMPTY_DATE = date.min
@@ -27,12 +28,12 @@ def blank_invoice():
 class DateBox(QWidget):
     dateChanged = Signal()
 
-    def __init__(self, value):
+    def __init__(self, value, icons):
         super().__init__()
         row = QHBoxLayout(self)
         row.setContentsMargins(0, 0, 0, 0)
         row.setSpacing(2)
-        self.input = QLineEdit()
+        self.input = IconLineEdit(icons)
         self.input.setPlaceholderText("ÉÉÉÉ.HH.NN.")
         self.input.textChanged.connect(lambda _: self.dateChanged.emit())
         self.setFocusProxy(self.input)
@@ -111,7 +112,6 @@ class LetterDialog(QDialog):
     def __init__(self, appearance, settings, save, parent=None, record=None):
         super().__init__(parent)
         self.appearance = appearance
-        appearance.icons.bind(self, "edit" if record else "new", "setWindowIcon")
         self.save_record = save
         self.editing = record is not None
         self.saved_path = None
@@ -162,13 +162,14 @@ class LetterDialog(QDialog):
         widget = QWidget()
         grid = QGridLayout(widget)
         grid.setContentsMargins(4, 2, 4, 2)
+        icons = self.appearance.icons
         self.common = {
-            "reference": QLineEdit(record.reference),
-            "clerk": QLineEdit(record.clerk),
-            "dated": DateBox(record.dated),
-            "sent": DateBox(record.sent),
-            "signer": QLineEdit(record.signer),
-            "position": QLineEdit(record.position),
+            "reference": IconLineEdit(icons, record.reference),
+            "clerk": IconLineEdit(icons, record.clerk),
+            "dated": DateBox(record.dated, icons),
+            "sent": DateBox(record.sent, icons),
+            "signer": IconLineEdit(icons, record.signer),
+            "position": IconLineEdit(icons, record.position),
         }
         labels = ("Iktatószám", "Ügyintéző", "Levél keltezése", "Megküldés dátuma", "Aláíró", "Beosztás")
         for index, (widget_field, label) in enumerate(zip(self.common.values(), labels, strict=True)):
@@ -197,9 +198,9 @@ class LetterDialog(QDialog):
         layout.addLayout(top)
         row = QHBoxLayout()
         fields = QFormLayout()
-        self.number = QLineEdit()
-        self.start = DateBox(EMPTY_DATE)
-        self.end = DateBox(EMPTY_DATE)
+        self.number = IconLineEdit(appearance.icons)
+        self.start = DateBox(EMPTY_DATE, appearance.icons)
+        self.end = DateBox(EMPTY_DATE, appearance.icons)
         fields.addRow("Számlaszám", self.number)
         fields.addRow("Időszak kezdete", self.start)
         fields.addRow("Időszak vége", self.end)
@@ -209,7 +210,7 @@ class LetterDialog(QDialog):
         for index in range(4):
             pair = []
             for column in (1, 2):
-                field = QLineEdit()
+                field = IconLineEdit(appearance.icons)
                 field.setAlignment(Qt.AlignRight)
                 field.textChanged.connect(self.update_invoice)
                 self.costs.setCellWidget(index, column, field)

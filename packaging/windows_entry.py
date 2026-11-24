@@ -18,6 +18,7 @@ def smoke_test() -> None:
     from postaszamla.models import Cost, Costs
     from postaszamla.qt.app import create_application
     from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, SURFACES, THEME
+    from postaszamla.qt.edpd_graphics.icons import APP_ROLES
     from postaszamla.qt.window import MainWindow
     from postaszamla.records import Invoice, Record
     from postaszamla.settings import DEFAULT_ICON_THEME, DEFAULT_UI_STYLE, program_directory
@@ -44,11 +45,20 @@ def smoke_test() -> None:
     themes = appearance.icons.choices()
     if len(themes) != 12:
         raise RuntimeError("A csomagolt ikontémák száma eltér a várt tizenkettőtől.")
+    identity = app.windowIcon().pixmap(32, 32).toImage()
+    if identity.isNull():
+        raise RuntimeError("A csomagolt alkalmazásikon nem töltődött be.")
     for theme in themes:
         appearance.apply(appearance.current_style, theme)
         graphic = appearance.icon("refresh").pixmap(22, 22)
         if graphic.isNull() or appearance.icons.sources["refresh"] != theme:
             raise RuntimeError(f"A csomagolt ikontéma nem tölthető be: {theme}.")
+        for role in APP_ROLES:
+            expected = appearance.icons.describe(role)["kind"] != "none"
+            if appearance.icon(role).pixmap(22, 22).isNull() == expected:
+                raise RuntimeError(f"Hibás csomagolt ikonszerep: {theme} / {role}.")
+        if app.windowIcon().pixmap(32, 32).toImage() != identity:
+            raise RuntimeError("Az alkalmazásikon megváltozott az ikontémával.")
     appearance.apply(DEFAULT_UI_STYLE, DEFAULT_ICON_THEME)
     startup.close()
 

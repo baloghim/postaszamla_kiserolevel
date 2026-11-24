@@ -1,0 +1,1919 @@
+{
+  "Crystal SVG": {
+    "repository": "https://github.com/dangvd/crystal-remix-icon-theme",
+    "commit": "f8863b558b8eedf22caea0eabe18030bfcbe0783",
+    "roles": {
+      "new": {
+        "requested": "32x32/actions/document-new.png",
+        "source": "32x32/actions/document-new.png",
+        "source_file": "role-icons/crystal/new.png",
+        "sha256": "2f7fde189ad804c8f72208e37c4af1741f89ca46f37894be27d5cfd30d026165",
+        "icon": "role-icons/crystal/new.png",
+        "icon_sha256": "2f7fde189ad804c8f72208e37c4af1741f89ca46f37894be27d5cfd30d026165",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "edit": {
+        "requested": "32x32/actions/document-edit.png",
+        "source": "32x32/actions/document-edit.png",
+        "source_file": "role-icons/crystal/edit.png",
+        "sha256": "071477bbe7aa7a556a078b0c3b97450a40f2f17140ffb94770583ed1ce80112e",
+        "icon": "role-icons/crystal/edit.png",
+        "icon_sha256": "071477bbe7aa7a556a078b0c3b97450a40f2f17140ffb94770583ed1ce80112e",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "open": {
+        "requested": "48x48/actions/document-open.png",
+        "source": "48x48/actions/document-open.png",
+        "source_file": "role-icons/crystal/open.png",
+        "sha256": "cfa806c9d58fead33f1947726a1940360445c9f85579bbd89b64c95794732a11",
+        "icon": "role-icons/crystal/open.png",
+        "icon_sha256": "cfa806c9d58fead33f1947726a1940360445c9f85579bbd89b64c95794732a11",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "help": {
+        "requested": "40x40/apps/help-browser.png",
+        "source": "40x40/apps/help-browser.png",
+        "source_file": "role-icons/crystal/help.png",
+        "sha256": "242246977a79978945c7cfe4e0e8911553c1871e339e8728719f8dcae3b06791",
+        "icon": "role-icons/crystal/help.png",
+        "icon_sha256": "242246977a79978945c7cfe4e0e8911553c1871e339e8728719f8dcae3b06791",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "docx": {
+        "requested": "40x40/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png",
+        "source": "40x40/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png",
+        "source_file": "role-icons/crystal/docx.png",
+        "sha256": "ff4bf7546b6661bfa63a4c0455b5949baa02015eff82d16f8464da19297d9e04",
+        "icon": "role-icons/crystal/docx.png",
+        "icon_sha256": "ff4bf7546b6661bfa63a4c0455b5949baa02015eff82d16f8464da19297d9e04",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "invoice-add": {
+        "requested": "32x32/actions/list-add.png",
+        "source": "32x32/actions/list-add.png",
+        "source_file": "role-icons/crystal/invoice-add.png",
+        "sha256": "2f7fde189ad804c8f72208e37c4af1741f89ca46f37894be27d5cfd30d026165",
+        "icon": "role-icons/crystal/invoice-add.png",
+        "icon_sha256": "2f7fde189ad804c8f72208e37c4af1741f89ca46f37894be27d5cfd30d026165",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "cancel": {
+        "requested": "32x32/actions/dialog-cancel.png",
+        "source": "32x32/actions/dialog-cancel.png",
+        "source_file": "role-icons/crystal/cancel.png",
+        "sha256": "15ca637e622d9ed9497db60429a8bbaf6443bbc2a3c686d2088d023d03b18aed",
+        "icon": "role-icons/crystal/cancel.png",
+        "icon_sha256": "15ca637e622d9ed9497db60429a8bbaf6443bbc2a3c686d2088d023d03b18aed",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "confirm": {
+        "requested": "40x40/actions/dialog-ok.png",
+        "source": "40x40/actions/dialog-ok.png",
+        "source_file": "role-icons/crystal/confirm.png",
+        "sha256": "cbd54131c6bd05baed2c5f540c1ee835d0898c6c02ec4075ac5c2f67c58e4841",
+        "icon": "role-icons/crystal/confirm.png",
+        "icon_sha256": "cbd54131c6bd05baed2c5f540c1ee835d0898c6c02ec4075ac5c2f67c58e4841",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "undo": {
+        "requested": "32x32/actions/edit-undo.png",
+        "source": "32x32/actions/edit-undo.png",
+        "source_file": "role-icons/crystal/undo.png",
+        "sha256": "749c25ddaf899964dcf848405df0a795bbd7f4941d5ea777e4121ba063aff5d3",
+        "icon": "role-icons/crystal/undo.png",
+        "icon_sha256": "749c25ddaf899964dcf848405df0a795bbd7f4941d5ea777e4121ba063aff5d3",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "redo": {
+        "requested": "32x32/actions/edit-redo.png",
+        "source": "32x32/actions/edit-redo.png",
+        "source_file": "role-icons/crystal/redo.png",
+        "sha256": "e363568314608d1aad65ba3eb6794fbcc294411f9fa20bb1cfe5f8309611ba1d",
+        "icon": "role-icons/crystal/redo.png",
+        "icon_sha256": "e363568314608d1aad65ba3eb6794fbcc294411f9fa20bb1cfe5f8309611ba1d",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "cut": {
+        "requested": "32x32/actions/edit-cut.png",
+        "source": "32x32/actions/edit-cut.png",
+        "source_file": "role-icons/crystal/cut.png",
+        "sha256": "ce1160ef27c9a040d0fe9d5c920082ed880a95174464c8b95bdcb5232bb51a0e",
+        "icon": "role-icons/crystal/cut.png",
+        "icon_sha256": "ce1160ef27c9a040d0fe9d5c920082ed880a95174464c8b95bdcb5232bb51a0e",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "copy": {
+        "requested": "32x32/actions/edit-copy.png",
+        "source": "32x32/actions/edit-copy.png",
+        "source_file": "role-icons/crystal/copy.png",
+        "sha256": "244fb8af3cf5ab5022044112f1654d856b13d02e67f322e5ac55b3e27e76193a",
+        "icon": "role-icons/crystal/copy.png",
+        "icon_sha256": "244fb8af3cf5ab5022044112f1654d856b13d02e67f322e5ac55b3e27e76193a",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "paste": {
+        "requested": "32x32/actions/edit-paste.png",
+        "source": "32x32/actions/edit-paste.png",
+        "source_file": "role-icons/crystal/paste.png",
+        "sha256": "65dcbc2747169845e961de513bb192ca705fa8bc3561907e8dd05252231256df",
+        "icon": "role-icons/crystal/paste.png",
+        "icon_sha256": "65dcbc2747169845e961de513bb192ca705fa8bc3561907e8dd05252231256df",
+        "license": "GNU LGPL (upstream version unspecified)"
+      },
+      "clear-input": {
+        "requested": "32x32/actions/edit-clear.png",
+        "source": "32x32/actions/edit-clear.png",
+        "source_file": "role-icons/crystal/clear-input.png",
+        "sha256": "4f3b5bac840e6f7b752fcded8466ac5ef46c09dc2022080df41f2575a7529825",
+        "icon": "role-icons/crystal/clear-input.png",
+        "icon_sha256": "4f3b5bac840e6f7b752fcded8466ac5ef46c09dc2022080df41f2575a7529825",
+        "license": "GNU LGPL (upstream version unspecified)"
+      }
+    }
+  },
+  "Nuvola": {
+    "repository": "https://github.com/spartrekus/nuvola-icon-theme",
+    "commit": "fb94aa21035d19c2ec68d69ec0ab21697a73e7c2",
+    "roles": {
+      "new": {
+        "requested": "usr/share/icons/nuvola/48x48/actions/document-new.png",
+        "source": "usr/share/icons/nuvola/48x48/actions/document-new.png",
+        "source_file": "role-icons/nuvola/new.png",
+        "sha256": "eedc8f7751ad79e8801d073fe1290d7d8e665bdb804938a2381634bcbe46e060",
+        "icon": "role-icons/nuvola/new.png",
+        "icon_sha256": "eedc8f7751ad79e8801d073fe1290d7d8e665bdb804938a2381634bcbe46e060",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "open": {
+        "requested": "usr/share/icons/nuvola/scalable/actions/document-open.svg",
+        "source": "usr/share/icons/nuvola/scalable/actions/document-open.svg",
+        "source_file": "role-icons/nuvola/open.svg",
+        "sha256": "d228f65a3a436ad66293127b6dd3bceb899ce4e8fa5a19f62f659e0ccd0dc9b9",
+        "icon": "role-icons/nuvola/open.png",
+        "icon_sha256": "b25e03a237d613c034e329b45c1cf655eae4a1222e8a40d5543ff9c0fa667851",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "help": {
+        "requested": "usr/share/icons/nuvola/48x48/apps/help-browser.png",
+        "source": "usr/share/icons/nuvola/48x48/apps/help-browser.png",
+        "source_file": "role-icons/nuvola/help.png",
+        "sha256": "2ebf931ffe4e776704cc359b8fd363b5798cb7c87a6ff6bcc34e7b1e01e2f1a0",
+        "icon": "role-icons/nuvola/help.png",
+        "icon_sha256": "2ebf931ffe4e776704cc359b8fd363b5798cb7c87a6ff6bcc34e7b1e01e2f1a0",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "docx": {
+        "requested": "usr/share/icons/nuvola/scalable/mimetypes/application-msword.svg",
+        "source": "usr/share/icons/nuvola/scalable/mimetypes/application-msword.svg",
+        "source_file": "role-icons/nuvola/docx.svg",
+        "sha256": "52b78d76999d6dc2f00ba52d8092adae0dcc9817d3cb6088f9415a56ef799e8e",
+        "icon": "role-icons/nuvola/docx.png",
+        "icon_sha256": "471674ebe23c9cbc92af4d284f5aa34c539cd3284f8aaa378ee06ad77d3c1966",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "invoice-add": {
+        "requested": "usr/share/icons/nuvola/48x48/actions/list-add.png",
+        "source": "usr/share/icons/nuvola/48x48/actions/list-add.png",
+        "source_file": "role-icons/nuvola/invoice-add.png",
+        "sha256": "6a849b213629bd21554ae278ebe087fa78519f95729f5f12c46045c15d4f36a6",
+        "icon": "role-icons/nuvola/invoice-add.png",
+        "icon_sha256": "6a849b213629bd21554ae278ebe087fa78519f95729f5f12c46045c15d4f36a6",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "cancel": {
+        "requested": "usr/share/icons/nuvola/48x48/actions/dialog-cancel.png",
+        "source": "usr/share/icons/nuvola/48x48/actions/dialog-cancel.png",
+        "source_file": "role-icons/nuvola/cancel.png",
+        "sha256": "43bcbc585b02a1929ec147a7d7261e1c161d9712d032d3d28e87940f8a9fedc9",
+        "icon": "role-icons/nuvola/cancel.png",
+        "icon_sha256": "43bcbc585b02a1929ec147a7d7261e1c161d9712d032d3d28e87940f8a9fedc9",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "confirm": {
+        "requested": "usr/share/icons/nuvola/scalable/actions/dialog-ok.svg",
+        "source": "usr/share/icons/nuvola/scalable/actions/dialog-ok.svg",
+        "source_file": "role-icons/nuvola/confirm.svg",
+        "sha256": "21c28831622435019f2eaeb3f2c0aa354bd152eb13fa1c7f330ed479e999212b",
+        "icon": "role-icons/nuvola/confirm.png",
+        "icon_sha256": "9d2590a0388faa7cef050a5f9ae07ee7591f239a7adf0d47b3a07e30f7146c43",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "undo": {
+        "requested": "usr/share/icons/nuvola/48x48/actions/edit-undo.png",
+        "source": "usr/share/icons/nuvola/48x48/actions/edit-undo.png",
+        "source_file": "role-icons/nuvola/undo.png",
+        "sha256": "9713326c4b39a365f31504080be14443ec40b08b8e0fbb3e992bed8d5fea5838",
+        "icon": "role-icons/nuvola/undo.png",
+        "icon_sha256": "9713326c4b39a365f31504080be14443ec40b08b8e0fbb3e992bed8d5fea5838",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "redo": {
+        "requested": "usr/share/icons/nuvola/48x48/actions/edit-redo.png",
+        "source": "usr/share/icons/nuvola/48x48/actions/edit-redo.png",
+        "source_file": "role-icons/nuvola/redo.png",
+        "sha256": "5e734281392b0c5e744be7dcae1efa7ed8433a21028dbd398a63c8e587a51492",
+        "icon": "role-icons/nuvola/redo.png",
+        "icon_sha256": "5e734281392b0c5e744be7dcae1efa7ed8433a21028dbd398a63c8e587a51492",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "cut": {
+        "requested": "usr/share/icons/nuvola/scalable/actions/edit-cut.svg",
+        "source": "usr/share/icons/nuvola/scalable/actions/edit-cut.svg",
+        "source_file": "role-icons/nuvola/cut.svg",
+        "sha256": "edcdcf9a7101b86d6fddac3c0c97070b35a164d647022193c6f1b690c8a53953",
+        "icon": "role-icons/nuvola/cut.png",
+        "icon_sha256": "a25aacefefca317d4e5eb1eead736f0e3f65df67fd76e9b18c7158f5871e612e",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "copy": {
+        "requested": "usr/share/icons/nuvola/scalable/actions/edit-copy.svg",
+        "source": "usr/share/icons/nuvola/scalable/actions/edit-copy.svg",
+        "source_file": "role-icons/nuvola/copy.svg",
+        "sha256": "854439981087c6a4d97876523e46ff3432fe6912870e68fbd60c10d34ccedf89",
+        "icon": "role-icons/nuvola/copy.png",
+        "icon_sha256": "f69c8174d70f8e4fc0cb0dd08c8bfcd19155061a7970af4eb354c81e6f1c113b",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      },
+      "paste": {
+        "requested": "usr/share/icons/nuvola/scalable/actions/edit-paste.svg",
+        "source": "usr/share/icons/nuvola/scalable/actions/edit-paste.svg",
+        "source_file": "role-icons/nuvola/paste.svg",
+        "sha256": "d5090f544a77efef990fb8bd252f58f9ff3f2b6577ae4afc73fde95427511fa1",
+        "icon": "role-icons/nuvola/paste.png",
+        "icon_sha256": "2c70b79d1be30ad6a914721b03e52b20a4fcd126a0f695b3364951973afb3197",
+        "license": "LGPL-2.1-or-later (Nuvola-specific Debian copyright entry)"
+      }
+    }
+  },
+  "KDE Modern Classic": {
+    "repository": "https://github.com/nzoomed/kde-modern-classic",
+    "commit": "466f093bf391f80c67cef60a24d4013be2536707",
+    "roles": {
+      "new": {
+        "requested": "KDE-Modern-Classic/scalable/actions/document-new.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/document-new.svg",
+        "source_file": "role-icons/modern-classic/new.svg",
+        "sha256": "22953fbdcb44dc0c43a735a85d0096628d642734f0e18a5f7a5c7bae4ad8e928",
+        "icon": "role-icons/modern-classic/new.png",
+        "icon_sha256": "5cc9e29139d459d40a848d83367a08920a40bbe2c0e781aa5a603b1385444034",
+        "license": "LGPL-3.0-or-later"
+      },
+      "edit": {
+        "requested": "KDE-Modern-Classic/scalable/actions/document-edit.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/document-properties.svg",
+        "source_file": "role-icons/modern-classic/edit.svg",
+        "sha256": "08558cb84ff82c282c6d670f988171842e31e2cd13ebaa2ad5484e45c7aab934",
+        "icon": "role-icons/modern-classic/edit.png",
+        "icon_sha256": "745d585e5a12f8dc0fbf40dad3198d999687ca43a1b47028dd83f8e897ded4f2",
+        "license": "LGPL-3.0-or-later"
+      },
+      "open": {
+        "requested": "KDE-Modern-Classic/scalable/actions/document-open.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/document-open.svg",
+        "source_file": "role-icons/modern-classic/open.svg",
+        "sha256": "5f06b3291aa691d97c3996b9b105dda8cc468bb261364d83f7d4f8deeab89a5c",
+        "icon": "role-icons/modern-classic/open.png",
+        "icon_sha256": "1a6d8c79f54b48a6c94b5f54a2e35bece821e324dea1517344e2bc5b2d984fc1",
+        "license": "LGPL-3.0-or-later"
+      },
+      "help": {
+        "requested": "KDE-Modern-Classic/scalable/actions/help-browser.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/help-browser.svg",
+        "source_file": "role-icons/modern-classic/help.svg",
+        "sha256": "f0e1fd444029db59961d249aab2b2c2940a0c270d994d982c16f2a3ce967a3bd",
+        "icon": "role-icons/modern-classic/help.png",
+        "icon_sha256": "df0fa3e7ffd801f63d54543e445df3bc1d543fd66510b51af8853524bda91980",
+        "license": "LGPL-3.0-or-later"
+      },
+      "docx": {
+        "requested": "KDE-Modern-Classic/scalable/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source": "KDE-Modern-Classic/scalable/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source_file": "role-icons/modern-classic/docx.svg",
+        "sha256": "f9bb6ecee69625b8cda371d35fa720163dd3134a7e4a499c3d4c6786361b13a4",
+        "icon": "role-icons/modern-classic/docx.png",
+        "icon_sha256": "d4e3aa26669cfedec6efb84fe2ea9d20059617101f258174a47cc1779eb58a73",
+        "license": "LGPL-3.0-or-later"
+      },
+      "invoice-add": {
+        "requested": "KDE-Modern-Classic/scalable/actions/list-add.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/list-add.svg",
+        "source_file": "role-icons/modern-classic/invoice-add.svg",
+        "sha256": "25a9257b84338ede9b7c4c9ab3f39d1382b0bc014e603a5eb0cdac5f3d9ffd46",
+        "icon": "role-icons/modern-classic/invoice-add.png",
+        "icon_sha256": "8bca0346fb94749361648b8d2bafdf461ccfcc0e2b5899beee34b3a64527a056",
+        "license": "LGPL-3.0-or-later"
+      },
+      "cancel": {
+        "requested": "KDE-Modern-Classic/scalable/actions/dialog-cancel.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/dialog-cancel.svg",
+        "source_file": "role-icons/modern-classic/cancel.svg",
+        "sha256": "70a5feed327bd3a46bf770c3b8af56a7b90e6f5e8226888bc4687301554e61d9",
+        "icon": "role-icons/modern-classic/cancel.png",
+        "icon_sha256": "e3d42d6282e4ca7925dc81b7dcc8672d376eec2aaf10f3285bf81c7d525c87f8",
+        "license": "LGPL-3.0-or-later"
+      },
+      "confirm": {
+        "requested": "KDE-Modern-Classic/scalable/actions/dialog-ok.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/dialog-ok.svg",
+        "source_file": "role-icons/modern-classic/confirm.svg",
+        "sha256": "57aa0cdfa9625a956d23b06444348cf604f75a843d84339478a4f847b16b669d",
+        "icon": "role-icons/modern-classic/confirm.png",
+        "icon_sha256": "ae42b39906032a8c192a8c8b737f1d74e5898c183f8c5c723be4ff48c99f5af8",
+        "license": "LGPL-3.0-or-later"
+      },
+      "question": {
+        "requested": "KDE-Modern-Classic/scalable/actions/dialog-question.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/help-browser.svg",
+        "source_file": "role-icons/modern-classic/question.svg",
+        "sha256": "f0e1fd444029db59961d249aab2b2c2940a0c270d994d982c16f2a3ce967a3bd",
+        "icon": "role-icons/modern-classic/question.png",
+        "icon_sha256": "df0fa3e7ffd801f63d54543e445df3bc1d543fd66510b51af8853524bda91980",
+        "license": "LGPL-3.0-or-later"
+      },
+      "undo": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-undo.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-undo.svg",
+        "source_file": "role-icons/modern-classic/undo.svg",
+        "sha256": "fe62b11a39aff45bc823da2ed791267a37184e5e42343a99a494beeb489a144e",
+        "icon": "role-icons/modern-classic/undo.png",
+        "icon_sha256": "a98e2bf7e0dec2d8e154b7764b98eab80e918498949b078d0ddaf8d9d45197fd",
+        "license": "LGPL-3.0-or-later"
+      },
+      "redo": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-redo.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-redo.svg",
+        "source_file": "role-icons/modern-classic/redo.svg",
+        "sha256": "c747b05041496b8cded4213783811ced2b9f3b81bd90f51e7cdd925000d2d017",
+        "icon": "role-icons/modern-classic/redo.png",
+        "icon_sha256": "f7266ddc005536bd3f1be7c433308dfe2d01850436c3fe7ee83f7e48e8a7164a",
+        "license": "LGPL-3.0-or-later"
+      },
+      "cut": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-cut.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-cut.svg",
+        "source_file": "role-icons/modern-classic/cut.svg",
+        "sha256": "22e9fcf7711096d37d9c641702209d3722c17fa877fbfa6b90c5b67c691445ed",
+        "icon": "role-icons/modern-classic/cut.png",
+        "icon_sha256": "8b5bdb34c2c8c232cbcaf24f69e9c054fc43bad974a94d159bd5ff1dfbcfcf81",
+        "license": "LGPL-3.0-or-later"
+      },
+      "copy": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-copy.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-copy.svg",
+        "source_file": "role-icons/modern-classic/copy.svg",
+        "sha256": "1f49c7682343d13c30e73052d07b53864d528bcca73c6e347331df929dd5d896",
+        "icon": "role-icons/modern-classic/copy.png",
+        "icon_sha256": "b6504f369d5abb5eb118629dc82cd2df0596053e6b69578e737411181efa1326",
+        "license": "LGPL-3.0-or-later"
+      },
+      "paste": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-paste.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-paste.svg",
+        "source_file": "role-icons/modern-classic/paste.svg",
+        "sha256": "261599307939ce3793b09599eeec5d8d3586311cbd7419365976c234c48cadd9",
+        "icon": "role-icons/modern-classic/paste.png",
+        "icon_sha256": "32f9cba5f3bd7c8d5c3ca55a66d9877b0d286924b2aaed7de4fe187d3f2767af",
+        "license": "LGPL-3.0-or-later"
+      },
+      "select-all": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-select-all.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-select-all.svg",
+        "source_file": "role-icons/modern-classic/select-all.svg",
+        "sha256": "0388c5d06cb7da2d0197e60dfd73da86f890572f59037ee738a4e576a79f5856",
+        "icon": "role-icons/modern-classic/select-all.png",
+        "icon_sha256": "17e097b94e2345750c7f0a49f1eab1e5ac601b837478e659b574f953310698ac",
+        "license": "LGPL-3.0-or-later"
+      },
+      "clear-input": {
+        "requested": "KDE-Modern-Classic/scalable/actions/edit-clear-locationbar-ltr.svg",
+        "source": "KDE-Modern-Classic/scalable/actions/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/modern-classic/clear-input.svg",
+        "sha256": "800eeda766e47756783a00d77042a70ae3e4686f75a827efb87132ba850b6f06",
+        "icon": "role-icons/modern-classic/clear-input.png",
+        "icon_sha256": "bd73dbe168e8116edda784fe26a09c8a0121463bd83fda7791eb3f09d7d96b00",
+        "license": "LGPL-3.0-or-later"
+      }
+    }
+  },
+  "Papirus": {
+    "repository": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme",
+    "commit": "33d971eb2d0c8454bac58246687de78e58f960c8",
+    "roles": {
+      "new": {
+        "requested": "Papirus/24x24/actions/document-new.svg",
+        "source": "Papirus/24x24/actions/document-new.svg",
+        "source_file": "role-icons/papirus/new.svg",
+        "sha256": "2bc86d8b6d88ae6eadeaac4a0901592678df4b4ef3ae8c8ab5662925b5904e5a",
+        "icon": "role-icons/papirus/new.png",
+        "icon_sha256": "c1bf4558ea4b9ff42e6c3d002e344c9461355ddcd2a286a4b5b5049e9877de0d",
+        "license": "GPL-3.0"
+      },
+      "edit": {
+        "requested": "Papirus/24x24/actions/document-edit.svg",
+        "source": "Papirus/24x24/actions/edit.svg",
+        "source_file": "role-icons/papirus/edit.svg",
+        "sha256": "4f942ca678665b378b9ca2821d7f303821922560f911b970c9a5ca558a1fbd79",
+        "icon": "role-icons/papirus/edit.png",
+        "icon_sha256": "ba6a72b0bfc72ee0fb6de9e86f93a13548952dea92b34a9f3f2e9834fc6ce2d9",
+        "license": "GPL-3.0"
+      },
+      "open": {
+        "requested": "Papirus/24x24/actions/document-open.svg",
+        "source": "Papirus/24x24/actions/document-open.svg",
+        "source_file": "role-icons/papirus/open.svg",
+        "sha256": "018df835099557fe0a78a8b44a5d5546030daaf36f1a879ccbbbc4b98fed7967",
+        "icon": "role-icons/papirus/open.png",
+        "icon_sha256": "794de00e31dbf7c5fe79d6d84a0ada0b6967fd179f3de2bb0f6b455091ed4b69",
+        "license": "GPL-3.0"
+      },
+      "help": {
+        "requested": "Papirus/48x48/apps/help-browser.svg",
+        "source": "Papirus/48x48/apps/help-browser.svg",
+        "source_file": "role-icons/papirus/help.svg",
+        "sha256": "92c58d2c0a68db8bd445ba0cf5058de56950e0a850a518a46687b9de38521ddd",
+        "icon": "role-icons/papirus/help.png",
+        "icon_sha256": "c8c5c9eaf25cad29a881cb74f2da154ebc7afe5b7538de720f8cb9796c4307a3",
+        "license": "GPL-3.0"
+      },
+      "docx": {
+        "requested": "Papirus/48x48/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source": "Papirus/48x48/mimetypes/x-office-document.svg",
+        "source_file": "role-icons/papirus/docx.svg",
+        "sha256": "a2c8bb37f062044c20db84cd52f6ec150463b7a0e2a094604403cdf784c92faa",
+        "icon": "role-icons/papirus/docx.png",
+        "icon_sha256": "34be64e35f16d134c3a5f6a4ffd30cd3d6b257562bf0d04c81b9ee1455c808c1",
+        "license": "GPL-3.0"
+      },
+      "invoice-add": {
+        "requested": "Papirus/24x24/actions/list-add.svg",
+        "source": "Papirus/24x24/actions/list-add.svg",
+        "source_file": "role-icons/papirus/invoice-add.svg",
+        "sha256": "2bcc939586d392236bd18247e4c06a9241c4c3af3e6a43dda38c1e285b1dd3ae",
+        "icon": "role-icons/papirus/invoice-add.png",
+        "icon_sha256": "06e6d9c0bcb7714c06f7d9190410076d44c88e0256e0a0c674b3f4c1223b3717",
+        "license": "GPL-3.0"
+      },
+      "cancel": {
+        "requested": "Papirus/24x24/actions/dialog-cancel.svg",
+        "source": "Papirus/24x24/actions/window-close.svg",
+        "source_file": "role-icons/papirus/cancel.svg",
+        "sha256": "97680f469184e7952ca513db34af29b50531911375d5b7a41e823a4137fa86e1",
+        "icon": "role-icons/papirus/cancel.png",
+        "icon_sha256": "5b799aa2c980b056a348e8cf11a5a31eb5eeebf36781683cf99369660ef9048c",
+        "license": "GPL-3.0"
+      },
+      "confirm": {
+        "requested": "Papirus/24x24/actions/dialog-ok.svg",
+        "source": "Papirus/24x24/actions/object-select.svg",
+        "source_file": "role-icons/papirus/confirm.svg",
+        "sha256": "93a83a7beb00eb26387dcd514b4f61bfe900e52b4ad8deb11c68e5227c1f4515",
+        "icon": "role-icons/papirus/confirm.png",
+        "icon_sha256": "302a7c023880737c5f279fe78acd7ab6c7180ac648655566e91bd720bd61b4b3",
+        "license": "GPL-3.0"
+      },
+      "question": {
+        "requested": "Papirus/48x48/status/dialog-question.svg",
+        "source": "Papirus/48x48/status/dialog-question.svg",
+        "source_file": "role-icons/papirus/question.svg",
+        "sha256": "2e4b607e1bed7fa5623b6f098ac1205e682cbea3be9ef80b41964bb138924c77",
+        "icon": "role-icons/papirus/question.png",
+        "icon_sha256": "f924384b7e3514a59e9bcf5b5071a6802ccfd987a166ca251f6e5775af2ad6b4",
+        "license": "GPL-3.0"
+      },
+      "undo": {
+        "requested": "Papirus/24x24/actions/edit-undo.svg",
+        "source": "Papirus/24x24/actions/edit-undo.svg",
+        "source_file": "role-icons/papirus/undo.svg",
+        "sha256": "a583609444da7919437ca546415ac50d6ce7a75aeb23a77ba7503bd0aa38395f",
+        "icon": "role-icons/papirus/undo.png",
+        "icon_sha256": "f76a9647458fef7007eb607229d9b566132fa3e545db63dae7acc71a566de0f6",
+        "license": "GPL-3.0"
+      },
+      "redo": {
+        "requested": "Papirus/24x24/actions/edit-redo.svg",
+        "source": "Papirus/24x24/actions/edit-redo.svg",
+        "source_file": "role-icons/papirus/redo.svg",
+        "sha256": "a25b1d25a1d56cd6014b50e253e29cd1492eec33f729894e7fa22fbb6cd152cd",
+        "icon": "role-icons/papirus/redo.png",
+        "icon_sha256": "f84fcc514bc22149530914000bbb3f884963ea3c596ac9304bb33ffd97ecbd7d",
+        "license": "GPL-3.0"
+      },
+      "cut": {
+        "requested": "Papirus/24x24/actions/edit-cut.svg",
+        "source": "Papirus/24x24/actions/edit-cut.svg",
+        "source_file": "role-icons/papirus/cut.svg",
+        "sha256": "d4af9dc405137e2d5cff6b295c7d34ea2b24fa1077b104cc65dd565db5e33a2a",
+        "icon": "role-icons/papirus/cut.png",
+        "icon_sha256": "b6d28013803f1fded8d41cf4766aa3e9d5810003709071c58c9917664ff8d752",
+        "license": "GPL-3.0"
+      },
+      "copy": {
+        "requested": "Papirus/24x24/actions/edit-copy.svg",
+        "source": "Papirus/24x24/actions/edit-copy.svg",
+        "source_file": "role-icons/papirus/copy.svg",
+        "sha256": "9eade5c5e958817cbc3358cddd40c538c596ea2fdef2f8edc345bc57a5d03c63",
+        "icon": "role-icons/papirus/copy.png",
+        "icon_sha256": "6ade0a2b290c00108d85421f79b2b192c56ec5cc74961418d709f0dc7c015998",
+        "license": "GPL-3.0"
+      },
+      "paste": {
+        "requested": "Papirus/24x24/actions/edit-paste.svg",
+        "source": "Papirus/24x24/actions/edit-paste.svg",
+        "source_file": "role-icons/papirus/paste.svg",
+        "sha256": "66c26010dc8e689e7d77f94f6823f1a0365ac03e0be66d0f9a1dcb849206cd0f",
+        "icon": "role-icons/papirus/paste.png",
+        "icon_sha256": "6b3f22c8b29a68fb91732708a1ab39eac3e7e14d7a9e2efc11e92790958c3ab9",
+        "license": "GPL-3.0"
+      },
+      "select-all": {
+        "requested": "Papirus/24x24/actions/edit-select-all.svg",
+        "source": "Papirus/24x24/actions/edit-select-all.svg",
+        "source_file": "role-icons/papirus/select-all.svg",
+        "sha256": "ebb81f3cdd6b46797b0581dcb7ebec55afe55485804c3e9fc84d070c5dad89e4",
+        "icon": "role-icons/papirus/select-all.png",
+        "icon_sha256": "65e3dac42a08fa15f13548f553aa1e1c4b4630556e5854f7891872ebd6d3d76e",
+        "license": "GPL-3.0"
+      },
+      "clear-input": {
+        "requested": "Papirus/24x24/actions/edit-clear-locationbar-ltr.svg",
+        "source": "Papirus/24x24/actions/edit-clear-rtl.svg",
+        "source_file": "role-icons/papirus/clear-input.svg",
+        "sha256": "2007b8cb8edd8fdcce089c39186e82888d7804ba004750f09e96136a78fb7254",
+        "icon": "role-icons/papirus/clear-input.png",
+        "icon_sha256": "a5960a6a2b1171a58087490bad473b43111cc0dce2a73483e075aeb07b499a92",
+        "license": "GPL-3.0"
+      }
+    }
+  },
+  "We10X": {
+    "repository": "https://github.com/yeyushengfan258/We10X-icon-theme",
+    "commit": "0f52ff2dce554146f8f76ab2c7a5968fd773400d",
+    "roles": {
+      "new": {
+        "requested": "src/actions/32/document-new.svg",
+        "source": "src/actions/32/document-new.svg",
+        "source_file": "role-icons/we10x/new.svg",
+        "sha256": "80784016f7b10463c8ed8d3bd7e2ed1263ef95c49b10f90e795f4573e7e3345f",
+        "icon": "role-icons/we10x/new.png",
+        "icon_sha256": "4a2cd4432937487d772e1248b7f29f4a4e3f158b74cd69f96f7fd9631178d1a3",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "edit": {
+        "requested": "src/actions/32/document-edit.svg",
+        "source": "src/actions/32/document-edit.svg",
+        "source_file": "role-icons/we10x/edit.svg",
+        "sha256": "c1ca77128535eb85c89cdf2cf59c3a216885dbe9bf9e9226b001c73ffeb64dc9",
+        "icon": "role-icons/we10x/edit.png",
+        "icon_sha256": "8f2d01354539ce56652526297f6db1158603dde543c3437d12be7a5bd06b4cf0",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "open": {
+        "requested": "src/actions/32/document-open.svg",
+        "source": "src/actions/32/document-open.svg",
+        "source_file": "role-icons/we10x/open.svg",
+        "sha256": "d1c64d9f0943a85a945c0f905f0865dd4b6a5c546a046c9d3a2f622b0f5f01cb",
+        "icon": "role-icons/we10x/open.png",
+        "icon_sha256": "8cd2cb1fd387d30d3bb6a64d03ed13938b5f33b62eb193c66b0493b7ce8a7816",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "help": {
+        "requested": "src/apps/scalable/help-browser.svg",
+        "source": "src/apps/scalable/help-browser.svg",
+        "source_file": "role-icons/we10x/help.svg",
+        "sha256": "3895774fa41f4cce3d0c8f5621d905ee4143266a72ad7a06925aa923ada01e40",
+        "icon": "role-icons/we10x/help.png",
+        "icon_sha256": "74833920ae984ed6b0e3cd4416d8a9410547dd31fd70a3f3c6395b917955528e",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "docx": {
+        "requested": "src/mimes/22/application-msword.svg",
+        "source": "src/mimes/22/application-msword.svg",
+        "source_file": "role-icons/we10x/docx.svg",
+        "sha256": "ad0776c1d07bb7fc8b50e15078a86e3c324329eea1b51a31fee5c026ef5a85e2",
+        "icon": "role-icons/we10x/docx.png",
+        "icon_sha256": "c84057646a993d59035982b7d6da70f61ffe331aa477a1b7d6036bbeba8a5cf0",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "invoice-add": {
+        "requested": "src/actions/24/list-add.svg",
+        "source": "src/actions/24/list-add.svg",
+        "source_file": "role-icons/we10x/invoice-add.svg",
+        "sha256": "22e6b3e2d75a4dc5642f1d249622ec7aa8bbae0d5ea9898d1d30771601f26047",
+        "icon": "role-icons/we10x/invoice-add.png",
+        "icon_sha256": "619eea039734716904239fbf2690fc59029c88f265cac5704077102db1dc95d3",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "cancel": {
+        "requested": "src/actions/32/dialog-cancel.svg",
+        "source": "src/actions/32/dialog-cancel.svg",
+        "source_file": "role-icons/we10x/cancel.svg",
+        "sha256": "7563fb9c016f9545b9be8487aea569365f0fc6a1d629f9cedca2209b8e836974",
+        "icon": "role-icons/we10x/cancel.png",
+        "icon_sha256": "4f544bfb19bc05a0bc128dd8b20a62a89c51f473e3ea5fa0abbeeb2e5eb07633",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "confirm": {
+        "requested": "src/emblems/22/emblem-default.svg",
+        "source": "src/emblems/22/emblem-default.svg",
+        "source_file": "role-icons/we10x/confirm.svg",
+        "sha256": "aff6753fc4c89bfac0a8f0df84ae5e1b0c834c8265a9315617cfa7d95247bc84",
+        "icon": "role-icons/we10x/confirm.png",
+        "icon_sha256": "96ad7fda8e12f27ac57ff23fc52a04adf3b0ff151744282b679766a5bb698713",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "question": {
+        "requested": "src/status/32/dialog-question.svg",
+        "source": "src/status/32/dialog-question.svg",
+        "source_file": "role-icons/we10x/question.svg",
+        "sha256": "39428f545be015714290275bfc73982660272f9cae92e1b2994f77b5cc2ef104",
+        "icon": "role-icons/we10x/question.png",
+        "icon_sha256": "def001565028a8aeb8336b180282775ea0ae998bab65c237c352c2ac51c08391",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "undo": {
+        "requested": "src/actions/32/edit-undo.svg",
+        "source": "src/actions/32/edit-undo.svg",
+        "source_file": "role-icons/we10x/undo.svg",
+        "sha256": "388e9970ba63546746a9805fe04c80ee002f93cbaecd7eec1317466afeb994cb",
+        "icon": "role-icons/we10x/undo.png",
+        "icon_sha256": "15e7f97c91bed8755d1678347512b2e51e72a3161a424701268060585311d9c8",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "redo": {
+        "requested": "src/actions/32/edit-redo.svg",
+        "source": "src/actions/32/edit-redo.svg",
+        "source_file": "role-icons/we10x/redo.svg",
+        "sha256": "5a694326f239c28f413a9fd3521d11357c4c1e0e9df2f486fcdc016058c42b54",
+        "icon": "role-icons/we10x/redo.png",
+        "icon_sha256": "fbd24813349e41bc2811388e2b082c3be5aa3314397a83bc4df5efc5f486e394",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "cut": {
+        "requested": "src/actions/24/edit-cut.svg",
+        "source": "src/actions/24/edit-cut.svg",
+        "source_file": "role-icons/we10x/cut.svg",
+        "sha256": "66429cc165e7faaa1400cc2966a87e97b0c2de957ffb2fd3ccd2f078283601de",
+        "icon": "role-icons/we10x/cut.png",
+        "icon_sha256": "31194d8cc1c7b5306b745ea947497d86427e42d239b505d64767fe8017b866e7",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "copy": {
+        "requested": "src/actions/24/edit-copy.svg",
+        "source": "src/actions/24/edit-copy.svg",
+        "source_file": "role-icons/we10x/copy.svg",
+        "sha256": "780c7957499637fc1a2aacf2a46979749e400277e09ee74f2c23590ee5165bc4",
+        "icon": "role-icons/we10x/copy.png",
+        "icon_sha256": "13957a7f2d084740e3cee985016be8399ee639bfa88adc3641c6d7b47a8f2859",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "paste": {
+        "requested": "src/actions/24/edit-paste.svg",
+        "source": "src/actions/24/edit-paste.svg",
+        "source_file": "role-icons/we10x/paste.svg",
+        "sha256": "5401457725d84832e48fe1d104e5750f29a4a271df06b888454e635f4e350328",
+        "icon": "role-icons/we10x/paste.png",
+        "icon_sha256": "e54143d400ed41d5ccf5984a0b852078dedf64be042af1038da35f0f84c4ac0e",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "select-all": {
+        "requested": "src/actions/24/edit-select-all.svg",
+        "source": "src/actions/24/edit-select-all.svg",
+        "source_file": "role-icons/we10x/select-all.svg",
+        "sha256": "3c728a7be90bc4b240ddb5f7f562bfc1553963db216bf83b946b89c56bb7569f",
+        "icon": "role-icons/we10x/select-all.png",
+        "icon_sha256": "bdd95727cf0365861a82a26eb7bc23c92a4e92a74818d6cf6e11798a2850d806",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      },
+      "clear-input": {
+        "requested": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/we10x/clear-input.svg",
+        "sha256": "12fedc6a620affda2c71f8162569dc42d60c5019839a060c19a0ac7df98c059d",
+        "icon": "role-icons/we10x/clear-input.png",
+        "icon_sha256": "ea08fa37c9cf2a4d93b37576caaf98d0f7392004a251775859f3bed20fb549bd",
+        "license": "GPL-3.0 (upstream COPYING; Yaru attribution in AUTHORS)"
+      }
+    }
+  },
+  "Oxygen": {
+    "repository": "https://github.com/KDE/oxygen-icons",
+    "commit": "f7c05b7e0417e39eae17b9272c8880d488985bf9",
+    "roles": {
+      "new": {
+        "requested": "48x48/actions/document-new.png",
+        "source": "48x48/actions/document-new.png",
+        "source_file": "role-icons/oxygen/new.png",
+        "sha256": "ed60e9c001eea26d1d5fa7d6353ba6b5edf56f971e52c47502a21928ca5e1756",
+        "icon": "role-icons/oxygen/new.png",
+        "icon_sha256": "ed60e9c001eea26d1d5fa7d6353ba6b5edf56f971e52c47502a21928ca5e1756",
+        "license": "LGPL-3.0-or-later"
+      },
+      "edit": {
+        "requested": "48x48/actions/document-edit.png",
+        "source": "48x48/actions/document-edit.png",
+        "source_file": "role-icons/oxygen/edit.png",
+        "sha256": "eaf1d902805620d329ce5106d37df7e5f2ab10c06e675f10b4e5473b2dc508a2",
+        "icon": "role-icons/oxygen/edit.png",
+        "icon_sha256": "eaf1d902805620d329ce5106d37df7e5f2ab10c06e675f10b4e5473b2dc508a2",
+        "license": "LGPL-3.0-or-later"
+      },
+      "open": {
+        "requested": "48x48/actions/document-open.png",
+        "source": "48x48/actions/document-open.png",
+        "source_file": "role-icons/oxygen/open.png",
+        "sha256": "9a81ff00425b7c184474102165d57476fc9db2e955880d23e126deaf72edda1b",
+        "icon": "role-icons/oxygen/open.png",
+        "icon_sha256": "9a81ff00425b7c184474102165d57476fc9db2e955880d23e126deaf72edda1b",
+        "license": "LGPL-3.0-or-later"
+      },
+      "help": {
+        "requested": "48x48/apps/help-browser.png",
+        "source": "48x48/apps/help-browser.png",
+        "source_file": "role-icons/oxygen/help.png",
+        "sha256": "b75e9c30fb82029a60b4d42d3fddf7d22151fe420b9f487bc4082650b254be90",
+        "icon": "role-icons/oxygen/help.png",
+        "icon_sha256": "b75e9c30fb82029a60b4d42d3fddf7d22151fe420b9f487bc4082650b254be90",
+        "license": "LGPL-3.0-or-later"
+      },
+      "docx": {
+        "requested": "48x48/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png",
+        "source": "48x48/mimetypes/application-vnd.oasis.opendocument.text-master.png",
+        "source_file": "role-icons/oxygen/docx.png",
+        "sha256": "328f307b5a5572ed2b3344703454eb01a9373b8bd06122cb330ea36017b62ad8",
+        "icon": "role-icons/oxygen/docx.png",
+        "icon_sha256": "328f307b5a5572ed2b3344703454eb01a9373b8bd06122cb330ea36017b62ad8",
+        "license": "LGPL-3.0-or-later"
+      },
+      "invoice-add": {
+        "requested": "48x48/actions/list-add.png",
+        "source": "48x48/actions/list-add.png",
+        "source_file": "role-icons/oxygen/invoice-add.png",
+        "sha256": "b4e20b6545768944219809ff7737246f2cb400f34fe2af4208521e3d2b6da431",
+        "icon": "role-icons/oxygen/invoice-add.png",
+        "icon_sha256": "b4e20b6545768944219809ff7737246f2cb400f34fe2af4208521e3d2b6da431",
+        "license": "LGPL-3.0-or-later"
+      },
+      "cancel": {
+        "requested": "48x48/actions/dialog-cancel.png",
+        "source": "48x48/actions/dialog-cancel.png",
+        "source_file": "role-icons/oxygen/cancel.png",
+        "sha256": "3a4e73142c822aff54ed8dc13fc3ebbffc8d6e004bcfe04e83ea41749a96e7a7",
+        "icon": "role-icons/oxygen/cancel.png",
+        "icon_sha256": "3a4e73142c822aff54ed8dc13fc3ebbffc8d6e004bcfe04e83ea41749a96e7a7",
+        "license": "LGPL-3.0-or-later"
+      },
+      "confirm": {
+        "requested": "48x48/actions/dialog-ok.png",
+        "source": "48x48/actions/dialog-ok.png",
+        "source_file": "role-icons/oxygen/confirm.png",
+        "sha256": "21969c93b9d0ebc886968eb79a586b05062c5be46120a9b3f2ec97c3a15ecd4b",
+        "icon": "role-icons/oxygen/confirm.png",
+        "icon_sha256": "21969c93b9d0ebc886968eb79a586b05062c5be46120a9b3f2ec97c3a15ecd4b",
+        "license": "LGPL-3.0-or-later"
+      },
+      "undo": {
+        "requested": "48x48/actions/edit-undo.png",
+        "source": "48x48/actions/edit-undo.png",
+        "source_file": "role-icons/oxygen/undo.png",
+        "sha256": "070f3ad7db85aa6086df38567fe5dade0b8786f9112b11d3a7907e3cb56c005c",
+        "icon": "role-icons/oxygen/undo.png",
+        "icon_sha256": "070f3ad7db85aa6086df38567fe5dade0b8786f9112b11d3a7907e3cb56c005c",
+        "license": "LGPL-3.0-or-later"
+      },
+      "redo": {
+        "requested": "48x48/actions/edit-redo.png",
+        "source": "48x48/actions/edit-redo.png",
+        "source_file": "role-icons/oxygen/redo.png",
+        "sha256": "a811d18343c253dbe9255f1bc3f11001d0ec0baaf119090e2d78fde287d5f807",
+        "icon": "role-icons/oxygen/redo.png",
+        "icon_sha256": "a811d18343c253dbe9255f1bc3f11001d0ec0baaf119090e2d78fde287d5f807",
+        "license": "LGPL-3.0-or-later"
+      },
+      "cut": {
+        "requested": "48x48/actions/edit-cut.png",
+        "source": "48x48/actions/edit-cut.png",
+        "source_file": "role-icons/oxygen/cut.png",
+        "sha256": "871be50d9a33ee2f7c06f78a0dac78c4fd2fc854785f7470c1907d3a5c851cd2",
+        "icon": "role-icons/oxygen/cut.png",
+        "icon_sha256": "871be50d9a33ee2f7c06f78a0dac78c4fd2fc854785f7470c1907d3a5c851cd2",
+        "license": "LGPL-3.0-or-later"
+      },
+      "copy": {
+        "requested": "48x48/actions/edit-copy.png",
+        "source": "48x48/actions/edit-copy.png",
+        "source_file": "role-icons/oxygen/copy.png",
+        "sha256": "f012339189d8b733f21868ee5ca3b06344c68bf2400f07fdddea96105296ae51",
+        "icon": "role-icons/oxygen/copy.png",
+        "icon_sha256": "f012339189d8b733f21868ee5ca3b06344c68bf2400f07fdddea96105296ae51",
+        "license": "LGPL-3.0-or-later"
+      },
+      "paste": {
+        "requested": "48x48/actions/edit-paste.png",
+        "source": "48x48/actions/edit-paste.png",
+        "source_file": "role-icons/oxygen/paste.png",
+        "sha256": "d1e379142d8c9d8c05d1a82c1d22ab365f77ab0b486e0aa5b2496641bc14c5e3",
+        "icon": "role-icons/oxygen/paste.png",
+        "icon_sha256": "d1e379142d8c9d8c05d1a82c1d22ab365f77ab0b486e0aa5b2496641bc14c5e3",
+        "license": "LGPL-3.0-or-later"
+      },
+      "select-all": {
+        "requested": "48x48/actions/edit-select-all.png",
+        "source": "48x48/actions/edit-select-all.png",
+        "source_file": "role-icons/oxygen/select-all.png",
+        "sha256": "d0d4a97b083e679caf8ae7d12274aaa1c043661b11c495709aaf19de8ed05898",
+        "icon": "role-icons/oxygen/select-all.png",
+        "icon_sha256": "d0d4a97b083e679caf8ae7d12274aaa1c043661b11c495709aaf19de8ed05898",
+        "license": "LGPL-3.0-or-later"
+      },
+      "clear-input": {
+        "requested": "48x48/actions/edit-clear-locationbar-ltr.png",
+        "source": "48x48/actions/edit-clear-locationbar-ltr.png",
+        "source_file": "role-icons/oxygen/clear-input.png",
+        "sha256": "b5c34ff0a6df48affe2b7c91ed2625614753b733606311ed51c8131cc3790ffb",
+        "icon": "role-icons/oxygen/clear-input.png",
+        "icon_sha256": "b5c34ff0a6df48affe2b7c91ed2625614753b733606311ed51c8131cc3790ffb",
+        "license": "LGPL-3.0-or-later"
+      }
+    }
+  },
+  "Win10Sur": {
+    "repository": "https://github.com/yeyushengfan258/Win10Sur-icon-theme",
+    "commit": "2f41287774dffb79946f41aa2a20b90ee22aa648",
+    "roles": {
+      "new": {
+        "requested": "src/actions/32/document-new.svg",
+        "source": "src/actions/32/document-new.svg",
+        "source_file": "role-icons/win10sur/new.svg",
+        "sha256": "f68764c5153924c015834a99f626a7f3753d30545ae7b004bdba3c84bf02d0b2",
+        "icon": "role-icons/win10sur/new.png",
+        "icon_sha256": "fc5d1db080f84dca4fcbb5b4f9ba276e8e8e9b16cbf5cb8992d5c118579a6b83",
+        "license": "GPL-3.0"
+      },
+      "edit": {
+        "requested": "src/actions/32/document-edit.svg",
+        "source": "src/actions/32/document-edit.svg",
+        "source_file": "role-icons/win10sur/edit.svg",
+        "sha256": "c1ca77128535eb85c89cdf2cf59c3a216885dbe9bf9e9226b001c73ffeb64dc9",
+        "icon": "role-icons/win10sur/edit.png",
+        "icon_sha256": "8f2d01354539ce56652526297f6db1158603dde543c3437d12be7a5bd06b4cf0",
+        "license": "GPL-3.0"
+      },
+      "open": {
+        "requested": "src/actions/32/document-open.svg",
+        "source": "src/actions/32/document-open.svg",
+        "source_file": "role-icons/win10sur/open.svg",
+        "sha256": "74c1962deee179711790f5a3588380ba42336a875c585abd78b1731f9cf1ef59",
+        "icon": "role-icons/win10sur/open.png",
+        "icon_sha256": "26423fb701720b21422f001a5ba38db4d92ca5790646a1220d8ee6e0215b0f34",
+        "license": "GPL-3.0"
+      },
+      "help": {
+        "requested": "src/actions/24/help-contents.svg",
+        "source": "src/actions/24/help-contents.svg",
+        "source_file": "role-icons/win10sur/help.svg",
+        "sha256": "8bb72eb02ea201b57d809ec6871a1378069f008a9ea1fd141f6b9f3c56da96b1",
+        "icon": "role-icons/win10sur/help.png",
+        "icon_sha256": "ddac82c875d7e126a8a7de9f6b06f153959556c1f18738d1726dfd1f2e9fe42c",
+        "license": "GPL-3.0"
+      },
+      "docx": {
+        "requested": "src/mimes/22/application-msword.svg",
+        "source": "src/mimes/22/application-msword.svg",
+        "source_file": "role-icons/win10sur/docx.svg",
+        "sha256": "ad0776c1d07bb7fc8b50e15078a86e3c324329eea1b51a31fee5c026ef5a85e2",
+        "icon": "role-icons/win10sur/docx.png",
+        "icon_sha256": "c84057646a993d59035982b7d6da70f61ffe331aa477a1b7d6036bbeba8a5cf0",
+        "license": "GPL-3.0"
+      },
+      "invoice-add": {
+        "requested": "src/actions/24/list-add.svg",
+        "source": "src/actions/24/list-add.svg",
+        "source_file": "role-icons/win10sur/invoice-add.svg",
+        "sha256": "22e6b3e2d75a4dc5642f1d249622ec7aa8bbae0d5ea9898d1d30771601f26047",
+        "icon": "role-icons/win10sur/invoice-add.png",
+        "icon_sha256": "619eea039734716904239fbf2690fc59029c88f265cac5704077102db1dc95d3",
+        "license": "GPL-3.0"
+      },
+      "cancel": {
+        "requested": "src/actions/32/dialog-cancel.svg",
+        "source": "src/actions/32/dialog-cancel.svg",
+        "source_file": "role-icons/win10sur/cancel.svg",
+        "sha256": "7563fb9c016f9545b9be8487aea569365f0fc6a1d629f9cedca2209b8e836974",
+        "icon": "role-icons/win10sur/cancel.png",
+        "icon_sha256": "4f544bfb19bc05a0bc128dd8b20a62a89c51f473e3ea5fa0abbeeb2e5eb07633",
+        "license": "GPL-3.0"
+      },
+      "confirm": {
+        "requested": "src/emblems/22/emblem-default.svg",
+        "source": "src/emblems/22/emblem-default.svg",
+        "source_file": "role-icons/win10sur/confirm.svg",
+        "sha256": "aff6753fc4c89bfac0a8f0df84ae5e1b0c834c8265a9315617cfa7d95247bc84",
+        "icon": "role-icons/win10sur/confirm.png",
+        "icon_sha256": "96ad7fda8e12f27ac57ff23fc52a04adf3b0ff151744282b679766a5bb698713",
+        "license": "GPL-3.0"
+      },
+      "question": {
+        "requested": "src/status/32/dialog-question.svg",
+        "source": "src/status/32/dialog-question.svg",
+        "source_file": "role-icons/win10sur/question.svg",
+        "sha256": "e7e6a172364fee7a41dde90800ae97283987aedbf5f500ffd9f188fdea809a4e",
+        "icon": "role-icons/win10sur/question.png",
+        "icon_sha256": "bfc88666e60d283466ef2f4ca520d78ef78c32e7c24374f089632e16edbe9cfe",
+        "license": "GPL-3.0"
+      },
+      "undo": {
+        "requested": "src/actions/32/edit-undo.svg",
+        "source": "src/actions/32/edit-undo.svg",
+        "source_file": "role-icons/win10sur/undo.svg",
+        "sha256": "388e9970ba63546746a9805fe04c80ee002f93cbaecd7eec1317466afeb994cb",
+        "icon": "role-icons/win10sur/undo.png",
+        "icon_sha256": "15e7f97c91bed8755d1678347512b2e51e72a3161a424701268060585311d9c8",
+        "license": "GPL-3.0"
+      },
+      "redo": {
+        "requested": "src/actions/32/edit-redo.svg",
+        "source": "src/actions/32/edit-redo.svg",
+        "source_file": "role-icons/win10sur/redo.svg",
+        "sha256": "5a694326f239c28f413a9fd3521d11357c4c1e0e9df2f486fcdc016058c42b54",
+        "icon": "role-icons/win10sur/redo.png",
+        "icon_sha256": "fbd24813349e41bc2811388e2b082c3be5aa3314397a83bc4df5efc5f486e394",
+        "license": "GPL-3.0"
+      },
+      "cut": {
+        "requested": "src/actions/24/edit-cut.svg",
+        "source": "src/actions/24/edit-cut.svg",
+        "source_file": "role-icons/win10sur/cut.svg",
+        "sha256": "66429cc165e7faaa1400cc2966a87e97b0c2de957ffb2fd3ccd2f078283601de",
+        "icon": "role-icons/win10sur/cut.png",
+        "icon_sha256": "31194d8cc1c7b5306b745ea947497d86427e42d239b505d64767fe8017b866e7",
+        "license": "GPL-3.0"
+      },
+      "copy": {
+        "requested": "src/actions/24/edit-copy.svg",
+        "source": "src/actions/24/edit-copy.svg",
+        "source_file": "role-icons/win10sur/copy.svg",
+        "sha256": "c38107df52ce28d8800df57ded362c6976d4b4918d0fd68b60d8e4b234f4a8a6",
+        "icon": "role-icons/win10sur/copy.png",
+        "icon_sha256": "7b26cac8d16ad428a3c69b9593e90214d1f98809870b042493508035eb5a0569",
+        "license": "GPL-3.0"
+      },
+      "paste": {
+        "requested": "src/actions/24/edit-paste.svg",
+        "source": "src/actions/24/edit-paste.svg",
+        "source_file": "role-icons/win10sur/paste.svg",
+        "sha256": "9dd3fe03d70dadd65570ca5a6457b7f7c51dea44fe30144691947fb745c72316",
+        "icon": "role-icons/win10sur/paste.png",
+        "icon_sha256": "3c57798bc8759dc8f8f4eaecba17afab962f57cf41d70a9cb7d978c1970612be",
+        "license": "GPL-3.0"
+      },
+      "select-all": {
+        "requested": "src/actions/24/edit-select-all.svg",
+        "source": "src/actions/24/edit-select-all.svg",
+        "source_file": "role-icons/win10sur/select-all.svg",
+        "sha256": "3c728a7be90bc4b240ddb5f7f562bfc1553963db216bf83b946b89c56bb7569f",
+        "icon": "role-icons/win10sur/select-all.png",
+        "icon_sha256": "bdd95727cf0365861a82a26eb7bc23c92a4e92a74818d6cf6e11798a2850d806",
+        "license": "GPL-3.0"
+      },
+      "clear-input": {
+        "requested": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/win10sur/clear-input.svg",
+        "sha256": "4fc8183f09b48bf765c048ce1ffe4f82336016d765c50c30ebc69dbc73817306",
+        "icon": "role-icons/win10sur/clear-input.png",
+        "icon_sha256": "f68f3c2164b9148d0a1f6e27188e9223d7eca02301a0d90ce34816a5e3226799",
+        "license": "GPL-3.0"
+      }
+    }
+  },
+  "Oxylite": {
+    "repository": "https://github.com/mx-2/oxylite-icon-theme",
+    "commit": "59f49b202ad2db33c50dc8d67b7961f47786bc87",
+    "roles": {
+      "new": {
+        "requested": "actions/document-new.svg",
+        "source": "actions/document-new.svg",
+        "source_file": "role-icons/oxylite/new.svg",
+        "sha256": "eb855d4b267706e9f9a7ecf701878b7d1310731df42b43a612f035bde0ec2078",
+        "icon": "role-icons/oxylite/new.png",
+        "icon_sha256": "9a4f6fe2b2d4a09f7fe7ac9e2e2dbb58b724eff5c4013bca9453da07a8ad67a6",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "text-plain.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            },
+            {
+              "file": "list-add.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "edit": {
+        "requested": "actions/document-edit.svg",
+        "source": "actions/document-edit.svg",
+        "source_file": "role-icons/oxylite/edit.svg",
+        "sha256": "22a1cbbd6cdc757987aed1179f089d1acb95c48d3f6fa66875c0074a3dd9c41b",
+        "icon": "role-icons/oxylite/edit.png",
+        "icon_sha256": "f58ab800953e1614c06d8f56cd28698b1b4ca650bb0b4cd3422193fd11014f35",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "document-edit.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "open": {
+        "requested": "actions/document-open.svg",
+        "source": "actions/document-open.svg",
+        "source_file": "role-icons/oxylite/open.svg",
+        "sha256": "fce53e2f1baaed646e2c7e30c20b38695c94ee38aee30f2071606681dca440b0",
+        "icon": "role-icons/oxylite/open.png",
+        "icon_sha256": "25976857e573d3230cd835098dd7c8f40edd6ae53308060bf18fd3766a9c5528",
+        "license": "LGPL-3.0",
+        "license_details": {
+          "license": "LGPL-3.0",
+          "based_on": [
+            {
+              "file": "folders.svg",
+              "url": "https://github.com/GNOME/adwaita-icon-theme/tree/gnome-3-13/src/fullcolor",
+              "license": "LGPL-3.0"
+            },
+            {
+              "file": "go-up.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "help": {
+        "requested": "apps/help-browser.svg",
+        "source": "apps/help-browser.svg",
+        "source_file": "role-icons/oxylite/help.svg",
+        "sha256": "8aa03d5be2709b9dcd64b3dcb22b7d86d70c7c41463f72cfa9ca88f86e919000",
+        "icon": "role-icons/oxylite/help.png",
+        "icon_sha256": "9697aa713ce7f9261ac2f022d1f8a24f49bf2c712db48ef48a5b0479b0bb83f5",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "help-contextual.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "docx": {
+        "requested": "mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source": "mimetypes/application-msword.svg",
+        "source_file": "role-icons/oxylite/docx.svg",
+        "sha256": "127795bfb38059d3466b5094f506aa549f8552ef9120579b288f738d7ebd7af8",
+        "icon": "role-icons/oxylite/docx.png",
+        "icon_sha256": "d186717a52086b0818602adfcb71d6146e0374d45ebd66920888a602ae714116",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "text-plain.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "invoice-add": {
+        "requested": "actions/list-add.svg",
+        "source": "actions/value-increase.svg",
+        "source_file": "role-icons/oxylite/invoice-add.svg",
+        "sha256": "f962bf79475c9b8cdd2a616df29932ea52a0d743b4c5dc000a85b5c148e5c357",
+        "icon": "role-icons/oxylite/invoice-add.png",
+        "icon_sha256": "3ffa6eeedbf2066775899d110a018ddd563423578d9b1f2e88294e71d53b9766",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "list-add.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "cancel": {
+        "requested": "actions/dialog-cancel.svg",
+        "source": "actions/dialog-cancel.svg",
+        "source_file": "role-icons/oxylite/cancel.svg",
+        "sha256": "13028da943a90beb855907a418e99e2c58d61ed8eac569e247c62e528a5ef90b",
+        "icon": "role-icons/oxylite/cancel.png",
+        "icon_sha256": "14949cee980a9fecc0e8547f69dea5a27d7425e92905388df4594f24896f5351",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "dialog-cancel.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "confirm": {
+        "requested": "actions/dialog-ok.svg",
+        "source": "actions/dialog-ok.svg",
+        "source_file": "role-icons/oxylite/confirm.svg",
+        "sha256": "c72715a09da3e495b75cd9f6df738d5e8f0fd2b0457c9ad71b88f44dda33ddfd",
+        "icon": "role-icons/oxylite/confirm.png",
+        "icon_sha256": "cec683bf995ea7cf1e8f3a078b1f428749340c5a53615aecf55c2a86a052b509",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "dialog-ok.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "question": {
+        "requested": "status/dialog-question.svg",
+        "source": "status/dialog-question.svg",
+        "source_file": "role-icons/oxylite/question.svg",
+        "sha256": "9f599b2a0009d7f05c77706bffd09d74462283a79812149c74e336d17cc71035",
+        "icon": "role-icons/oxylite/question.png",
+        "icon_sha256": "94e3143ce84a14a89f8162cfca4a495a81d2cf6246b61c3979542021e71d3fdc",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "help-about.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "undo": {
+        "requested": "actions/edit-undo.svg",
+        "source": "actions/edit-undo.svg",
+        "source_file": "role-icons/oxylite/undo.svg",
+        "sha256": "db8d4c29214aaff5d3c96ab165629787086ad3cb360c183932a058be1f009f4a",
+        "icon": "role-icons/oxylite/undo.png",
+        "icon_sha256": "e722704988c458da3d3135e8a8d7b6666b99c855b85bb1f72c8a8a3aaeebba6f",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "edit-undo.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "redo": {
+        "requested": "actions/edit-redo.svg",
+        "source": "actions/edit-redo.svg",
+        "source_file": "role-icons/oxylite/redo.svg",
+        "sha256": "97deeb627dba8ccd6648765323475339dc594e6f0b78bc523ce642be60d2b160",
+        "icon": "role-icons/oxylite/redo.png",
+        "icon_sha256": "297d8c05f3a831ba8c36f1d8ee5d197aae349887ed1d8b355de27f95311136bd",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "edit-redo.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "cut": {
+        "requested": "actions/edit-cut.svg",
+        "source": "actions/edit-cut.svg",
+        "source_file": "role-icons/oxylite/cut.svg",
+        "sha256": "5d3a4b0e9dadd41fbf2cc6999fe1adf769d4206871a0aaa1219ed6e6a0915bae",
+        "icon": "role-icons/oxylite/cut.png",
+        "icon_sha256": "8f3076d932ff5673f56db52644a519ba7b552757a4415815a355c2ab7a233c39",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "edit-cut.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "copy": {
+        "requested": "actions/edit-copy.svg",
+        "source": "actions/edit-copy.svg",
+        "source_file": "role-icons/oxylite/copy.svg",
+        "sha256": "ba40ec4d9f4cbd90e493c759233c6b637554a4ddea4edc22f3b453bab19b31cd",
+        "icon": "role-icons/oxylite/copy.png",
+        "icon_sha256": "78f9d35f7453f8d2c5504cf780969267b80a7e80b35e6dfed7290a2824a2aa00",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "text-plain.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "paste": {
+        "requested": "actions/edit-paste.svg",
+        "source": "actions/edit-paste.svg",
+        "source_file": "role-icons/oxylite/paste.svg",
+        "sha256": "2038da4c78aa44c3cb339712fd5dfa960f9c5be1a34ccce5f7efa2d3df9fbbc7",
+        "icon": "role-icons/oxylite/paste.png",
+        "icon_sha256": "2229db74a150e73730c1dd5af5db079e994aa1ac2c4f64f12a299c527f73f576",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "edit-paste.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            },
+            {
+              "file": "text-plain.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "select-all": {
+        "requested": "actions/edit-select-all.svg",
+        "source": "actions/edit-select-all.svg",
+        "source_file": "role-icons/oxylite/select-all.svg",
+        "sha256": "cc1a9f9c3e9589682d03527bcbe67d66fc2f5c69762ee39127afdf3cac173f51",
+        "icon": "role-icons/oxylite/select-all.png",
+        "icon_sha256": "5fd5c9920b911593d65bd955fca0b486fdb58ef097754ce4ee86fdbb94cf2825",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "text-plain.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            },
+            {
+              "file": "debug-run-cursor.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      },
+      "clear-input": {
+        "requested": "actions/edit-clear.svg",
+        "source": "actions/edit-clear.svg",
+        "source_file": "role-icons/oxylite/clear-input.svg",
+        "sha256": "d62cca95a31d7816ca53931d7063cfa88cdfed3f5f4baa06817fc81c89677ccc",
+        "icon": "role-icons/oxylite/clear-input.png",
+        "icon_sha256": "dda4b44e395b2db2be7a361df86242e40b758d434ebccf09c280202d7277787b",
+        "license": "LGPL-3.0-or-later",
+        "license_details": {
+          "license": "LGPL-3.0-or-later",
+          "based_on": [
+            {
+              "file": "edit-clear-locationbar.svgz",
+              "url": "https://github.com/KDE/oxygen-icons",
+              "license": "LGPL-3.0-or-later"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "WhiteSur": {
+    "repository": "https://github.com/vinceliuice/WhiteSur-icon-theme",
+    "commit": "73d8040da51a9ed74e47c7366e7e9ff437601a5c",
+    "roles": {
+      "new": {
+        "requested": "src/actions/32/document-new.svg",
+        "source": "src/actions/32/document-new.svg",
+        "source_file": "role-icons/whitesur/new.svg",
+        "sha256": "80784016f7b10463c8ed8d3bd7e2ed1263ef95c49b10f90e795f4573e7e3345f",
+        "icon": "role-icons/whitesur/new.png",
+        "icon_sha256": "4a2cd4432937487d772e1248b7f29f4a4e3f158b74cd69f96f7fd9631178d1a3",
+        "license": "GPL-3.0"
+      },
+      "edit": {
+        "requested": "src/actions/32/document-edit.svg",
+        "source": "src/actions/32/document-edit.svg",
+        "source_file": "role-icons/whitesur/edit.svg",
+        "sha256": "c1ca77128535eb85c89cdf2cf59c3a216885dbe9bf9e9226b001c73ffeb64dc9",
+        "icon": "role-icons/whitesur/edit.png",
+        "icon_sha256": "8f2d01354539ce56652526297f6db1158603dde543c3437d12be7a5bd06b4cf0",
+        "license": "GPL-3.0"
+      },
+      "open": {
+        "requested": "src/actions/32/document-open.svg",
+        "source": "src/actions/32/document-open.svg",
+        "source_file": "role-icons/whitesur/open.svg",
+        "sha256": "d1c64d9f0943a85a945c0f905f0865dd4b6a5c546a046c9d3a2f622b0f5f01cb",
+        "icon": "role-icons/whitesur/open.png",
+        "icon_sha256": "8cd2cb1fd387d30d3bb6a64d03ed13938b5f33b62eb193c66b0493b7ce8a7816",
+        "license": "GPL-3.0"
+      },
+      "help": {
+        "requested": "src/actions/22/help-contents.svg",
+        "source": "src/actions/22/help-contents.svg",
+        "source_file": "role-icons/whitesur/help.svg",
+        "sha256": "615a65c755835ddf0eaedfb81ce84902b54ca43cb5f6934980d17aac34f161dc",
+        "icon": "role-icons/whitesur/help.png",
+        "icon_sha256": "1d98eeb6710ceaffd540154af1cef91beeda0271300556b7ceb4fab2bd36cc9c",
+        "license": "GPL-3.0"
+      },
+      "docx": {
+        "requested": "src/mimes/22/application-msword.svg",
+        "source": "src/mimes/22/application-msword.svg",
+        "source_file": "role-icons/whitesur/docx.svg",
+        "sha256": "ad0776c1d07bb7fc8b50e15078a86e3c324329eea1b51a31fee5c026ef5a85e2",
+        "icon": "role-icons/whitesur/docx.png",
+        "icon_sha256": "c84057646a993d59035982b7d6da70f61ffe331aa477a1b7d6036bbeba8a5cf0",
+        "license": "GPL-3.0"
+      },
+      "invoice-add": {
+        "requested": "src/actions/24/list-add.svg",
+        "source": "src/actions/24/list-add.svg",
+        "source_file": "role-icons/whitesur/invoice-add.svg",
+        "sha256": "22e6b3e2d75a4dc5642f1d249622ec7aa8bbae0d5ea9898d1d30771601f26047",
+        "icon": "role-icons/whitesur/invoice-add.png",
+        "icon_sha256": "619eea039734716904239fbf2690fc59029c88f265cac5704077102db1dc95d3",
+        "license": "GPL-3.0"
+      },
+      "cancel": {
+        "requested": "src/actions/32/dialog-cancel.svg",
+        "source": "src/actions/32/dialog-cancel.svg",
+        "source_file": "role-icons/whitesur/cancel.svg",
+        "sha256": "7563fb9c016f9545b9be8487aea569365f0fc6a1d629f9cedca2209b8e836974",
+        "icon": "role-icons/whitesur/cancel.png",
+        "icon_sha256": "4f544bfb19bc05a0bc128dd8b20a62a89c51f473e3ea5fa0abbeeb2e5eb07633",
+        "license": "GPL-3.0"
+      },
+      "confirm": {
+        "requested": "src/emblems/22/emblem-default.svg",
+        "source": "src/emblems/22/emblem-default.svg",
+        "source_file": "role-icons/whitesur/confirm.svg",
+        "sha256": "aff6753fc4c89bfac0a8f0df84ae5e1b0c834c8265a9315617cfa7d95247bc84",
+        "icon": "role-icons/whitesur/confirm.png",
+        "icon_sha256": "96ad7fda8e12f27ac57ff23fc52a04adf3b0ff151744282b679766a5bb698713",
+        "license": "GPL-3.0"
+      },
+      "question": {
+        "requested": "src/status/32/dialog-question.svg",
+        "source": "src/status/32/dialog-question.svg",
+        "source_file": "role-icons/whitesur/question.svg",
+        "sha256": "39428f545be015714290275bfc73982660272f9cae92e1b2994f77b5cc2ef104",
+        "icon": "role-icons/whitesur/question.png",
+        "icon_sha256": "def001565028a8aeb8336b180282775ea0ae998bab65c237c352c2ac51c08391",
+        "license": "GPL-3.0"
+      },
+      "undo": {
+        "requested": "src/actions/32/edit-undo.svg",
+        "source": "src/actions/32/edit-undo.svg",
+        "source_file": "role-icons/whitesur/undo.svg",
+        "sha256": "388e9970ba63546746a9805fe04c80ee002f93cbaecd7eec1317466afeb994cb",
+        "icon": "role-icons/whitesur/undo.png",
+        "icon_sha256": "15e7f97c91bed8755d1678347512b2e51e72a3161a424701268060585311d9c8",
+        "license": "GPL-3.0"
+      },
+      "redo": {
+        "requested": "src/actions/32/edit-redo.svg",
+        "source": "src/actions/32/edit-redo.svg",
+        "source_file": "role-icons/whitesur/redo.svg",
+        "sha256": "5a694326f239c28f413a9fd3521d11357c4c1e0e9df2f486fcdc016058c42b54",
+        "icon": "role-icons/whitesur/redo.png",
+        "icon_sha256": "fbd24813349e41bc2811388e2b082c3be5aa3314397a83bc4df5efc5f486e394",
+        "license": "GPL-3.0"
+      },
+      "cut": {
+        "requested": "src/actions/24/edit-cut.svg",
+        "source": "src/actions/24/edit-cut.svg",
+        "source_file": "role-icons/whitesur/cut.svg",
+        "sha256": "66429cc165e7faaa1400cc2966a87e97b0c2de957ffb2fd3ccd2f078283601de",
+        "icon": "role-icons/whitesur/cut.png",
+        "icon_sha256": "31194d8cc1c7b5306b745ea947497d86427e42d239b505d64767fe8017b866e7",
+        "license": "GPL-3.0"
+      },
+      "copy": {
+        "requested": "src/actions/24/edit-copy.svg",
+        "source": "src/actions/24/edit-copy.svg",
+        "source_file": "role-icons/whitesur/copy.svg",
+        "sha256": "780c7957499637fc1a2aacf2a46979749e400277e09ee74f2c23590ee5165bc4",
+        "icon": "role-icons/whitesur/copy.png",
+        "icon_sha256": "13957a7f2d084740e3cee985016be8399ee639bfa88adc3641c6d7b47a8f2859",
+        "license": "GPL-3.0"
+      },
+      "paste": {
+        "requested": "src/actions/24/edit-paste.svg",
+        "source": "src/actions/24/edit-paste.svg",
+        "source_file": "role-icons/whitesur/paste.svg",
+        "sha256": "5401457725d84832e48fe1d104e5750f29a4a271df06b888454e635f4e350328",
+        "icon": "role-icons/whitesur/paste.png",
+        "icon_sha256": "e54143d400ed41d5ccf5984a0b852078dedf64be042af1038da35f0f84c4ac0e",
+        "license": "GPL-3.0"
+      },
+      "select-all": {
+        "requested": "src/actions/24/edit-select-all.svg",
+        "source": "src/actions/24/edit-select-all.svg",
+        "source_file": "role-icons/whitesur/select-all.svg",
+        "sha256": "3c728a7be90bc4b240ddb5f7f562bfc1553963db216bf83b946b89c56bb7569f",
+        "icon": "role-icons/whitesur/select-all.png",
+        "icon_sha256": "bdd95727cf0365861a82a26eb7bc23c92a4e92a74818d6cf6e11798a2850d806",
+        "license": "GPL-3.0"
+      },
+      "clear-input": {
+        "requested": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source": "src/actions/24/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/whitesur/clear-input.svg",
+        "sha256": "12fedc6a620affda2c71f8162569dc42d60c5019839a060c19a0ac7df98c059d",
+        "icon": "role-icons/whitesur/clear-input.png",
+        "icon_sha256": "ea08fa37c9cf2a4d93b37576caaf98d0f7392004a251775859f3bed20fb549bd",
+        "license": "GPL-3.0"
+      }
+    }
+  },
+  "Diagonal": {
+    "repository": "https://github.com/tamascsabi/Diagonal-icon-theme",
+    "commit": "9191af03b7251efe9e45ed9fd0fdeb527d5949e8",
+    "roles": {
+      "new": {
+        "requested": "base/actions/32/document-new.svg",
+        "source": "base/actions/32/document-new.svg",
+        "source_file": "role-icons/diagonal/new.svg",
+        "sha256": "2b51b9a7bdb62bcd72f4a31fe55fdde869b273a46d829d86c15bbe8702f65ed0",
+        "icon": "role-icons/diagonal/new.png",
+        "icon_sha256": "895dec6a1cdddff38d6fdf499317153359cabd5fbd790952a2b77e8fd82c2ded",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "edit": {
+        "requested": "base/actions/32/document-edit.svg",
+        "source": "base/actions/32/document-edit.svg",
+        "source_file": "role-icons/diagonal/edit.svg",
+        "sha256": "191ade4954be338b7dd2ef86c613472ce3265c37a475cafaf55b636beb1577d7",
+        "icon": "role-icons/diagonal/edit.png",
+        "icon_sha256": "58f1c06b0fd8bdd6b8b42f83598288b1f7f8b5845ffc4bf460d01830d3b50ad3",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "open": {
+        "requested": "base/scalable/apps/document-open.svg",
+        "source": "base/scalable/apps/document-open.svg",
+        "source_file": "role-icons/diagonal/open.svg",
+        "sha256": "31e0fbc5b737458c7ef162a4dc38b63575047ccba871f49d462681057d1c33ea",
+        "icon": "role-icons/diagonal/open.png",
+        "icon_sha256": "9bfc732e770953a376df3bb0f8b75ad960732bdc9d3df486fb4ec924bff01e08",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "help": {
+        "requested": "base/scalable/apps/help-browser.svg",
+        "source": "base/scalable/apps/help.svg",
+        "source_file": "role-icons/diagonal/help.svg",
+        "sha256": "d927b2185c5c2f2d2a96899e9fd9e84f2f5f5ff2aca311641c3fa9bf660f9509",
+        "icon": "role-icons/diagonal/help.png",
+        "icon_sha256": "f13a1ae68335a9afc2094a8ea4f061319c7ec7a60aeeaa00df20d6883a6c0317",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "docx": {
+        "requested": "base/scalable/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source": "base/scalable/mimetypes/office-document.svg",
+        "source_file": "role-icons/diagonal/docx.svg",
+        "sha256": "8e56b104a535b87e164560e8fb17c78a799c85fbecae9a9420486957abe2f3e2",
+        "icon": "role-icons/diagonal/docx.png",
+        "icon_sha256": "73b7bbd4825f55d01b74857f293d29a09226f72823e6e5d03a089a590f62bebc",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "invoice-add": {
+        "requested": "base/actions/24/list-add.svg",
+        "source": "base/actions/24/list-add.svg",
+        "source_file": "role-icons/diagonal/invoice-add.svg",
+        "sha256": "402a4c6e59009dacaf744e6319aec470623b7932700b710db129bddd48406ecb",
+        "icon": "role-icons/diagonal/invoice-add.png",
+        "icon_sha256": "53d052e58f09dd9de494aea2f5c62b0bf5d61fa0cb5246f62b3d2eafd66d0f74",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "cancel": {
+        "requested": "base/scalable/apps/dialog-cancel.svg",
+        "source": "base/scalable/apps/system-cancel.svg",
+        "source_file": "role-icons/diagonal/cancel.svg",
+        "sha256": "72f13f4fe5c1a940661c84b1c3827fe3371a61eabd26e6ea5f8f9ef81664b59d",
+        "icon": "role-icons/diagonal/cancel.png",
+        "icon_sha256": "3512d3aeb17e707627da3bdb152955080b138f9ccb8cfb8e83ff91be896d24c0",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "confirm": {
+        "requested": "base/actions/32/dialog-ok.svg",
+        "source": "base/actions/32/dialog-ok-apply.svg",
+        "source_file": "role-icons/diagonal/confirm.svg",
+        "sha256": "def5093e5952bb2cafeb0d6741160dd4b2319c26e0a83916a95f095befa89a8b",
+        "icon": "role-icons/diagonal/confirm.png",
+        "icon_sha256": "73722e6c5a7070027d3e60cb77ccac0ea0fe6e25b3f35ca17843b99f7d8ab8c0",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "question": {
+        "requested": "base/status/24/dialog-question.svg",
+        "source": "base/status/24/dialog-question.svg",
+        "source_file": "role-icons/diagonal/question.svg",
+        "sha256": "40798194bb6328709a92e3fa75e700a38eb67c692d02038f8e7314393aae5a7c",
+        "icon": "role-icons/diagonal/question.png",
+        "icon_sha256": "8d4dce043b4c95914bb5f08c6adad77ccc2ddef1b12691a2b91342356b001141",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "undo": {
+        "requested": "base/actions/32/edit-undo.svg",
+        "source": "base/actions/32/edit-undo.svg",
+        "source_file": "role-icons/diagonal/undo.svg",
+        "sha256": "1efa3eb1f0149b7a38fd966ee60261a9ce16fcaa0488ab75cd7ea908c8db4b4c",
+        "icon": "role-icons/diagonal/undo.png",
+        "icon_sha256": "b3ce87d9c28b671ab946837533ca9d01f9214552cf3dd4c9b8f3a6c534747a18",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "redo": {
+        "requested": "base/actions/32/edit-redo.svg",
+        "source": "base/actions/32/edit-redo.svg",
+        "source_file": "role-icons/diagonal/redo.svg",
+        "sha256": "a9fd107a011450da668b1353e2a737b8280591da1ecb094935c6d3efaf5b8409",
+        "icon": "role-icons/diagonal/redo.png",
+        "icon_sha256": "46dd0e3012720516b57dc66b555cc09baca6ee21faf6395d10fc82ff67d1fad8",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "cut": {
+        "requested": "base/actions/24/edit-cut.svg",
+        "source": "base/actions/24/edit-cut.svg",
+        "source_file": "role-icons/diagonal/cut.svg",
+        "sha256": "b41491c9e60296394323e2cd59ddc26db6da87126b3db28ffdaf084033a129b1",
+        "icon": "role-icons/diagonal/cut.png",
+        "icon_sha256": "1adb911c458ad6f96633604c1d99fd5a85a1198c8cbbd2230809abac7fdeb9b3",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "copy": {
+        "requested": "base/actions/24/edit-copy.svg",
+        "source": "base/actions/24/edit-copy.svg",
+        "source_file": "role-icons/diagonal/copy.svg",
+        "sha256": "7992ea0c956a6508fe55bf236ca61c2e88d5f1efcf1c025cd6f69a261d7d3475",
+        "icon": "role-icons/diagonal/copy.png",
+        "icon_sha256": "94c426521880421c2fa6d91549036ad799806fd7507b6e39c564a230eafe2ddc",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "paste": {
+        "requested": "base/scalable/apps/edit-paste.svg",
+        "source": "base/scalable/apps/evolution-tasks.svg",
+        "source_file": "role-icons/diagonal/paste.svg",
+        "sha256": "8d18b6c31ecf36e31fd39e72952411da4927a045cf275fac280cb32ba2388f11",
+        "icon": "role-icons/diagonal/paste.png",
+        "icon_sha256": "ef80347326608a7b31932b8450c805d5c46e336ba2aac8365dfb1b567495d66a",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "select-all": {
+        "requested": "base/actions/24/edit-select-all.svg",
+        "source": "base/actions/24/edit-select-all.svg",
+        "source_file": "role-icons/diagonal/select-all.svg",
+        "sha256": "b745486f1d806a6ce78b839ca51c1f3cfe5c3b4df367654b016f2afdab265bc2",
+        "icon": "role-icons/diagonal/select-all.png",
+        "icon_sha256": "f404cf53a4b4a6050fdb25d9e2e15e8d6b1c93cca0df9cae6ad9ee9a44e1fe47",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      },
+      "clear-input": {
+        "requested": "base/actions/24/edit-clear-locationbar-ltr.svg",
+        "source": "base/actions/24/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/diagonal/clear-input.svg",
+        "sha256": "85607969eaf746fe83bc369b9fee461a4858f750a08c9ee755bcab278508eece",
+        "icon": "role-icons/diagonal/clear-input.png",
+        "icon_sha256": "df2052c75dfbc3d10eabb45f0aeb44ca2df3a2e766b414007ad81a3e43fcba7a",
+        "license": "CC-BY-4.0 (icons; upstream declaration); retained per-file notices"
+      }
+    }
+  },
+  "Modern Office Day": {
+    "repository": "https://github.com/DrMcC0y/Modern-Office-Day-Icons",
+    "commit": "7c6466eeccac0809fa411f70da760dfafcfcc10b",
+    "roles": {
+      "new": {
+        "requested": "actions/16/document-new.svg",
+        "source": "actions/16/document-new.svg",
+        "source_file": "role-icons/modern-office/new.svg",
+        "sha256": "eeb2100ca4088c3c6c8bd1fd64200a449dd3b972bdd980eb0e9443653af10009",
+        "icon": "role-icons/modern-office/new.png",
+        "icon_sha256": "b19dcd5a5999df49b85da5fb42942644114d2f8b7d30273ba8d40bb64d231e08",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "edit": {
+        "requested": "actions/16/document-edit.svg",
+        "source": "actions/16/document-edit.svg",
+        "source_file": "role-icons/modern-office/edit.svg",
+        "sha256": "07ec16d00e31f32518cbf147b15fa860fc5d1fce1e1f957df6de06767c649348",
+        "icon": "role-icons/modern-office/edit.png",
+        "icon_sha256": "ba839c743beb23e95094e436ca94074dc544d7b88e533024f2b3aed5cc62563e",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "open": {
+        "requested": "actions/16/document-open.svg",
+        "source": "actions/16/document-open.svg",
+        "source_file": "role-icons/modern-office/open.svg",
+        "sha256": "d40b8bb0729dbc2731e4984d510e0ab28748806f3c01715351497982912c95d1",
+        "icon": "role-icons/modern-office/open.png",
+        "icon_sha256": "c19c61c1111cc43a7fd0169c33f1bfb59cc0044deeecdf687936132a48f37116",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "help": {
+        "requested": "apps/48/help-browser.svg",
+        "source": "apps/48/system-help.svg",
+        "source_file": "role-icons/modern-office/help.svg",
+        "sha256": "57807ad293d32091af71ba07d1f118dcd0b97f8bd491b5e59ae5efc620e19100",
+        "icon": "role-icons/modern-office/help.png",
+        "icon_sha256": "be5f4b3882e874d0920458402323f75d71e111613f3fd89f111a2152cd1e68e1",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "docx": {
+        "requested": "mimetypes/32/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg",
+        "source": "mimetypes/32/application-msword.svg",
+        "source_file": "role-icons/modern-office/docx.svg",
+        "sha256": "340f0cd9860a0a96f2d00c690a967139c229de777a48119bbd9b02e8cd4d1938",
+        "icon": "role-icons/modern-office/docx.png",
+        "icon_sha256": "677b78de4e39ca81fdd3ebfef7e2d57410c9dbfdc8f5e7cfecc96db465999b6b",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "invoice-add": {
+        "requested": "actions/16/list-add.svg",
+        "source": "actions/16/list-add.svg",
+        "source_file": "role-icons/modern-office/invoice-add.svg",
+        "sha256": "98b46826dcb544dd3b3f4a06935da174cb3344a4624ae53eef04398df1305db1",
+        "icon": "role-icons/modern-office/invoice-add.png",
+        "icon_sha256": "7a8e90a3740edad69faffb6f76a39ac5bee7291f4afe6ad82f971075569a7665",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "cancel": {
+        "requested": "actions/16/dialog-cancel.svg",
+        "source": "actions/16/dialog-cancel.svg",
+        "source_file": "role-icons/modern-office/cancel.svg",
+        "sha256": "1bc8975aa452e02c2f2c9a0c14524492488defcec6d3be78e6b6e25eb094a646",
+        "icon": "role-icons/modern-office/cancel.png",
+        "icon_sha256": "79042fb6d61e744759349f4ae9b1608b2a5b19147fe294172d8dbf1ba8affc5b",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "confirm": {
+        "requested": "actions/16/dialog-ok.svg",
+        "source": "actions/16/dialog-ok-apply.svg",
+        "source_file": "role-icons/modern-office/confirm.svg",
+        "sha256": "c79ebfb7542d1560eb856002d51db44020a5470e697014f384f4b2287fe69c1f",
+        "icon": "role-icons/modern-office/confirm.png",
+        "icon_sha256": "2245d34805769b53b61dcf4bbaee5fcc6c9b39a591e7b5ccb0033f5aba04a5e3",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "question": {
+        "requested": "status/64/dialog-question.svg",
+        "source": "status/64/dialog-question.svg",
+        "source_file": "role-icons/modern-office/question.svg",
+        "sha256": "7953c8bf6ae7846c5dbdb7b1bdd55562dfdb3702cf8424da7c6fd5762764afce",
+        "icon": "role-icons/modern-office/question.png",
+        "icon_sha256": "11d175e96038be403e90886b5b0faa6ae913fe8c677172d26c7b1f90d4ec726b",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "undo": {
+        "requested": "actions/16/edit-undo.svg",
+        "source": "actions/16/edit-undo.svg",
+        "source_file": "role-icons/modern-office/undo.svg",
+        "sha256": "179cc1227abab108c1d3d1cb22968d5dd5dba7c70a6fd8028948a685d2465624",
+        "icon": "role-icons/modern-office/undo.png",
+        "icon_sha256": "bf4cf2ecdb8d90e737632a9ac10ab221d3c82b5a274ab36b04597c5ea0683d2e",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "redo": {
+        "requested": "actions/16/edit-redo.svg",
+        "source": "actions/16/edit-redo.svg",
+        "source_file": "role-icons/modern-office/redo.svg",
+        "sha256": "e4aaba79317c4d1643e723fd7f553154a2419037fb59909fa8bab66442445d8d",
+        "icon": "role-icons/modern-office/redo.png",
+        "icon_sha256": "bde425050311ffc96e909cbe3bdad566a4ab8b7870ec02edd1fb2a7147f918bb",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "cut": {
+        "requested": "actions/16/edit-cut.svg",
+        "source": "actions/16/edit-cut.svg",
+        "source_file": "role-icons/modern-office/cut.svg",
+        "sha256": "1fb4b7b239e699ed9a7687b84d0af094e8e5e21abbd8183f76a22543b543cad7",
+        "icon": "role-icons/modern-office/cut.png",
+        "icon_sha256": "5976ada29a6443ec583d1d1652774d876d5f63e81519902c75e2d833baee6579",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "copy": {
+        "requested": "actions/16/edit-copy.svg",
+        "source": "actions/16/edit-copy.svg",
+        "source_file": "role-icons/modern-office/copy.svg",
+        "sha256": "2aa837f14e2392e47fc8eb7448a386ef3f0196aa4ec0976b4d1150682516f359",
+        "icon": "role-icons/modern-office/copy.png",
+        "icon_sha256": "7acf22486e6acda00890c1d2e5efab0433bd166ef537c00e29910df2679ca622",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "paste": {
+        "requested": "actions/16/edit-paste.svg",
+        "source": "actions/16/edit-paste.svg",
+        "source_file": "role-icons/modern-office/paste.svg",
+        "sha256": "a161972e3e11f98e89222bf45797528c8401bf81ad82e8721113ab50374e5359",
+        "icon": "role-icons/modern-office/paste.png",
+        "icon_sha256": "ce5dd19ae0cb13f3166e5b0f15a3e18f89731a15b07645cc20ff4d4e2e9832d9",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "select-all": {
+        "requested": "actions/16/edit-select-all.svg",
+        "source": "actions/16/edit-select-all.svg",
+        "source_file": "role-icons/modern-office/select-all.svg",
+        "sha256": "57af94dc494b7b151790c02892875a28e422b25c559c904875d648dd6644e7ab",
+        "icon": "role-icons/modern-office/select-all.png",
+        "icon_sha256": "270e76552055e4a7f6ebc879530352b071f51e2ad8624e399aa570ffe548976e",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      },
+      "clear-input": {
+        "requested": "actions/16/edit-clear-locationbar-ltr.svg",
+        "source": "actions/16/edit-clear-locationbar-ltr.svg",
+        "source_file": "role-icons/modern-office/clear-input.svg",
+        "sha256": "a99318f98cd9254ff4582a93f0e45ed9df1d73f94ee1969f3a2f29460e2a62c3",
+        "icon": "role-icons/modern-office/clear-input.png",
+        "icon_sha256": "2c839c74f00e07a01d86595173adef09ecc8f190788bea60c15ea92bb87f12d2",
+        "license": "GPL-3.0 (theme); original Breeze LGPL-3.0-or-later notices retained"
+      }
+    }
+  },
+  "SE98": {
+    "repository": "https://github.com/nestoris/Win98SE",
+    "commit": "a837b57a47242d6eefe63cadc9e6906a5be7e7a6",
+    "roles": {
+      "new": {
+        "requested": "SE98/actions/48/document-new.png",
+        "source": "SE98/actions/48/document-new.png",
+        "source_file": "role-icons/se98/new.png",
+        "sha256": "3fe7ea242e8d9a6852949a7db0a62ca0e13fe8b551466699520cbea027056b8a",
+        "icon": "role-icons/se98/new.png",
+        "icon_sha256": "3fe7ea242e8d9a6852949a7db0a62ca0e13fe8b551466699520cbea027056b8a",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "edit": {
+        "requested": "SE98/actions/16/document-edit.png",
+        "source": "SE98/actions/16/document-edit.png",
+        "source_file": "role-icons/se98/edit.png",
+        "sha256": "926599380e9847cdd9ecc8dbdd5d0e8abc2c35163e2378520fec7f17e772a03e",
+        "icon": "role-icons/se98/edit.png",
+        "icon_sha256": "926599380e9847cdd9ecc8dbdd5d0e8abc2c35163e2378520fec7f17e772a03e",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "open": {
+        "requested": "SE98/actions/48/document-open.png",
+        "source": "SE98/actions/48/document-open.png",
+        "source_file": "role-icons/se98/open.png",
+        "sha256": "190ca5297b708c3d64d95a6fa29188549217d0e09a94cc77206f474823327d4d",
+        "icon": "role-icons/se98/open.png",
+        "icon_sha256": "190ca5297b708c3d64d95a6fa29188549217d0e09a94cc77206f474823327d4d",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "help": {
+        "requested": "SE98/apps/48/help-browser.png",
+        "source": "SE98/apps/48/help-contents.png",
+        "source_file": "role-icons/se98/help.png",
+        "sha256": "8763434e8bd17892c2d5785f8f9200eec8e9d2960237e267d580df81d9fd2501",
+        "icon": "role-icons/se98/help.png",
+        "icon_sha256": "8763434e8bd17892c2d5785f8f9200eec8e9d2960237e267d580df81d9fd2501",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "docx": {
+        "requested": "SE98/mimes/48/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png",
+        "source": "SE98/mimes/48/x-office-document.png",
+        "source_file": "role-icons/se98/docx.png",
+        "sha256": "bfec1786545fb16ec9f30a2a0aa0a777e63725616393b6cd9ea9783ce200fd7c",
+        "icon": "role-icons/se98/docx.png",
+        "icon_sha256": "bfec1786545fb16ec9f30a2a0aa0a777e63725616393b6cd9ea9783ce200fd7c",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "invoice-add": {
+        "requested": "SE98/actions/48/list-add.png",
+        "source": "SE98/actions/48/list-add.png",
+        "source_file": "role-icons/se98/invoice-add.png",
+        "sha256": "1b0d7d96dd5912ca40e464208ef8651dd371e7e27c8a10613388c34104118845",
+        "icon": "role-icons/se98/invoice-add.png",
+        "icon_sha256": "1b0d7d96dd5912ca40e464208ef8651dd371e7e27c8a10613388c34104118845",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "cancel": {
+        "requested": "SE98/actions/48/dialog-cancel.png",
+        "source": "SE98/actions/48/dialog-cancel.png",
+        "source_file": "role-icons/se98/cancel.png",
+        "sha256": "7d091e786b6d7e10b8c78662dab3b4f2a2bcce12605eb19ee22583b9f26c66b1",
+        "icon": "role-icons/se98/cancel.png",
+        "icon_sha256": "7d091e786b6d7e10b8c78662dab3b4f2a2bcce12605eb19ee22583b9f26c66b1",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "confirm": {
+        "requested": "SE98/actions/48/dialog-ok.png",
+        "source": "SE98/actions/48/dialog-ok.png",
+        "source_file": "role-icons/se98/confirm.png",
+        "sha256": "af6d0bbc1ad3119105dff8d0fb8124222b42ae5f794496431dfdabde48d27e1e",
+        "icon": "role-icons/se98/confirm.png",
+        "icon_sha256": "af6d0bbc1ad3119105dff8d0fb8124222b42ae5f794496431dfdabde48d27e1e",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "question": {
+        "requested": "SE98/status/48/dialog-question.png",
+        "source": "SE98/status/48/dialog-question.png",
+        "source_file": "role-icons/se98/question.png",
+        "sha256": "1f171dabcf0cadd414b8a8a4309cc62ef8c1615599cfeb8d48aa82c7d10415cc",
+        "icon": "role-icons/se98/question.png",
+        "icon_sha256": "1f171dabcf0cadd414b8a8a4309cc62ef8c1615599cfeb8d48aa82c7d10415cc",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "undo": {
+        "requested": "SE98/actions/48/edit-undo.png",
+        "source": "SE98/actions/48/edit-undo.png",
+        "source_file": "role-icons/se98/undo.png",
+        "sha256": "d968c9965fbc7b985fea1dda180f32e431ddfa92a68ea9ed4f8bd5baa6f6ccb6",
+        "icon": "role-icons/se98/undo.png",
+        "icon_sha256": "d968c9965fbc7b985fea1dda180f32e431ddfa92a68ea9ed4f8bd5baa6f6ccb6",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "redo": {
+        "requested": "SE98/actions/48/edit-redo.png",
+        "source": "SE98/actions/48/edit-redo.png",
+        "source_file": "role-icons/se98/redo.png",
+        "sha256": "b7179fe814a71d32ae87ab56b9247912fcffd1bd03b5a9fc60c428abbc71f10a",
+        "icon": "role-icons/se98/redo.png",
+        "icon_sha256": "b7179fe814a71d32ae87ab56b9247912fcffd1bd03b5a9fc60c428abbc71f10a",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "cut": {
+        "requested": "SE98/actions/48/edit-cut.png",
+        "source": "SE98/actions/48/edit-cut.png",
+        "source_file": "role-icons/se98/cut.png",
+        "sha256": "02c304f102f49f77b199d472b0adfd071982d2061948ffaa3ec66d3f35588899",
+        "icon": "role-icons/se98/cut.png",
+        "icon_sha256": "02c304f102f49f77b199d472b0adfd071982d2061948ffaa3ec66d3f35588899",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "copy": {
+        "requested": "SE98/actions/48/edit-copy.png",
+        "source": "SE98/actions/48/edit-copy.png",
+        "source_file": "role-icons/se98/copy.png",
+        "sha256": "5c673024ced11e3870a008dc7b41de96e6a23a82c70d81ef003a227df861085b",
+        "icon": "role-icons/se98/copy.png",
+        "icon_sha256": "5c673024ced11e3870a008dc7b41de96e6a23a82c70d81ef003a227df861085b",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "paste": {
+        "requested": "SE98/actions/48/edit-paste.png",
+        "source": "SE98/actions/48/edit-paste.png",
+        "source_file": "role-icons/se98/paste.png",
+        "sha256": "7f4e1142a491a7edca093db3459b826c3715088510b9c6b32b5a3e48d4661aeb",
+        "icon": "role-icons/se98/paste.png",
+        "icon_sha256": "7f4e1142a491a7edca093db3459b826c3715088510b9c6b32b5a3e48d4661aeb",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "select-all": {
+        "requested": "SE98/actions/48/edit-select-all.png",
+        "source": "SE98/actions/48/edit-select-all.png",
+        "source_file": "role-icons/se98/select-all.png",
+        "sha256": "edfd9dfa2c5d9769d3f55e70afa7907c6ac978f5a3afe04cc334e03501bca040",
+        "icon": "role-icons/se98/select-all.png",
+        "icon_sha256": "edfd9dfa2c5d9769d3f55e70afa7907c6ac978f5a3afe04cc334e03501bca040",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      },
+      "clear-input": {
+        "requested": "SE98/actions/48/edit-clear.png",
+        "source": "SE98/actions/48/edit-clear.png",
+        "source_file": "role-icons/se98/clear-input.png",
+        "sha256": "081b57a261cdba115ccc9cff570d02143a54bbe9c1fb47f6bd04ade0d0a75ec4",
+        "icon": "role-icons/se98/clear-input.png",
+        "icon_sha256": "081b57a261cdba115ccc9cff570d02143a54bbe9c1fb47f6bd04ade0d0a75ec4",
+        "license": "GPL-2.0 (upstream repository declaration); individual Microsoft-derived artwork rights not independently established"
+      }
+    }
+  }
+}

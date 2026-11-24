@@ -11,6 +11,7 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parent.parent
 APP = "Postaszamla"
 GRAPHICS = Path("postaszamla/qt/edpd_graphics/assets")
+APPLICATION_ICON = GRAPHICS / "application.ico"
 
 
 def copy_notices(bundle: Path) -> None:
@@ -31,6 +32,29 @@ def copy_notices(bundle: Path) -> None:
     shutil.copy2(ROOT / "README.md", bundle / "README.md")
 
 
+def verify_application_icon(application: Path) -> None:
+    import pefile
+
+    icon = (ROOT / APPLICATION_ICON).read_bytes()
+    count = struct.unpack_from("<H", icon, 4)[0]
+    expected = []
+    for index in range(count):
+        size, offset = struct.unpack_from("<II", icon, 6 + 16 * index + 8)
+        expected.append(icon[offset:offset + size])
+
+    with pefile.PE(str(application), fast_load=True) as executable:
+        executable.parse_data_directories([pefile.DIRECTORY_ENTRY["IMAGE_DIRECTORY_ENTRY_RESOURCE"]])
+        actual = [
+            executable.get_data(language.data.struct.OffsetToData, language.data.struct.Size)
+            for resource in executable.DIRECTORY_ENTRY_RESOURCE.entries
+            if resource.id == pefile.RESOURCE_TYPE["RT_ICON"]
+            for entry in resource.directory.entries
+            for language in entry.directory.entries
+        ]
+    if not expected or sorted(expected) != sorted(actual):
+        raise RuntimeError("Az EXE erőforrás-ikonja eltér a rögzített alkalmazásikontól.")
+
+
 def verify(package: Path, directory: Path) -> None:
     with ZipFile(package) as archive:
         if archive.testzip() is not None:
@@ -45,6 +69,7 @@ def verify(package: Path, directory: Path) -> None:
                         "/pypdfium2_raw/version.json",
                         f"/{GRAPHICS.as_posix()}/themes.json",
                         f"/{GRAPHICS.as_posix()}/manifest.json",
+                        f"/{GRAPHICS.as_posix()}/role-icons.json",
                     ))):
                 raise RuntimeError(f"Váratlan adatfájl a Windows ZIP-ben: {filename}")
         names = set(archive.namelist())
@@ -66,6 +91,7 @@ def verify(package: Path, directory: Path) -> None:
         binary.seek(struct.unpack("<I", binary.read(4))[0])
         if binary.read(6) != b"PE\0\0\x64\x86":
             raise RuntimeError("A futtatható fájl nem Windows x64 PE.")
+    verify_application_icon(application)
     report = directory / "ellenorzes.txt"
     result = subprocess.run([application, "--ellenorzes", report], cwd=directory, timeout=90)
     output = report.read_text(encoding="utf-8") if report.exists() else "(nincs napló)"
@@ -84,6 +110,7 @@ def main(tag: str, output: Path) -> None:
         command = [
             sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--noupx",
             "--onedir", "--windowed", "--name", APP, "--contents-directory", "_internal",
+            "--icon", str(ROOT / APPLICATION_ICON),
             "--paths", str(ROOT), "--distpath", str(temp / "dist"),
             "--workpath", str(temp / "work"), "--specpath", str(temp),
             "--add-data", f"{ROOT / 'postaszamla/templates/minta.docx'};postaszamla/templates",

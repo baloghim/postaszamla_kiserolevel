@@ -1,5 +1,6 @@
 import json
 import os
+from gc import collect
 from hashlib import sha256
 from pathlib import Path
 import sys
@@ -10,7 +11,7 @@ from unittest.mock import patch
 try:
     from PySide2.QtCore import QDate, QTimer, Qt, qVersion
     from PySide2.QtGui import QColor, QPainter, QPalette, QPdfWriter
-    from PySide2.QtWidgets import QApplication, QDialogButtonBox, QMessageBox, QStyleFactory
+    from PySide2.QtWidgets import QAction, QApplication, QDialogButtonBox, QMessageBox, QPushButton, QStyleFactory
 except ImportError:
     QApplication = None
 
@@ -265,9 +266,10 @@ class QtDesktopTests(TestCase):
         self.assertEqual(load_settings(self.base).icon_theme, DEFAULT_ICON_THEME)
 
     def test_edpd_sources_and_all_icon_themes(self):
-        from postaszamla.qt.edpd_graphics.icons import ASSETS
+        from postaszamla.qt.edpd_graphics.icons import APP_ROLES, ASSETS
 
         icons = self.window.appearance.icons
+        report = json.loads((Path(__file__).resolve().parents[1] / "docs/icon-sources.json").read_text(encoding="utf-8"))
         names = ("Crystal SVG", "Nuvola", "KDE Modern Classic", "Papirus", "We10X", "Oxygen", "Win10Sur",
                  "Oxylite", "WhiteSur", "Diagonal", "Modern Office Day", "SE98")
         self.assertEqual(icons.choices(), names)
@@ -281,6 +283,16 @@ class QtDesktopTests(TestCase):
                 self.assertTrue(any((ASSETS / "notices" / notice).iterdir()))
                 self.assertTrue(theme["license"] and theme["source"])
                 self.assertEqual(icons.set_theme(name), name)
+                for metadata in icons.supplement[name]["roles"].values():
+                    self.assertTrue(metadata["license"])
+                    self.assertEqual(sha256((ASSETS / metadata["source_file"]).read_bytes()).hexdigest(),
+                                     metadata["sha256"])
+                    self.assertEqual(sha256((ASSETS / metadata["icon"]).read_bytes()).hexdigest(),
+                                     metadata["icon_sha256"])
+                for role in APP_ROLES:
+                    rule = report["themes"][name][role]
+                    self.assertEqual(icons.describe(role), rule)
+                    self.assertEqual(icons.icon(role).pixmap(22, 22).isNull(), rule["kind"] == "none")
                 for role, metadata in theme["icons"].items():
                     for source in (metadata, metadata.get("badge"), metadata.get("editable_source")):
                         if source:
@@ -294,9 +306,103 @@ class QtDesktopTests(TestCase):
                     self.assertFalse(icons.icon(role).pixmap(22, 22).isNull())
                     self.assertEqual(icons.sources[role], DEFAULT_ICON_THEME)
                 self.assertFalse(icons.icon("open").isNull())
-                self.assertEqual(icons.sources["open"], "Qt standard")
+                self.assertEqual(icons.sources["open"], name)
                 self.assertFalse(icons.icon("pdf-present").isNull())
         self.assertEqual(icons.set_theme("nem létező téma"), DEFAULT_ICON_THEME)
+
+    def test_live_bindings_for_every_visible_action_and_menu(self):
+        from postaszamla.qt.edpd_graphics.icons import APP_ROLES, ICON_ROLE
+        from postaszamla.qt.editor import LetterDialog
+        from postaszamla.qt.settings_dialog import SettingsDialog
+
+        window = self.window
+        icons = window.appearance.icons
+        window.archive.mkdir()
+        path = save_record(window.archive, DEFAULT_TEMPLATE, LETTER)
+        path.with_suffix(".pdf").write_bytes(b"fiktiv")
+        path.with_name("masik.docx").write_bytes(path.read_bytes())
+        window.reload(preferred=path)
+        editor = window.open_editor()
+        settings = SettingsDialog(window.settings, self.base, window.appearance, window)
+        editing = LetterDialog(window.appearance, window.settings, lambda _: None, window, LETTER)
+        line_menu = window.search.createStandardContextMenu()
+        text_menu = window.preview.viewer.text.createStandardContextMenu()
+        self.assertEqual(
+            {action.property(ICON_ROLE) for action in line_menu.actions() if action.property(ICON_ROLE)},
+            {"undo", "redo", "cut", "copy", "paste", "delete", "select-all"},
+        )
+        self.assertEqual(
+            {action.property(ICON_ROLE) for action in text_menu.actions() if action.property(ICON_ROLE)},
+            {"copy", "select-all"},
+        )
+        identity = icons.icon("application").pixmap(32, 32).toImage()
+        notifications = []
+        icons.changed.connect(notifications.append)
+
+        def pixels(icon):
+            return icon.pixmap(22, 22).toImage()
+
+        def snapshot():
+            actions = (widget for kind in (QAction, QPushButton) for widget in window.findChildren(kind)
+                       if widget.property(ICON_ROLE))
+            result = {}
+            for widget in actions:
+                role = widget.property(ICON_ROLE)
+                icon = widget.icon()
+                self.assertEqual(icon.cacheKey(), icons.icon(role).cacheKey())
+                self.assertEqual(pixels(icon), pixels(icons.icon(role)))
+                result[role] = pixels(icon)
+            for row in range(window.table.rowCount()):
+                status = window.table.item(row, 3)
+                present = bool(status.data(Qt.UserRole))
+                role = "pdf-present" if present else "pdf-missing"
+                self.assertEqual(status.text(), "Van" if present else "Nincs")
+                color = status.foreground().color()
+                self.assertEqual(color.green() > color.red(), present)
+                self.assertEqual(pixels(status.icon()), pixels(icons.icon(role)))
+                self.assertEqual(pixels(window.table.item(row, 0).icon()), pixels(icons.icon("docx")))
+            return result
+
+        start = snapshot()
+        self.assertEqual(set(start), set(APP_ROLES) - {"docx", "pdf-present", "pdf-missing",
+                                                     "question", "warning", "confirm"})
+        collect()
+        themes = icons.choices()[1:]
+        for theme in themes:
+            with self.subTest(theme=theme):
+                icons.set_theme(theme)
+                current = snapshot()
+                self.assertEqual(start.keys(), current.keys())
+                for child in (window, editor, editing, settings):
+                    self.assertEqual(child.windowIcon().pixmap(32, 32).toImage(), identity)
+        self.assertEqual(notifications, list(themes))
+        self.assertNotEqual(start["new"], current["new"])
+        self.assertNotEqual(start["open"], current["open"])
+
+        shown = {}
+
+        def switch_message():
+            box = self.app.activeModalWidget()
+            try:
+                shown["role"] = box.property(ICON_ROLE)
+                icons.set_theme("Oxygen")
+                shown["pixmap"] = box.iconPixmap().toImage()
+                shown["yes"] = pixels(box.button(QMessageBox.Yes).icon())
+                shown["no"] = pixels(box.button(QMessageBox.No).icon())
+            finally:
+                box.done(QMessageBox.Yes)
+
+        QTimer.singleShot(0, switch_message)
+        window.appearance.message(QMessageBox.Question, window, "Minta", "Folytatja?",
+                                  QMessageBox.Yes | QMessageBox.No)
+        self.assertEqual(shown["role"], "question")
+        self.assertEqual(shown["pixmap"], icons.icon("question").pixmap(32, 32).toImage())
+        self.assertEqual(shown["yes"], pixels(icons.icon("confirm")))
+        self.assertEqual(shown["no"], pixels(icons.icon("cancel")))
+        line_menu.deleteLater()
+        text_menu.deleteLater()
+        editing.deleteLater()
+        settings.deleteLater()
 
     def test_icons_update_without_refreshing_documents(self):
         from postaszamla.qt.settings_dialog import SettingsDialog

@@ -1,0 +1,3126 @@
+{
+  "schema": 1,
+  "application": {
+    "kind": "fixed",
+    "source": "Postaszámla",
+    "paths": [
+      "application.ico"
+    ]
+  },
+  "themes": {
+    "Crystal SVG": {
+      "new": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/print.png",
+          "icons/32/print.png",
+          "icons/48/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/refresh.png",
+          "icons/32/refresh.png",
+          "icons/48/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/settings.png",
+          "icons/32/settings.png",
+          "icons/48/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/about.png",
+          "icons/32/about.png",
+          "icons/48/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/pdf.png",
+          "icons/32/pdf.png",
+          "icons/48/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/warning.png",
+          "icons/32/warning.png",
+          "icons/48/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/delete.png",
+          "icons/32/delete.png",
+          "icons/48/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/save.png",
+          "icons/32/save.png",
+          "icons/48/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "qt",
+        "source": "Qt standard",
+        "standard": "SP_MessageBoxQuestion",
+        "paths": []
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/warning.png",
+          "icons/32/warning.png",
+          "icons/48/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/first.png",
+          "icons/32/first.png",
+          "icons/48/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/previous.png",
+          "icons/32/previous.png",
+          "icons/48/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/next.png",
+          "icons/32/next.png",
+          "icons/48/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/last.png",
+          "icons/32/last.png",
+          "icons/48/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/zoom_in.png",
+          "icons/32/zoom_in.png",
+          "icons/48/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/zoom_out.png",
+          "icons/32/zoom_out.png",
+          "icons/48/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/width.png",
+          "icons/32/width.png",
+          "icons/48/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/page.png",
+          "icons/32/page.png",
+          "icons/48/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/delete.png",
+          "icons/32/delete.png",
+          "icons/48/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "none",
+        "source": "none",
+        "paths": []
+      }
+    },
+    "Nuvola": {
+      "new": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/print.png",
+          "themes/nuvola/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/refresh.png",
+          "themes/nuvola/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/settings.png",
+          "themes/nuvola/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/about.png",
+          "themes/nuvola/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/pdf.png",
+          "themes/nuvola/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/warning.png",
+          "themes/nuvola/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/delete.png",
+          "themes/nuvola/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/save.png",
+          "themes/nuvola/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "qt",
+        "source": "Qt standard",
+        "standard": "SP_MessageBoxQuestion",
+        "paths": []
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/warning.png",
+          "themes/nuvola/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/first.png",
+          "themes/nuvola/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/previous.png",
+          "themes/nuvola/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/next.png",
+          "themes/nuvola/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/last.png",
+          "themes/nuvola/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/zoom_in.png",
+          "themes/nuvola/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/zoom_out.png",
+          "themes/nuvola/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/width.png",
+          "icons/32/width.png",
+          "icons/48/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/page.png",
+          "themes/nuvola/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "role-icons/crystal/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "role-icons/nuvola/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Nuvola",
+        "paths": [
+          "themes/nuvola/22/delete.png",
+          "themes/nuvola/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "none",
+        "source": "none",
+        "paths": []
+      }
+    },
+    "KDE Modern Classic": {
+      "new": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/print.png",
+          "themes/modern-classic/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/refresh.png",
+          "themes/modern-classic/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/settings.png",
+          "themes/modern-classic/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/about.png",
+          "themes/modern-classic/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/pdf.png",
+          "themes/modern-classic/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/warning.png",
+          "themes/modern-classic/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/delete.png",
+          "themes/modern-classic/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/save.png",
+          "themes/modern-classic/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/warning.png",
+          "themes/modern-classic/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/first.png",
+          "themes/modern-classic/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/previous.png",
+          "themes/modern-classic/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/next.png",
+          "themes/modern-classic/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/last.png",
+          "themes/modern-classic/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/zoom_in.png",
+          "themes/modern-classic/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/zoom_out.png",
+          "themes/modern-classic/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/width.png",
+          "themes/modern-classic/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/page.png",
+          "themes/modern-classic/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "themes/modern-classic/22/delete.png",
+          "themes/modern-classic/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "KDE Modern Classic",
+        "paths": [
+          "role-icons/modern-classic/select-all.png"
+        ]
+      }
+    },
+    "Papirus": {
+      "new": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/print.png",
+          "themes/papirus/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/refresh.png",
+          "themes/papirus/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/settings.png",
+          "themes/papirus/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/about.png",
+          "themes/papirus/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/pdf.png",
+          "themes/papirus/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/warning.png",
+          "themes/papirus/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/delete.png",
+          "themes/papirus/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/save.png",
+          "themes/papirus/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/warning.png",
+          "themes/papirus/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/first.png",
+          "themes/papirus/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/previous.png",
+          "themes/papirus/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/next.png",
+          "themes/papirus/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/last.png",
+          "themes/papirus/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/zoom_in.png",
+          "themes/papirus/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/zoom_out.png",
+          "themes/papirus/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/width.png",
+          "themes/papirus/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/page.png",
+          "themes/papirus/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "themes/papirus/22/delete.png",
+          "themes/papirus/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Papirus",
+        "paths": [
+          "role-icons/papirus/select-all.png"
+        ]
+      }
+    },
+    "We10X": {
+      "new": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/print.png",
+          "themes/we10x/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/refresh.png",
+          "themes/we10x/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/settings.png",
+          "themes/we10x/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/about.png",
+          "themes/we10x/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/pdf.png",
+          "themes/we10x/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/warning.png",
+          "themes/we10x/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/delete.png",
+          "themes/we10x/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/save.png",
+          "themes/we10x/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/warning.png",
+          "themes/we10x/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/first.png",
+          "themes/we10x/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/previous.png",
+          "themes/we10x/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/next.png",
+          "themes/we10x/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/last.png",
+          "themes/we10x/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/zoom_in.png",
+          "themes/we10x/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/zoom_out.png",
+          "themes/we10x/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/width.png",
+          "themes/we10x/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/page.png",
+          "themes/we10x/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "themes/we10x/22/delete.png",
+          "themes/we10x/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "We10X",
+        "paths": [
+          "role-icons/we10x/select-all.png"
+        ]
+      }
+    },
+    "Oxygen": {
+      "new": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/print.png",
+          "themes/oxygen/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/refresh.png",
+          "themes/oxygen/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/settings.png",
+          "themes/oxygen/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/about.png",
+          "themes/oxygen/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/pdf.png",
+          "themes/oxygen/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/warning.png",
+          "themes/oxygen/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/delete.png",
+          "themes/oxygen/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/save.png",
+          "themes/oxygen/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "qt",
+        "source": "Qt standard",
+        "standard": "SP_MessageBoxQuestion",
+        "paths": []
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/warning.png",
+          "themes/oxygen/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/first.png",
+          "themes/oxygen/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/previous.png",
+          "themes/oxygen/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/next.png",
+          "themes/oxygen/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/last.png",
+          "themes/oxygen/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/zoom_in.png",
+          "themes/oxygen/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/zoom_out.png",
+          "themes/oxygen/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/width.png",
+          "themes/oxygen/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/page.png",
+          "themes/oxygen/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "themes/oxygen/22/delete.png",
+          "themes/oxygen/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Oxygen",
+        "paths": [
+          "role-icons/oxygen/select-all.png"
+        ]
+      }
+    },
+    "Win10Sur": {
+      "new": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/print.png",
+          "themes/win10sur/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/refresh.png",
+          "themes/win10sur/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/settings.png",
+          "themes/win10sur/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/about.png",
+          "themes/win10sur/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/pdf.png",
+          "themes/win10sur/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/warning.png",
+          "themes/win10sur/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/delete.png",
+          "themes/win10sur/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/save.png",
+          "themes/win10sur/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/warning.png",
+          "themes/win10sur/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/first.png",
+          "themes/win10sur/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/previous.png",
+          "themes/win10sur/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/next.png",
+          "themes/win10sur/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/last.png",
+          "themes/win10sur/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/zoom_in.png",
+          "themes/win10sur/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/zoom_out.png",
+          "themes/win10sur/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/width.png",
+          "themes/win10sur/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/page.png",
+          "themes/win10sur/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "themes/win10sur/22/delete.png",
+          "themes/win10sur/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Win10Sur",
+        "paths": [
+          "role-icons/win10sur/select-all.png"
+        ]
+      }
+    },
+    "Oxylite": {
+      "new": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/print.png",
+          "themes/oxylite/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/refresh.png",
+          "themes/oxylite/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/settings.png",
+          "themes/oxylite/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/about.png",
+          "themes/oxylite/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/pdf.png",
+          "themes/oxylite/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/warning.png",
+          "themes/oxylite/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/delete.png",
+          "themes/oxylite/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/save.png",
+          "themes/oxylite/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/warning.png",
+          "themes/oxylite/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/first.png",
+          "themes/oxylite/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/previous.png",
+          "themes/oxylite/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/next.png",
+          "themes/oxylite/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/last.png",
+          "themes/oxylite/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/zoom_in.png",
+          "themes/oxylite/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/zoom_out.png",
+          "themes/oxylite/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/width.png",
+          "icons/32/width.png",
+          "icons/48/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/page.png",
+          "themes/oxylite/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "themes/oxylite/22/delete.png",
+          "themes/oxylite/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Oxylite",
+        "paths": [
+          "role-icons/oxylite/select-all.png"
+        ]
+      }
+    },
+    "WhiteSur": {
+      "new": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/print.png",
+          "themes/whitesur/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/refresh.png",
+          "themes/whitesur/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/settings.png",
+          "themes/whitesur/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/about.png",
+          "themes/whitesur/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/pdf.png",
+          "themes/whitesur/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/warning.png",
+          "themes/whitesur/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/delete.png",
+          "themes/whitesur/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/save.png",
+          "themes/whitesur/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/warning.png",
+          "themes/whitesur/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/first.png",
+          "themes/whitesur/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/previous.png",
+          "themes/whitesur/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/next.png",
+          "themes/whitesur/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/last.png",
+          "themes/whitesur/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/zoom_in.png",
+          "themes/whitesur/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/zoom_out.png",
+          "themes/whitesur/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/width.png",
+          "themes/whitesur/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/page.png",
+          "themes/whitesur/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "themes/whitesur/22/delete.png",
+          "themes/whitesur/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "WhiteSur",
+        "paths": [
+          "role-icons/whitesur/select-all.png"
+        ]
+      }
+    },
+    "Diagonal": {
+      "new": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/print.png",
+          "themes/diagonal/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/refresh.png",
+          "themes/diagonal/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/settings.png",
+          "themes/diagonal/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/about.png",
+          "themes/diagonal/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/pdf.png",
+          "themes/diagonal/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/warning.png",
+          "themes/diagonal/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/delete.png",
+          "themes/diagonal/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/save.png",
+          "themes/diagonal/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/warning.png",
+          "themes/diagonal/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/first.png",
+          "themes/diagonal/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/previous.png",
+          "themes/diagonal/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/next.png",
+          "themes/diagonal/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/last.png",
+          "themes/diagonal/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/zoom_in.png",
+          "themes/diagonal/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/zoom_out.png",
+          "themes/diagonal/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/width.png",
+          "themes/diagonal/40/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/page.png",
+          "themes/diagonal/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "themes/diagonal/22/delete.png",
+          "themes/diagonal/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Diagonal",
+        "paths": [
+          "role-icons/diagonal/select-all.png"
+        ]
+      }
+    },
+    "Modern Office Day": {
+      "new": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/print.png",
+          "themes/modern-office/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/refresh.png",
+          "themes/modern-office/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/settings.png",
+          "themes/modern-office/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/about.png",
+          "themes/modern-office/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/pdf.png",
+          "themes/modern-office/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/warning.png",
+          "themes/modern-office/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/delete.png",
+          "themes/modern-office/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/save.png",
+          "themes/modern-office/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/warning.png",
+          "themes/modern-office/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/first.png",
+          "themes/modern-office/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/previous.png",
+          "themes/modern-office/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/next.png",
+          "themes/modern-office/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/last.png",
+          "themes/modern-office/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/zoom_in.png",
+          "icons/32/zoom_in.png",
+          "icons/48/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/zoom_out.png",
+          "icons/32/zoom_out.png",
+          "icons/48/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/width.png",
+          "icons/32/width.png",
+          "icons/48/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/page.png",
+          "icons/32/page.png",
+          "icons/48/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "themes/modern-office/22/delete.png",
+          "themes/modern-office/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "Modern Office Day",
+        "paths": [
+          "role-icons/modern-office/select-all.png"
+        ]
+      }
+    },
+    "SE98": {
+      "new": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/new.png"
+        ]
+      },
+      "edit": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/edit.png"
+        ]
+      },
+      "open": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/open.png"
+        ]
+      },
+      "print": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/print.png",
+          "themes/se98/40/print.png"
+        ]
+      },
+      "refresh": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/refresh.png",
+          "themes/se98/40/refresh.png"
+        ]
+      },
+      "settings": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/settings.png",
+          "themes/se98/40/settings.png"
+        ]
+      },
+      "about": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/about.png",
+          "themes/se98/40/about.png"
+        ]
+      },
+      "help": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/help.png"
+        ]
+      },
+      "docx": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/docx.png"
+        ]
+      },
+      "pdf-present": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/pdf.png",
+          "themes/se98/40/pdf.png"
+        ]
+      },
+      "pdf-missing": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/warning.png",
+          "themes/se98/40/warning.png"
+        ]
+      },
+      "invoice-add": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/invoice-add.png"
+        ]
+      },
+      "invoice-delete": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/delete.png",
+          "themes/se98/40/delete.png"
+        ]
+      },
+      "save": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/save.png",
+          "themes/se98/40/save.png"
+        ]
+      },
+      "cancel": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/cancel.png"
+        ]
+      },
+      "confirm": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/confirm.png"
+        ]
+      },
+      "question": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/question.png"
+        ]
+      },
+      "warning": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/warning.png",
+          "themes/se98/40/warning.png"
+        ]
+      },
+      "first": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/first.png",
+          "themes/se98/40/first.png"
+        ]
+      },
+      "previous": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/previous.png",
+          "themes/se98/40/previous.png"
+        ]
+      },
+      "next": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/next.png",
+          "themes/se98/40/next.png"
+        ]
+      },
+      "last": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/last.png",
+          "themes/se98/40/last.png"
+        ]
+      },
+      "zoom-in": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/zoom_in.png",
+          "themes/se98/40/zoom_in.png"
+        ]
+      },
+      "zoom-out": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/zoom_out.png",
+          "themes/se98/40/zoom_out.png"
+        ]
+      },
+      "fit-width": {
+        "kind": "crystal",
+        "source": "Crystal SVG",
+        "paths": [
+          "icons/22/width.png",
+          "icons/32/width.png",
+          "icons/48/width.png"
+        ]
+      },
+      "fit-page": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/page.png",
+          "themes/se98/40/page.png"
+        ]
+      },
+      "clear-input": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/clear-input.png"
+        ]
+      },
+      "undo": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/undo.png"
+        ]
+      },
+      "redo": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/redo.png"
+        ]
+      },
+      "cut": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/cut.png"
+        ]
+      },
+      "copy": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/copy.png"
+        ]
+      },
+      "paste": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/paste.png"
+        ]
+      },
+      "delete": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "themes/se98/22/delete.png",
+          "themes/se98/40/delete.png"
+        ]
+      },
+      "select-all": {
+        "kind": "theme",
+        "source": "SE98",
+        "paths": [
+          "role-icons/se98/select-all.png"
+        ]
+      }
+    }
+  }
+}

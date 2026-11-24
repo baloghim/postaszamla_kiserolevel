@@ -5,9 +5,11 @@ from threading import Thread
 import pypdfium2
 from PySide2.QtCore import QEvent, QSize, Qt, QTimer
 from PySide2.QtGui import QImage, QPixmap
-from PySide2.QtWidgets import QComboBox, QLabel, QPlainTextEdit, QScrollArea, QToolBar, QVBoxLayout, QWidget
+from PySide2.QtWidgets import QComboBox, QLabel, QScrollArea, QToolBar, QVBoxLayout, QWidget
 
 from postaszamla.preview import prepare_preview
+
+from .icon_widgets import IconPlainTextEdit
 
 ZOOMS = ("Szélesség", "Teljes oldal", "50%", "75%", "100%", "125%", "150%", "200%")
 STEPS = (50, 75, 100, 125, 150, 200)
@@ -127,7 +129,7 @@ class DocumentViewer(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.scroll.setWidget(self.label)
         layout.addWidget(self.scroll, 1)
-        self.text = QPlainTextEdit()
+        self.text = IconPlainTextEdit(appearance.icons)
         self.text.setReadOnly(True)
         self.text.hide()
         layout.addWidget(self.text, 1)
