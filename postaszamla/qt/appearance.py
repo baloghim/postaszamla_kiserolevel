@@ -7,8 +7,8 @@ from .edpd_graphics.icons import ICON_ROLE, IconThemeManager
 from .edpd_graphics.surface_styles import DEFAULT_SURFACE, LUNA as THEME, POSTAS_GREEN
 from .edpd_graphics.themes.widgets import SurfaceComboBox
 
-SURFACES = {DEFAULT_UI_STYLE: THEME, "longhorn-blue": "Longhorn Blue", "longhorn-slate": "Longhorn Slate",
-            "postas-zold": POSTAS_GREEN}
+SURFACES = {"postas-zold": POSTAS_GREEN, "xp-luna-blue": THEME,
+            "longhorn-blue": "Longhorn Blue", "longhorn-slate": "Longhorn Slate"}
 FACTORY_STYLES = (("fusion", "Fusion"), ("windows", "Windows"), ("windowsvista", "Windows Vista"))
 
 

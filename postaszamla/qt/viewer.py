@@ -7,7 +7,7 @@ from PySide2.QtCore import QEvent, QSize, Qt, QTimer
 from PySide2.QtGui import QImage, QPixmap
 from PySide2.QtWidgets import QComboBox, QLabel, QScrollArea, QToolBar, QVBoxLayout, QWidget
 
-from postaszamla.preview import prepare_preview
+from postaszamla.preview import PDFIUM_LOCK, prepare_preview
 
 from .icon_widgets import IconPlainTextEdit
 
@@ -80,6 +80,7 @@ class DocumentViewer(QWidget):
     def __init__(self, appearance, zoom):
         super().__init__()
         self.pdf = None
+        self.page_count = 0
         self.page = 0
         self.scale = 1.0
         self.layout = layout = QVBoxLayout(self)
@@ -96,7 +97,7 @@ class DocumentViewer(QWidget):
             ("first", "Első oldal", lambda: self.move(0)),
             ("previous", "Előző oldal", lambda: self.move(self.page - 1)),
             ("next", "Következő oldal", lambda: self.move(self.page + 1)),
-            ("last", "Utolsó oldal", lambda: self.move(len(self.pdf) - 1) if self.pdf else None),
+            ("last", "Utolsó oldal", lambda: self.move(self.page_count - 1) if self.pdf else None),
         ):
             self.navigation.append(appearance.action(bar, icon, text, action))
         self.page_label = QLabel("—")
@@ -141,8 +142,10 @@ class DocumentViewer(QWidget):
 
     def clear_pdf(self):
         if self.pdf is not None:
-            self.pdf.close()
+            with PDFIUM_LOCK:
+                self.pdf.close()
             self.pdf = None
+            self.page_count = 0
 
     def show_text(self, content, *, document=False):
         self.clear_pdf()
@@ -159,7 +162,11 @@ class DocumentViewer(QWidget):
     def open_data(self, data):
         self.clear_pdf()
         try:
-            self.pdf = pypdfium2.PdfDocument(data)
+            with PDFIUM_LOCK:
+                self.pdf = pypdfium2.PdfDocument(data)
+                self.page_count = len(self.pdf)
+                if not self.page_count:
+                    raise ValueError("Üres PDF.")
         except Exception:
             self.show_text("A PDF nem nyitható meg. Nyissa meg a dokumentumot Wordben.")
             return
@@ -172,7 +179,7 @@ class DocumentViewer(QWidget):
 
     def move(self, page):
         if self.pdf is not None:
-            self.page = min(max(0, page), len(self.pdf) - 1)
+            self.page = min(max(0, page), self.page_count - 1)
             self.render()
             self.scroll.verticalScrollBar().setValue(0)
             self.scroll.horizontalScrollBar().setValue(0)
@@ -196,7 +203,7 @@ class DocumentViewer(QWidget):
 
     def update_controls(self):
         loaded = self.pdf is not None
-        count = len(self.pdf) if loaded else 0
+        count = self.page_count
         for index, action in enumerate(self.navigation):
             action.setEnabled(loaded and (self.page > 0 if index < 2 else self.page + 1 < count))
         for action in self.scale_actions:
@@ -212,7 +219,7 @@ class DocumentViewer(QWidget):
             return
         mode = self.zoom.currentText()
         try:
-            with closing(self.pdf[self.page]) as page:
+            with PDFIUM_LOCK, closing(self.pdf[self.page]) as page:
                 width, height = page.get_size()
                 viewport = self.scroll.viewport().size()
                 scale = max(1, viewport.width() - 20) / width

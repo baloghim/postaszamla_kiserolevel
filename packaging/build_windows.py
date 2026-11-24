@@ -37,21 +37,36 @@ def verify_application_icon(application: Path) -> None:
 
     icon = (ROOT / APPLICATION_ICON).read_bytes()
     count = struct.unpack_from("<H", icon, 4)[0]
-    expected = []
+    expected = {}
     for index in range(count):
-        size, offset = struct.unpack_from("<II", icon, 6 + 16 * index + 8)
-        expected.append(icon[offset:offset + size])
+        entry = 6 + 16 * index
+        width, height = icon[entry:entry + 2]
+        size, offset = struct.unpack_from("<II", icon, entry + 8)
+        expected[(width or 256, height or 256)] = (icon[entry:entry + 12], icon[offset:offset + size])
+    if count != 7 or sorted(expected) != [(size, size) for size in (16, 24, 32, 48, 64, 128, 256)]:
+        raise RuntimeError("A rögzített ICO nem tartalmazza az előírt hét képméretet.")
 
     with pefile.PE(str(application), fast_load=True) as executable:
         executable.parse_data_directories([pefile.DIRECTORY_ENTRY["IMAGE_DIRECTORY_ENTRY_RESOURCE"]])
-        actual = [
-            executable.get_data(language.data.struct.OffsetToData, language.data.struct.Size)
+        resources = {
+            (resource.id, entry.id): executable.get_data(language.data.struct.OffsetToData,
+                                                           language.data.struct.Size)
             for resource in executable.DIRECTORY_ENTRY_RESOURCE.entries
-            if resource.id == pefile.RESOURCE_TYPE["RT_ICON"]
             for entry in resource.directory.entries
             for language in entry.directory.entries
-        ]
-    if not expected or sorted(expected) != sorted(actual):
+        }
+    group_type = pefile.RESOURCE_TYPE["RT_GROUP_ICON"]
+    icon_type = pefile.RESOURCE_TYPE["RT_ICON"]
+    groups = [data for (resource_type, _), data in resources.items() if resource_type == group_type]
+    if len(groups) != 1 or len(groups[0]) != 6 + 14 * count or groups[0][:6] != icon[:6]:
+        raise RuntimeError("Az EXE alkalmazásikon-csoportja hibás.")
+    group = groups[0]
+    actual = {}
+    for entry in range(6, len(group), 14):
+        width, height = group[entry:entry + 2]
+        icon_id = struct.unpack_from("<H", group, entry + 12)[0]
+        actual[(width or 256, height or 256)] = (group[entry:entry + 12], resources.get((icon_type, icon_id)))
+    if expected != actual:
         raise RuntimeError("Az EXE erőforrás-ikonja eltér a rögzített alkalmazásikontól.")
 
 

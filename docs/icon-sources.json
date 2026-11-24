@@ -89,13 +89,13 @@
           "icons/48/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Crystal SVG",
         "paths": [
-          "icons/22/warning.png",
-          "icons/32/warning.png",
-          "icons/48/warning.png"
+          "icons/22/pdf.png",
+          "icons/32/pdf.png",
+          "icons/48/pdf.png"
         ]
       },
       "invoice-add": {
@@ -357,12 +357,12 @@
           "themes/nuvola/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Nuvola",
         "paths": [
-          "themes/nuvola/22/warning.png",
-          "themes/nuvola/40/warning.png"
+          "themes/nuvola/22/pdf.png",
+          "themes/nuvola/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -613,12 +613,12 @@
           "themes/modern-classic/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "KDE Modern Classic",
         "paths": [
-          "themes/modern-classic/22/warning.png",
-          "themes/modern-classic/40/warning.png"
+          "themes/modern-classic/22/pdf.png",
+          "themes/modern-classic/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -871,12 +871,12 @@
           "themes/papirus/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Papirus",
         "paths": [
-          "themes/papirus/22/warning.png",
-          "themes/papirus/40/warning.png"
+          "themes/papirus/22/pdf.png",
+          "themes/papirus/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -1129,12 +1129,12 @@
           "themes/we10x/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "We10X",
         "paths": [
-          "themes/we10x/22/warning.png",
-          "themes/we10x/40/warning.png"
+          "themes/we10x/22/pdf.png",
+          "themes/we10x/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -1387,12 +1387,12 @@
           "themes/oxygen/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Oxygen",
         "paths": [
-          "themes/oxygen/22/warning.png",
-          "themes/oxygen/40/warning.png"
+          "themes/oxygen/22/pdf.png",
+          "themes/oxygen/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -1644,12 +1644,12 @@
           "themes/win10sur/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Win10Sur",
         "paths": [
-          "themes/win10sur/22/warning.png",
-          "themes/win10sur/40/warning.png"
+          "themes/win10sur/22/pdf.png",
+          "themes/win10sur/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -1902,12 +1902,12 @@
           "themes/oxylite/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Oxylite",
         "paths": [
-          "themes/oxylite/22/warning.png",
-          "themes/oxylite/40/warning.png"
+          "themes/oxylite/22/pdf.png",
+          "themes/oxylite/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -2161,12 +2161,12 @@
           "themes/whitesur/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "WhiteSur",
         "paths": [
-          "themes/whitesur/22/warning.png",
-          "themes/whitesur/40/warning.png"
+          "themes/whitesur/22/pdf.png",
+          "themes/whitesur/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -2419,12 +2419,12 @@
           "themes/diagonal/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Diagonal",
         "paths": [
-          "themes/diagonal/22/warning.png",
-          "themes/diagonal/40/warning.png"
+          "themes/diagonal/22/pdf.png",
+          "themes/diagonal/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -2677,12 +2677,12 @@
           "themes/modern-office/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "Modern Office Day",
         "paths": [
-          "themes/modern-office/22/warning.png",
-          "themes/modern-office/40/warning.png"
+          "themes/modern-office/22/pdf.png",
+          "themes/modern-office/40/pdf.png"
         ]
       },
       "invoice-add": {
@@ -2939,12 +2939,12 @@
           "themes/se98/40/pdf.png"
         ]
       },
-      "pdf-missing": {
+      "generate-pdf": {
         "kind": "theme",
         "source": "SE98",
         "paths": [
-          "themes/se98/22/warning.png",
-          "themes/se98/40/warning.png"
+          "themes/se98/22/pdf.png",
+          "themes/se98/40/pdf.png"
         ]
       },
       "invoice-add": {

@@ -49,7 +49,10 @@ class SettingsDialog(QDialog):
         appearance_form.addRow("Felületi stílus", self.style_choice)
         self.icon_choice = appearance.combo()
         self.icon_choice.addItems(appearance.icons.choices())
-        self.icon_choice.setCurrentIndex(max(0, self.icon_choice.findText(settings.icon_theme)))
+        icon_index = self.icon_choice.findText(settings.icon_theme)
+        if icon_index < 0:
+            icon_index = self.icon_choice.findText(DEFAULT_ICON_THEME)
+        self.icon_choice.setCurrentIndex(max(0, icon_index))
         appearance_form.addRow("Ikontéma", self.icon_choice)
         layout.addWidget(appearance_group)
         buttons = QDialogButtonBox()

@@ -6,6 +6,7 @@ from hashlib import sha256
 from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
+from threading import Event
 from unittest import TestCase, skipUnless
 from unittest.mock import patch
 
@@ -21,6 +22,7 @@ from postaszamla.settings import DEFAULT_ICON_THEME, DEFAULT_UI_STYLE, Settings,
 from postaszamla.template import DEFAULT_TEMPLATE
 
 from test_desktop import INVOICE, LETTER, SECOND
+from test_document_actions import pdf_fixture
 
 
 @skipUnless(QApplication and (sys.platform != "linux" or os.environ.get("DISPLAY")
@@ -61,10 +63,10 @@ class QtDesktopTests(TestCase):
             values[0].setText(str(cost.operating))
             values[1].setText(str(cost.benefits))
 
-    def test_default_qt_entrypoint_and_luna(self):
+    def test_default_qt_entrypoint_and_postas_green(self):
         from postaszamla import gui
         from postaszamla.qt.app import main
-        from postaszamla.qt.appearance import SURFACES, THEME
+        from postaszamla.qt.appearance import SURFACES
 
         self.assertIs(gui.main, main)
         from postaszamla.__main__ import main as launch
@@ -72,8 +74,10 @@ class QtDesktopTests(TestCase):
             self.assertEqual(launch(), 0)
             run.assert_called_once()
         self.assertEqual(qVersion(), "5.15.2")
-        self.assertEqual(self.app.property("surfaceTheme"), THEME)
-        self.assertLessEqual(abs(self.window.splitter.sizes()[0] - self.window.splitter.sizes()[1]), 1)
+        self.assertEqual(self.app.property("surfaceTheme"), SURFACES[DEFAULT_UI_STYLE])
+        left, right = self.window.splitter.sizes()
+        self.assertAlmostEqual(left / (left + right), 0.4, delta=0.005)
+        self.assertEqual(self.window.appearance.icons.name, "Oxygen")
         dialog = self.window.open_editor()
         self.assertEqual(dialog.palette().color(QPalette.Highlight),
                          self.window.palette().color(QPalette.Highlight))
@@ -204,6 +208,156 @@ class QtDesktopTests(TestCase):
         self.assertEqual(self.app.property("surfaceTheme"), POSTAS_GREEN)
         self.assertEqual(self.app.styleSheet(), green)
 
+    def test_saved_styles_and_custom_panel_divider_are_preserved(self):
+        from postaszamla.qt.appearance import Appearance
+        from postaszamla.qt.window import MainWindow
+
+        self.window.close()
+        settings = Settings(window_state="normal", main_sash=520, ui_style="xp-luna-blue", icon_theme="Crystal SVG")
+        settings.save(self.base)
+        file = self.base / "beallitasok.json"
+        original = file.read_bytes()
+        self.window = MainWindow(Appearance(self.app), self.base)
+        self.window.show()
+        self.app.processEvents()
+        self.window.restore_panels()
+        self.assertEqual(self.window.splitter.sizes()[0], 520)
+        self.assertEqual(self.window.appearance.current_style, "xp-luna-blue")
+        self.assertEqual(self.window.appearance.icons.name, "Crystal SVG")
+        self.assertEqual(file.read_bytes(), original)
+
+    def test_pdf_availability_decline_and_asynchronous_success(self):
+        window = self.window
+        action = window.actions["generate-pdf"]
+        self.assertFalse(action.isEnabled())
+        window.archive.mkdir()
+        path = save_record(window.archive, DEFAULT_TEMPLATE, LETTER)
+        window.pdf_available = False
+        window.reload(preferred=path)
+        self.assertFalse(action.isEnabled())
+        window.pdf_available = True
+        window.select()
+        self.assertTrue(action.isEnabled())
+        with patch.object(window.appearance, "message", return_value=QMessageBox.No) as prompt:
+            window.create_pdf()
+            self.assertIn(path.name, prompt.call_args.args[3])
+        self.assertIsNone(window.operation)
+        target = path.with_suffix(".pdf")
+        self.assertFalse(target.exists())
+
+        started, release = Event(), Event()
+        pdf = pdf_fixture()
+
+        def convert(_):
+            started.set()
+            if not release.wait(8):
+                raise RuntimeError("A fiktív konverzió ideje lejárt.")
+            return pdf
+
+        with patch("postaszamla.document_actions.word_pdf", side_effect=convert), patch.object(
+            window.appearance, "message", return_value=QMessageBox.Yes
+        ):
+            window.create_pdf()
+            try:
+                self.assertTrue(started.wait(3))
+                self.assertFalse(action.isEnabled())
+                self.assertFalse(window.actions["delete"].isEnabled())
+                self.assertFalse(window.close())
+                self.assertFalse(target.exists())
+            finally:
+                release.set()
+                window.operation[0].result(timeout=8)
+                window.poll_operation()
+        status = window.table.item(0, 3)
+        self.assertEqual(status.text(), "")
+        self.assertEqual(status.textAlignment(), Qt.AlignCenter)
+        self.assertEqual(status.icon().cacheKey(), window.appearance.icon("pdf-present").cacheKey())
+        self.app.processEvents()
+        cell = window.table.visualItemRect(status)
+        viewport = window.table.viewport()
+        with_icon = viewport.grab(cell).toImage()
+        icon = status.icon()
+        status.setIcon(type(icon)())
+        without_icon = viewport.grab(cell).toImage()
+        status.setIcon(icon)
+        changed = [(x, y) for y in range(with_icon.height()) for x in range(with_icon.width())
+                   if with_icon.pixel(x, y) != without_icon.pixel(x, y)]
+        self.assertTrue(changed, "A PDF-ikon a táblázatcellában nem jelent meg.")
+        horizontal, vertical = zip(*changed)
+        self.assertAlmostEqual((min(horizontal) + max(horizontal)) / 2, (with_icon.width() - 1) / 2, delta=2)
+        self.assertAlmostEqual((min(vertical) + max(vertical)) / 2, (with_icon.height() - 1) / 2, delta=2)
+        self.assertEqual(target.read_bytes(), pdf)
+        self.assertFalse(action.isEnabled())
+        self.assertTrue(window.actions["delete"].isEnabled())
+
+    def test_pdf_error_resets_toolbar_and_missing_docx_disables_it(self):
+        window = self.window
+        window.archive.mkdir()
+        path = save_record(window.archive, DEFAULT_TEMPLATE, LETTER)
+        window.pdf_available = True
+        window.reload(preferred=path)
+        with patch("postaszamla.document_actions.word_pdf", side_effect=OSError("fiktív hiba")), patch.object(
+            window.appearance, "message", side_effect=(QMessageBox.Yes, QMessageBox.Ok)
+        ) as prompt:
+            window.create_pdf()
+            with self.assertRaises(OSError):
+                window.operation[0].result(timeout=8)
+            window.poll_operation()
+            self.assertEqual(prompt.call_args.args[0], QMessageBox.Critical)
+        self.assertTrue(window.actions["generate-pdf"].isEnabled())
+        path.unlink()
+        window.update_actions()
+        self.assertFalse(window.actions["generate-pdf"].isEnabled())
+
+    def test_delete_challenge_cancel_and_confirm_clear_the_selected_record(self):
+        from postaszamla.archive import sidecar
+        from postaszamla.qt.delete_dialog import DeleteDialog
+
+        window = self.window
+        window.archive.mkdir()
+        path = save_record(window.archive, DEFAULT_TEMPLATE, LETTER)
+        pdf = path.with_suffix(".pdf")
+        pdf.write_bytes(pdf_fixture())
+        window.reload(preferred=path)
+
+        def reject(dialog):
+            self.assertEqual(dialog.answer.text(), "")
+            self.assertFalse(dialog.include_pdf.isChecked())
+            self.assertIn(sidecar(path).name, dialog.files_label.text())
+            self.assertNotIn(pdf.name, dialog.files_label.text())
+            dialog.answer.setText("1")
+            self.assertFalse(dialog.execute.isEnabled())
+            dialog.execute.click()
+            dialog.reject()
+            return dialog.result()
+
+        with patch.object(DeleteDialog, "exec_", reject):
+            window.remove_document()
+        self.assertIsNone(window.operation)
+        self.assertTrue(path.is_file())
+        self.assertTrue(sidecar(path).is_file())
+
+        def accept(dialog):
+            dialog.include_pdf.setChecked(True)
+            self.assertIn(pdf.name, dialog.files_label.text())
+            dialog.answer.setText(dialog.result_text)
+            self.assertTrue(dialog.execute.isEnabled())
+            dialog.execute.click()
+            return dialog.result()
+
+        with patch.object(DeleteDialog, "exec_", accept), patch(
+            "postaszamla.document_actions.move_to_windows_trash", return_value=False
+        ), patch.object(window.appearance, "message", return_value=QMessageBox.Ok):
+            window.remove_document()
+            window.operation[0].result(timeout=8)
+            window.poll_operation()
+        self.assertFalse(any(file.exists() for file in (path, sidecar(path), pdf)))
+        self.assertIsNone(window.current)
+        self.assertTrue(all(label.text() == "—" for label in window.details.values()))
+        self.assertFalse(window.actions["delete"].isEnabled())
+        self.assertIn("0 kísérőlevél", window.count.text())
+        self.assertIsNone(window.preview.viewer.pdf)
+
     def test_about_shows_the_fixed_application_icon(self):
         icons = self.window.appearance.icons
         identity = icons.icon("application").pixmap(32, 32).toImage()
@@ -214,7 +368,7 @@ class QtDesktopTests(TestCase):
             about = self.app.activeModalWidget()
             try:
                 seen.append(about.iconPixmap().toImage())
-                icons.set_theme("Oxygen")
+                icons.set_theme("Crystal SVG")
                 seen.append(about.iconPixmap().toImage())
                 seen.append(about.windowIcon().pixmap(32, 32).toImage())
             finally:
@@ -225,7 +379,7 @@ class QtDesktopTests(TestCase):
         self.assertEqual(seen, [identity] * 3)
 
     def test_live_style_selection_keeps_archive_and_settings(self):
-        from postaszamla.qt.appearance import SURFACES, THEME
+        from postaszamla.qt.appearance import SURFACES
         from postaszamla.qt.settings_dialog import SettingsDialog
 
         keys = {key.casefold() for key in QStyleFactory.keys() if QStyleFactory.create(key) is not None}
@@ -277,7 +431,7 @@ class QtDesktopTests(TestCase):
                     self.assertEqual(active_palette, self.app.palette())
 
     def test_style_cancel_saved_startup_and_missing_json(self):
-        from postaszamla.qt.appearance import Appearance, THEME
+        from postaszamla.qt.appearance import Appearance, SURFACES
         from postaszamla.qt.settings_dialog import SettingsDialog
         from postaszamla.qt.window import MainWindow
 
@@ -306,7 +460,7 @@ class QtDesktopTests(TestCase):
         self.window.close()
         config.unlink()
         self.window = MainWindow(Appearance(self.app), self.base)
-        self.assertEqual(self.app.property("surfaceTheme"), THEME)
+        self.assertEqual(self.app.property("surfaceTheme"), SURFACES[DEFAULT_UI_STYLE])
         self.assertEqual(load_settings(self.base).ui_style, DEFAULT_UI_STYLE)
         self.assertEqual(load_settings(self.base).icon_theme, DEFAULT_ICON_THEME)
 
@@ -318,7 +472,7 @@ class QtDesktopTests(TestCase):
         self.assertEqual(load_settings(self.base).icon_theme, DEFAULT_ICON_THEME)
 
     def test_edpd_sources_and_all_icon_themes(self):
-        from postaszamla.qt.edpd_graphics.icons import APP_ROLES, ASSETS
+        from postaszamla.qt.edpd_graphics.icons import APP_ROLES, ASSETS, CRYSTAL_ICON_THEME
 
         icons = self.window.appearance.icons
         report = json.loads((Path(__file__).resolve().parents[1] / "docs/icon-sources.json").read_text(encoding="utf-8"))
@@ -331,7 +485,7 @@ class QtDesktopTests(TestCase):
             self.assertTrue((ASSETS / "original" / "22" / f"{role}.png").is_file())
         for name, theme in icons.themes.items():
             with self.subTest(theme=name):
-                notice = "crystal-remix" if name == DEFAULT_ICON_THEME else theme["id"]
+                notice = "crystal-remix" if name == CRYSTAL_ICON_THEME else theme["id"]
                 self.assertTrue(any((ASSETS / "notices" / notice).iterdir()))
                 self.assertTrue(theme["license"] and theme["source"])
                 self.assertEqual(icons.set_theme(name), name)
@@ -356,7 +510,7 @@ class QtDesktopTests(TestCase):
                     self.assertEqual(icons.sources[role], name)
                 for role in theme["fallback_roles"]:
                     self.assertFalse(icons.icon(role).pixmap(22, 22).isNull())
-                    self.assertEqual(icons.sources[role], DEFAULT_ICON_THEME)
+                    self.assertEqual(icons.sources[role], CRYSTAL_ICON_THEME)
                 self.assertFalse(icons.icon("open").isNull())
                 self.assertEqual(icons.sources["open"], name)
                 self.assertFalse(icons.icon("pdf-present").isNull())
@@ -407,19 +561,20 @@ class QtDesktopTests(TestCase):
             for row in range(window.table.rowCount()):
                 status = window.table.item(row, 3)
                 present = bool(status.data(Qt.UserRole))
-                role = "pdf-present" if present else "pdf-missing"
-                self.assertEqual(status.text(), "Van" if present else "Nincs")
-                color = status.foreground().color()
-                self.assertEqual(color.green() > color.red(), present)
-                self.assertEqual(pixels(status.icon()), pixels(icons.icon(role)))
+                self.assertEqual(status.text(), "" if present else "Nincs")
+                self.assertEqual(status.textAlignment(), Qt.AlignCenter)
+                if present:
+                    self.assertEqual(pixels(status.icon()), pixels(icons.icon("pdf-present")))
+                else:
+                    self.assertTrue(status.icon().isNull())
                 self.assertEqual(pixels(window.table.item(row, 0).icon()), pixels(icons.icon("docx")))
             return result
 
         start = snapshot()
-        self.assertEqual(set(start), set(APP_ROLES) - {"docx", "pdf-present", "pdf-missing",
+        self.assertEqual(set(start), set(APP_ROLES) - {"docx", "pdf-present",
                                                      "question", "warning", "confirm"})
         collect()
-        themes = icons.choices()[1:]
+        themes = tuple(name for name in icons.choices() if name != icons.name)
         for theme in themes:
             with self.subTest(theme=theme):
                 icons.set_theme(theme)

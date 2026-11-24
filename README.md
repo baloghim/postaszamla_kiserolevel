@@ -1,4 +1,4 @@
-# Postaszámla-kísérőlevél v0.8.0
+# Postaszámla-kísérőlevél v0.9.0
 
 A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi és előnézetben megnyitja a kísérőleveleket. Egy levélhez több számla rögzíthető. A meglévő parancssori program továbbra is közvetlenül JSON-adatokból készít DOCX-et. A költségösszesítő normál Word-táblázat két fejlécsorral, négy szolgáltatási sorral és egy összesítő sorral. A generáláshoz elegendő a Python és a telepített csomagok.
 
@@ -6,8 +6,8 @@ A PySide2 és Qt 5 alapú asztali alkalmazás éves dokumentumtárban böngészi
 
 - [A legfrissebb GitHub-kiadás](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest)
 - [A legfrissebb forráskód ZIP-ben](https://github.com/baloghim/postaszamla_kiserolevel/releases/latest/download/postaszamla-forras.zip)
-- [Hordozható Windows x64 alkalmazás v0.8.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.8.0/Postaszamla-v0.8.0-win64.zip)
-- [A v0.8.0 változásai képernyőképekkel](docs/kiadasok/v0.8.0/README.md)
+- [Hordozható Windows x64 alkalmazás v0.9.0 (ZIP)](https://github.com/baloghim/postaszamla_kiserolevel/releases/download/v0.9.0/Postaszamla-v0.9.0-win64.zip)
+- [A v0.9.0 változásai képernyőképekkel](docs/kiadasok/v0.9.0/README.md)
 
 ## Asztali alkalmazás
 
@@ -23,20 +23,20 @@ py -3.10 -m venv .venv
 
 1. A **Beállítások** ablakban válaszd ki az éves almappákat tartalmazó dokumentumtárat és a hivatali DOCX-sablont. Itt előre megadhatod az ügyintéző, az aláíró és a beosztás alapértékeit.
 2. Az **Új kísérőlevél** ablakban add meg a közös adatokat, majd rögzíts minden számlát külön. A dátumok `ÉÉÉÉ.HH.NN.` vagy `ÉÉÉÉ-HH-NN` alakban adhatók meg. Az időszak, a szolgáltatásonkénti összegek és a fájlnév folyamatosan frissülnek.
-3. A listában év és fájlnév szerint kereshetsz, az oszlopfejlécekkel pedig rendezhetsz. A PDF-jelzés az azonos alapnevű fájl jelenlétét mutatja. A kijelölt DOCX előnézete automatikusan betöltődik.
+3. A listában év és fájlnév szerint kereshetsz, az oszlopfejlécekkel pedig rendezhetsz. A PDF oszlopban az aktív ikontéma PDF-ikonja jelzi az azonos alapnevű, ugyanott található PDF-et. Ha nincs ilyen fájl, „Nincs” jelenik meg. A kijelölt DOCX előnézete automatikusan betöltődik.
 4. A program ellenőrzött adatfájllal rendelkező levelekhez kínál szerkesztést. A belépés és a mentés megerősítést igényel. A régi vagy Wordben utólag módosított DOCX-ek előnézetben és Wordben nyithatók meg.
 
 ### A főablak megjelenése
 
-Az alapbeállításokkal a dokumentumlista és az előnézet egyenlő szélességet kap. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
+Az első indításkor a főablak maximalizált, a bal oldali lista és adatpanel a terület 40%-át, az előnézet 60%-át kapja. Az elválasztó húzható, a felhasználó által beállított helyét az alkalmazás megjegyzi. A „Szélesség” nagyítás követi a panel méretét. A vízszintes görgetősáv akkor jelenik meg, ha a nagyított dokumentum szélesebb a panelnél.
 
-Az alapértelmezett XP Luna Blue arculat a főablakra és a párbeszédablakokra is érvényes. A kék, átmenetes panelcímek, a krémszínű eszköztár és a tagolt állapotsor az EDPD Menedzser 2.6.3 XP Luna Blue megjelenéséhez igazodnak. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Postás zöld főablak](docs/kiadasok/v0.8.0/postas-zold-foablak.png)
+Az alapértelmezett Postás zöld arculat a főablakra és a párbeszédablakokra is érvényes. Az előnézet külön gombokat ad az első, előző, következő és utolsó oldalhoz, a nagyításhoz és a két illesztési módhoz. [Postás zöld főablak](docs/kiadasok/v0.9.0/postas-zold-foablak.png)
 
 Az EDPD Menedzser 2.6.3 tizenkét ikontémája beépítve elérhető. Az eredeti fájlok, a forrásverziók és a témánkénti licencanyagok a csomag részei. [Ikonleltár és helyettesítések](docs/icon-audit.md) · [Eredet és licencek](docs/edpd-grafika.md)
 
 ### Hordozható beállítások
 
-A **Beállítások → Megjelenés** alatt a **Felületi stílus** és az **Ikontéma** külön választható. A beépített Windows XP Luna Blue, Longhorn Blue, Longhorn Slate és Postás zöld mellett az elérhető gyári Qt-stílusok is megjelennek. A **Mentés** azonnal alkalmazza a választásokat, a **Mégse** megőrzi az aktuális beállításokat. A hordozható JSON `ui_style` és `icon_theme` mezői tárolják a választást. Új beállításfájl esetén az alapérték XP Luna Blue és Crystal SVG.
+A **Beállítások → Megjelenés** alatt a **Felületi stílus** és az **Ikontéma** külön választható. A beépített Windows XP Luna Blue, Longhorn Blue, Longhorn Slate és Postás zöld mellett az elérhető gyári Qt-stílusok is megjelennek. A **Mentés** azonnal alkalmazza a választásokat, a **Mégse** megőrzi az aktuális beállításokat. A hordozható JSON `ui_style` és `icon_theme` mezői tárolják a választást. Új beállításfájl esetén az alapérték Postás zöld és Oxygen. A korábban mentett értékek továbbra is érvényesek.
 
 A forrásból a fenti paranccsal indítva a `beallitasok.json` a projekt gyökerébe kerül. A hordozható változat az EXE mellett tárolja. A relatív útvonalak alapja ugyanez a könyvtár. A `beallitasok.example.json` másolható kiindulópontként. Ha a tényleges konfiguráció hiányzik, a program alapbeállításokkal újra létrehozza. Sérült fájlról mentés készül, és az alkalmazás felajánlja a visszaállítást.
 
@@ -52,7 +52,13 @@ Jóváhagyott szerkesztéskor a korábbi DOCX és adatfájl ellenőrzött másol
 
 Windowson a háttérben futó Word COM-automatizálás csak olvasható ideiglenes DOCX-másolatból PDF-et készít. A többoldalas PDF-et a PDFium jeleníti meg. Az alapértelmezett nézet az oldalszélességhez igazodik. Az eredeti Word-fájl és az esetleges meglévő PDF változatlan marad. A Word-alapú előnézet hibája esetén, illetve Linuxon a program szöveges betekintést ad, ha a DOCX olvasható. A megnyitás és a nyomtatás a Windows DOCX-fájltársítását használja; a célgépen ezt állítsd Wordre.
 
-A Qt-felületet Linuxon Full HD felbontásban, a PDF lapozását és nagyítását fiktív kétoldalas PDF-fel ellenőriztük. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek.
+A **PDF generálása** művelethez működő Word COM-regisztráció szükséges. Jóváhagyás után a Word háttérben készíti a PDF-et. A program ellenőrzi, hogy a PDF megnyitható és van oldala, majd az azonos nevű DOCX mellé menti. A közben létrejött PDF-et is megőrzi. A Word 2016 COM-konverzió, az eltérő Windows DPI-beállítások és a nyomtatás célgépes próbát igényelnek.
+
+### Kísérőlevél törlése és visszaállítása
+
+A **Törlés** ablak felsorolja a kijelölt DOCX-et és a hozzá tartozó `*.postaszamla.json` fájlt. A művelethez kézzel kell beírni az összeadás eredményét. A kapcsolódó PDF alaphelyzetben megmarad, a jelölőnégyzet bekapcsolásával vonható be a törlésbe.
+
+A program a fájlokat először a dokumentumtár `.postaszamla-trash` mappájába helyezi át. Windows alatt innen próbálja őket a Lomtárba tenni. Ha a meghajtó vagy a rendszer ezt nem teszi lehetővé, a helyi lomtárban megőrzi a fájlokat, és megmutatja a pontos helyüket. Visszaállításkor a Windows Lomtárból előbb a helyi lomtármappába kerülnek vissza a fájlok. Innen a mappanév elején látható évnek megfelelő éves mappába másold vissza őket, és ellenőrizd az esetleges névütközést. A program külön jelzi a részleges hibát.
 
 ## Parancssori telepítés és mintagenerálás
 

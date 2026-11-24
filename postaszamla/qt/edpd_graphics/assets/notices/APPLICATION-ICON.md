@@ -3,6 +3,8 @@
 The fixed `application.ico` is a format conversion of the existing Postaszámla
 `postaszamla/icons/original/docx.png` artwork. The PNG SHA-256 is
 `f62b637aa8aefe7f2a9086d83e8a8c518bc4b9150ec131a0c55927bef4d47f93`.
+The ICO has 16, 24, 32, 48, 64, 128 and 256 px frames. The 256 px frame
+is an enlargement of the same source PNG.
 
 Artists: Everaldo Coelho / Crystal Project and Viet Dang (Đặng Việt Dũng) /
 Crystal Remix. The upstream Crystal Remix statement specifies the GNU LGPL

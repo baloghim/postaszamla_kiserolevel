@@ -10,8 +10,8 @@ from uuid import uuid4
 
 from .template import DEFAULT_TEMPLATE
 
-DEFAULT_UI_STYLE = "xp-luna-blue"
-DEFAULT_ICON_THEME = "Crystal SVG"
+DEFAULT_UI_STYLE = "postas-zold"
+DEFAULT_ICON_THEME = "Oxygen"
 
 
 class InvalidSettings(ValueError):

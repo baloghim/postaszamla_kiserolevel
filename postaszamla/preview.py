@@ -1,12 +1,35 @@
 import os
+import re
 import shutil
 import sys
 from contextlib import closing
 from math import nextafter
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from threading import RLock
 
 from docx import Document
+
+
+PDFIUM_LOCK = RLock()
+
+
+def word_pdf_available() -> bool:
+    if sys.platform != "win32":
+        return False
+    import winreg
+    try:
+        import pythoncom
+        import win32com.client
+        import pypdfium2
+        with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT, r"Word.Application\CLSID") as key:
+            clsid = winreg.QueryValue(key, None)
+        with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT, rf"CLSID\{clsid}\LocalServer32") as key:
+            command = winreg.QueryValue(key, None).strip()
+        match = re.match(r'(?i)(?:"([^"]+)"|(.+?\.exe)(?:\s|$))', command)
+        return bool(match and Path(os.path.expandvars(match[1] or match[2])).is_file())
+    except (ImportError, OSError, RuntimeError):
+        return False
 
 
 def word_pdf(source: Path) -> bytes:
@@ -68,7 +91,7 @@ def prepare_preview(path: Path) -> tuple[str, bytes | str]:
 def render_pdf(data: bytes, page: int, zoom: str, width: int, height: int):
     import pypdfium2
 
-    with pypdfium2.PdfDocument(data) as document, closing(document[page]) as current:
+    with PDFIUM_LOCK, pypdfium2.PdfDocument(data) as document, closing(document[page]) as current:
         page_width, page_height = current.get_size()
         scale = width / page_width
         if zoom == "Teljes oldal":

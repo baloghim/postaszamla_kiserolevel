@@ -33,7 +33,7 @@ def smoke_test() -> None:
     from postaszamla.archive import read_record, save_record
     from postaszamla.models import Cost, Costs
     from postaszamla.qt.app import create_application
-    from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, SURFACES, THEME
+    from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, SURFACES
     from postaszamla.qt.edpd_graphics.icons import APP_ROLES
     from postaszamla.qt.window import MainWindow
     from postaszamla.records import Invoice, Record
@@ -46,8 +46,10 @@ def smoke_test() -> None:
     startup = MainWindow(appearance, original_base)
     startup.showMaximized()
     app.processEvents()
-    if not startup.isVisible() or qVersion() != "5.15.2" or app.property("surfaceTheme") != THEME:
-        raise RuntimeError("A Qt 5 Luna főablak nem jelent meg.")
+    if not startup.isVisible() or qVersion() != "5.15.2" or app.property("surfaceTheme") != SURFACES[DEFAULT_UI_STYLE]:
+        raise RuntimeError("A Qt 5 főablak nem a várt alapbeállítással jelent meg.")
+    if startup.appearance.icons.name != DEFAULT_ICON_THEME:
+        raise RuntimeError("A csomagolt kiadás alapértelmezett ikontémája hibás.")
     if not (original_base / "beallitasok.json").is_file():
         raise FileNotFoundError("A beállítások nem az EXE mellett jöttek létre.")
     for key, label in FACTORY_STYLES:
@@ -109,7 +111,7 @@ def smoke_test() -> None:
             dialog = window.open_editor()
             app.processEvents()
             if not dialog.isVisible() or dialog.style().objectName() != window.style().objectName():
-                raise RuntimeError("Az Új kísérőlevél ablak nem jelent meg Luna stílusban.")
+                raise RuntimeError("Az Új kísérőlevél ablak nem jelent meg az alapértelmezett stílusban.")
             dialog.reject()
         finally:
             window.close()

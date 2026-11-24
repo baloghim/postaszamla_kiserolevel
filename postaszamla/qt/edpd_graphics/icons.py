@@ -12,9 +12,10 @@ from postaszamla.settings import DEFAULT_ICON_THEME
 ASSETS = Path(__file__).resolve().parent / "assets"
 APPLICATION_ICON = "application.ico"
 ICON_ROLE = "postaszamlaIconRole"
+CRYSTAL_ICON_THEME = "Crystal SVG"
 
 ALIASES = {
-    "pdf-present": "pdf", "pdf-missing": "warning", "invoice-delete": "delete",
+    "pdf-present": "pdf", "generate-pdf": "pdf", "invoice-delete": "delete",
     "zoom-in": "zoom_in", "zoom-out": "zoom_out", "fit-width": "width", "fit-page": "page",
 }
 STANDARD = {
@@ -30,7 +31,7 @@ STANDARD = {
 }
 APP_ROLES = (
     "new", "edit", "open", "print", "refresh", "settings", "about", "help",
-    "docx", "pdf-present", "pdf-missing", "invoice-add", "invoice-delete",
+    "docx", "pdf-present", "generate-pdf", "invoice-add", "invoice-delete",
     "save", "cancel", "confirm", "question", "warning", "first", "previous", "next", "last",
     "zoom-in", "zoom-out", "fit-width", "fit-page", "clear-input",
     "undo", "redo", "cut", "copy", "paste", "delete", "select-all",
@@ -56,7 +57,7 @@ class IconThemeManager(QObject):
 
     def choices(self):
         return tuple(name for name, record in self.themes.items()
-                     if name == DEFAULT_ICON_THEME or (self.root / "themes" / record["id"]).is_dir())
+                     if name == CRYSTAL_ICON_THEME or (self.root / "themes" / record["id"]).is_dir())
 
     def set_theme(self, name):
         if name not in self.choices():
@@ -82,7 +83,7 @@ class IconThemeManager(QObject):
         if extra and (self.root / extra["icon"]).is_file():
             return [extra["icon"]]
         record = self.themes[theme]
-        if theme == DEFAULT_ICON_THEME:
+        if theme == CRYSTAL_ICON_THEME:
             paths = [f"icons/{size}/{asset_role}.png" for size in (22, 32, 48)]
         elif asset_role in record["icons"]:
             paths = [f"themes/{record['id']}/{size}/{asset_role}.png" for size in (22, 40)]
@@ -96,7 +97,7 @@ class IconThemeManager(QObject):
             return {"kind": "fixed", "source": "Postaszámla", "paths": [APPLICATION_ICON]}
         canonical = ALIASES.get(role, role)
         if role not in self.provenance:
-            for theme in dict.fromkeys((self.name, DEFAULT_ICON_THEME)):
+            for theme in dict.fromkeys((self.name, CRYSTAL_ICON_THEME)):
                 if paths := self.themed_paths(theme, role, canonical):
                     return {"kind": "theme" if theme == self.name else "crystal", "source": theme, "paths": paths}
             if standard := STANDARD.get(canonical):
