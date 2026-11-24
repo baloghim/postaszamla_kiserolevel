@@ -10,6 +10,8 @@ from uuid import uuid4
 
 from .template import DEFAULT_TEMPLATE
 
+DEFAULT_UI_STYLE = "xp-luna-blue"
+
 
 class InvalidSettings(ValueError):
     pass
@@ -52,6 +54,7 @@ class Settings:
     columns: tuple[int, ...] = (330, 155, 66, 78)
     zoom: str = "Szélesség"
     last_year: str = ""
+    ui_style: str = DEFAULT_UI_STYLE
 
     def resolve(self, base: Path, value: str) -> Path:
         return base / Path(value).expanduser()

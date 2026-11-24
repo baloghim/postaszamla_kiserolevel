@@ -11,5 +11,6 @@
   "list_sash": 0,
   "columns": [330, 155, 66, 78],
   "zoom": "Szélesség",
-  "last_year": ""
+  "last_year": "",
+  "ui_style": "xp-luna-blue"
 }

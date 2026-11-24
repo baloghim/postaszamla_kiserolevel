@@ -57,7 +57,7 @@ def verify(package: Path, directory: Path) -> None:
         if missing := expected_icons - set(archive.namelist()):
             raise RuntimeError(f"Az ikoncsomag hiányos: {', '.join(sorted(missing))}")
         filenames = {Path(name).name.casefold() for name in archive.namelist()}
-        for required in ("qt5core.dll", "qt5widgets.dll", "qwindows.dll"):
+        for required in ("qt5core.dll", "qt5widgets.dll", "qwindows.dll", "qwindowsvistastyle.dll"):
             if required not in filenames:
                 raise RuntimeError(f"A Windows Qt 5-csomagból hiányzik: {required}")
         archive.extractall(directory)

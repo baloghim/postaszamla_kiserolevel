@@ -1,10 +1,13 @@
 from dataclasses import replace
 
 from PySide2.QtWidgets import (
-    QDialog, QDialogButtonBox, QFileDialog, QGridLayout, QLabel, QLineEdit, QMessageBox, QPushButton, QVBoxLayout,
+    QComboBox, QDialog, QDialogButtonBox, QFileDialog, QFormLayout, QGridLayout, QGroupBox,
+    QLabel, QLineEdit, QMessageBox, QPushButton, QVBoxLayout,
 )
 
-from postaszamla.settings import Settings
+from postaszamla.settings import DEFAULT_UI_STYLE, Settings
+
+from .appearance import style_choices
 
 
 class SettingsDialog(QDialog):
@@ -34,6 +37,15 @@ class SettingsDialog(QDialog):
         hint = QLabel("Az üres Word-sablon mező a mellékelt fiktív sablont használja.")
         hint.setWordWrap(True)
         layout.addWidget(hint)
+        appearance = QGroupBox("Megjelenés")
+        appearance_form = QFormLayout(appearance)
+        self.style_choice = QComboBox()
+        for key, label in style_choices():
+            self.style_choice.addItem(label, key)
+        index = self.style_choice.findData(settings.ui_style)
+        self.style_choice.setCurrentIndex(max(0, index))
+        appearance_form.addRow("Felületi stílus", self.style_choice)
+        layout.addWidget(appearance)
         buttons = QDialogButtonBox()
         buttons.addButton("Mentés", QDialogButtonBox.AcceptRole)
         buttons.addButton("Mégse", QDialogButtonBox.RejectRole)
@@ -60,27 +72,34 @@ class SettingsDialog(QDialog):
         defaults = Settings()
         for name, field in self.fields.items():
             field.setText(getattr(defaults, name))
+        self.style_choice.setCurrentIndex(self.style_choice.findData(DEFAULT_UI_STYLE))
 
     def save(self):
-        values = {key: field.text().strip() for key, field in self.fields.items()}
+        values = {key: field.text().strip() for key, field in self.fields.items()
+                  if self.reset_requested or field.text() != getattr(self.settings, key)}
+        values["ui_style"] = self.style_choice.currentData()
         updated = replace(Settings() if self.reset_requested else self.settings, **values)
         try:
-            if not updated.archive:
-                raise ValueError("Adja meg a dokumentumtár gyökérmappáját.")
-            archive = updated.archive_path(self.base)
-            if archive == Settings().archive_path(self.base):
-                archive.mkdir(exist_ok=True)
-            if not archive.is_dir():
-                raise ValueError("A dokumentumtár nem érhető el.")
-            next(archive.iterdir(), None)
-            template = updated.template_path(self.base)
-            if template.suffix.casefold() != ".docx" or not template.is_file():
-                raise ValueError("A megadott DOCX-sablon nem érhető el.")
-            with template.open("rb"):
-                pass
+            if self.reset_requested or values.keys() & {"archive", "template"}:
+                self.validate_paths(updated)
             updated.save(self.base)
         except (OSError, ValueError) as error:
             QMessageBox.critical(self, "Beállítások", str(error))
             return
         self.settings = updated
         self.accept()
+
+    def validate_paths(self, settings):
+        if not settings.archive:
+            raise ValueError("Adja meg a dokumentumtár gyökérmappáját.")
+        archive = settings.archive_path(self.base)
+        if archive == Settings().archive_path(self.base):
+            archive.mkdir(exist_ok=True)
+        if not archive.is_dir():
+            raise ValueError("A dokumentumtár nem érhető el.")
+        next(archive.iterdir(), None)
+        template = settings.template_path(self.base)
+        if template.suffix.casefold() != ".docx" or not template.is_file():
+            raise ValueError("A megadott DOCX-sablon nem érhető el.")
+        with template.open("rb"):
+            pass

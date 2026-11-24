@@ -17,21 +17,29 @@ def smoke_test() -> None:
     from postaszamla.archive import read_record, save_record
     from postaszamla.models import Cost, Costs
     from postaszamla.qt.app import create_application
-    from postaszamla.qt.appearance import Appearance, THEME
+    from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, THEME
     from postaszamla.qt.window import MainWindow
     from postaszamla.records import Invoice, Record
-    from postaszamla.settings import program_directory
+    from postaszamla.settings import DEFAULT_UI_STYLE, program_directory
     from postaszamla.template import DEFAULT_TEMPLATE
 
     app = create_application()
     original_base = program_directory()
-    startup = MainWindow(Appearance(app), original_base)
+    appearance = Appearance(app)
+    startup = MainWindow(appearance, original_base)
     startup.showMaximized()
     app.processEvents()
     if not startup.isVisible() or qVersion() != "5.15.2" or app.property("surfaceTheme") != THEME:
         raise RuntimeError("A Qt 5 Luna főablak nem jelent meg.")
     if not (original_base / "beallitasok.json").is_file():
         raise FileNotFoundError("A beállítások nem az EXE mellett jöttek létre.")
+    for key, label in FACTORY_STYLES:
+        appearance.apply(key)
+        if app.style().objectName().casefold() != key or app.styleSheet():
+            raise RuntimeError(f"A csomagolt Qt 5 stílus nem tölthető be: {label}.")
+    appearance.apply(DEFAULT_UI_STYLE)
+    if app.property("surfaceTheme") != THEME or not app.styleSheet():
+        raise RuntimeError("A Luna felület nem állt vissza.")
     startup.close()
 
     zero = Cost(0, 0)

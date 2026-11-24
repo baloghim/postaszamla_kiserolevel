@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 import sys
@@ -8,12 +9,12 @@ from unittest.mock import patch
 try:
     from PySide2.QtCore import QDate, Qt, qVersion
     from PySide2.QtGui import QColor, QPainter, QPalette, QPdfWriter
-    from PySide2.QtWidgets import QApplication, QMessageBox
+    from PySide2.QtWidgets import QApplication, QDialogButtonBox, QMessageBox, QStyleFactory
 except ImportError:
     QApplication = None
 
 from postaszamla.archive import read_record, save_record
-from postaszamla.settings import Settings, load_settings
+from postaszamla.settings import DEFAULT_UI_STYLE, Settings, load_settings
 from postaszamla.template import DEFAULT_TEMPLATE
 
 from test_desktop import INVOICE, LETTER, SECOND
@@ -162,3 +163,91 @@ class QtDesktopTests(TestCase):
         second = viewer.label.pixmap().toImage()
         self.assertEqual(second.pixelColor(second.width() // 2, second.height() // 2), QColor(Qt.blue))
         self.assertFalse(viewer.scroll.horizontalScrollBar().isVisible())
+
+        self.window.appearance.apply("windows")
+        self.app.processEvents()
+        self.assertEqual(viewer.page_label.text(), "2 / 2")
+        page = viewer.label.pixmap().toImage()
+        self.assertEqual(page.pixelColor(page.width() // 2, page.height() // 2), QColor(Qt.blue))
+
+    def test_live_style_selection_keeps_archive_and_settings(self):
+        from postaszamla.qt.appearance import THEME
+        from postaszamla.qt.settings_dialog import SettingsDialog
+
+        keys = {key.casefold() for key in QStyleFactory.keys() if QStyleFactory.create(key) is not None}
+        styles = ["fusion", "windows"]
+        if "windowsvista" in keys:
+            styles.append("windowsvista")
+        before = load_settings(self.base)
+        self.assertFalse(self.window.archive.exists())
+        luna_palette = self.app.palette()
+        luna_stylesheet = self.app.styleSheet()
+        editor = self.window.open_editor()
+        confirmation = QMessageBox(self.window)
+
+        for style in (*styles, DEFAULT_UI_STYLE, *reversed(styles), DEFAULT_UI_STYLE):
+            with self.subTest(style=style):
+                def choose(dialog):
+                    self.assertEqual([dialog.style_choice.itemData(i) for i in range(dialog.style_choice.count())],
+                                     [DEFAULT_UI_STYLE, *styles])
+                    dialog.style_choice.setCurrentIndex(dialog.style_choice.findData(style))
+                    dialog.findChild(QDialogButtonBox).accepted.emit()
+                    return dialog.result()
+
+                with patch.object(SettingsDialog, "exec_", choose), patch.object(self.window, "reload") as reload:
+                    self.window.configure()
+                    self.app.processEvents()
+                    reload.assert_not_called()
+                self.assertFalse(self.window.archive.exists())
+                before.ui_style = style
+                self.assertEqual(load_settings(self.base), before)
+                self.assertEqual(self.window.appearance.current_style, style)
+                for widget in (self.window, self.window.table, self.window.preview.viewer, editor, confirmation):
+                    self.assertEqual(widget.style().objectName(), self.app.style().objectName())
+                opened = SettingsDialog(self.window.settings, self.base)
+                self.assertEqual(opened.style().objectName(), self.app.style().objectName())
+                self.assertEqual(opened.style_choice.currentData(), style)
+                if style == DEFAULT_UI_STYLE:
+                    self.assertEqual(self.app.property("surfaceTheme"), THEME)
+                    self.assertEqual(self.app.styleSheet(), luna_stylesheet)
+                    self.assertEqual(self.app.palette(), luna_palette)
+                else:
+                    self.assertEqual(self.app.style().objectName().casefold(), style)
+                    self.assertEqual(self.app.styleSheet(), "")
+                    active_palette = self.app.palette()
+                    self.app.setPalette(self.app.style().standardPalette())
+                    self.assertEqual(active_palette, self.app.palette())
+
+    def test_style_cancel_saved_startup_and_missing_json(self):
+        from postaszamla.qt.appearance import Appearance, THEME
+        from postaszamla.qt.settings_dialog import SettingsDialog
+        from postaszamla.qt.window import MainWindow
+
+        config = self.base / "beallitasok.json"
+        before = config.read_bytes()
+
+        def cancel(dialog):
+            dialog.style_choice.setCurrentIndex(dialog.style_choice.findData("windows"))
+            dialog.findChild(QDialogButtonBox).rejected.emit()
+            return dialog.result()
+
+        with patch.object(SettingsDialog, "exec_", cancel):
+            self.window.configure()
+        self.assertEqual(config.read_bytes(), before)
+        self.assertEqual(self.window.appearance.current_style, DEFAULT_UI_STYLE)
+
+        self.window.settings.ui_style = "windows"
+        self.window.close()
+        self.window = MainWindow(Appearance(self.app), self.base)
+        self.assertEqual(self.window.appearance.current_style, "windows")
+        self.assertEqual(self.app.style().objectName().casefold(), "windows")
+        self.window.close()
+        config.unlink()
+        self.window = MainWindow(Appearance(self.app), self.base)
+        self.assertEqual(self.app.property("surfaceTheme"), THEME)
+        self.assertEqual(load_settings(self.base).ui_style, DEFAULT_UI_STYLE)
+
+        legacy = json.loads(before)
+        del legacy["ui_style"]
+        config.write_text(json.dumps(legacy), encoding="utf-8")
+        self.assertEqual(load_settings(self.base).ui_style, DEFAULT_UI_STYLE)

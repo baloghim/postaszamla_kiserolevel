@@ -18,7 +18,7 @@ from .editor import LetterDialog
 from .settings_dialog import SettingsDialog
 from .viewer import Preview
 
-VERSION = "0.5.0"
+VERSION = "0.6.0"
 
 
 def period_label(dates):
@@ -35,6 +35,7 @@ class MainWindow(QMainWindow):
         self.appearance, self.base = appearance, Path(base)
         self.settings_writable = True
         self.settings = self.start_settings()
+        appearance.apply(self.settings.ui_style)
         self.visible_rows = []
         self.current = None
         self.metadata = None
@@ -348,9 +349,12 @@ class MainWindow(QMainWindow):
 
     def configure(self):
         dialog = SettingsDialog(self.settings, self.base, self)
-        if dialog.exec_() == QDialog.Accepted:
+        accepted = dialog.exec_() == QDialog.Accepted
+        if accepted:
+            previous_archive = self.archive
             self.settings = dialog.settings
             self.settings_writable = True
+            self.appearance.apply(self.settings.ui_style)
             if dialog.reset_requested:
                 self.sash_moved = False
                 self.preview.viewer.set_zoom(self.settings.zoom)
@@ -358,7 +362,9 @@ class MainWindow(QMainWindow):
                     self.table.setColumnWidth(column, width)
                 self.showMaximized()
                 QTimer.singleShot(0, self.restore_panels)
-            self.reload()
+            if self.archive != previous_archive:
+                self.reload()
+        dialog.deleteLater()
 
     def closeEvent(self, event):
         self.search_timer.stop()
