@@ -55,7 +55,8 @@ def capture(output):
         del writer
 
         window = MainWindow(appearance, base)
-        window.resize(1200, 760)
+        screen = app.primaryScreen().availableGeometry()
+        window.resize(min(1200, screen.width() - 24), min(760, screen.height() - 40))
         window.show()
         app.processEvents()
         window.restore_panels()
@@ -65,12 +66,14 @@ def capture(output):
         assert window.preview.viewer.pdf is not None
         choices = style_choices()
         assert [key for key, _ in choices] == ["xp-luna-blue", "fusion", "windows", "windowsvista"]
+        size = window.size()
+        print(f"Windows widget: {size.width()} × {size.height()}, DPR: {window.devicePixelRatioF()}")
         for key, _ in choices:
             appearance.apply(key)
             app.processEvents()
             shot = window.grab()
-            assert shot.width() == 1200 and shot.height() == 760
-            assert shot.save(str(output / f"{key}.png"))
+            assert window.size() == size, f"A(z) {key} ablakmérete megváltozott: {window.size()}."
+            assert shot.save(str(output / f"{key}.png")), f"A(z) {key} képernyőkép nem menthető."
 
         appearance.apply("xp-luna-blue")
         dialog = SettingsDialog(window.settings, base, window)

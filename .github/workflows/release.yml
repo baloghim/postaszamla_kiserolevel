@@ -102,8 +102,20 @@ jobs:
         if: github.ref == 'refs/heads/migration/qt5-production'
         shell: pwsh
         run: |
-          $PSNativeCommandUseErrorActionPreference = $true
-          python packaging/capture_styles.py docs/kiadasok/v0.6.0
-          git add -- 'docs/kiadasok/v0.6.0/*.png'
-          git -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Capture all four Qt styles on the Windows runner'
-          git push origin "HEAD:$env:GITHUB_REF"
+          $PSNativeCommandUseErrorActionPreference = $false
+          $details = & {
+            python packaging/capture_styles.py docs/kiadasok/v0.6.0
+            if ($LASTEXITCODE -ne 0) { return }
+            git add -- 'docs/kiadasok/v0.6.0/*.png'
+            if ($LASTEXITCODE -ne 0) { return }
+            git -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Capture all four Qt styles on the Windows runner'
+            if ($LASTEXITCODE -ne 0) { return }
+            git push origin "HEAD:$env:GITHUB_REF"
+          } 2>&1
+          $result = $LASTEXITCODE
+          $details | ForEach-Object { Write-Host $_ }
+          if ($result -ne 0) {
+            $summary = ($details | Select-Object -Last 20) -join "%0A"
+            Write-Host "::error::$summary"
+            exit $result
+          }
