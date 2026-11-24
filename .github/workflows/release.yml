@@ -40,7 +40,7 @@ jobs:
           $result = $LASTEXITCODE
           $tests | ForEach-Object { Write-Host $_ }
           if ($result -ne 0) {
-            $summary = ($tests | Select-Object -Last 28) -join "%0A"
+            $summary = ($tests | Select-Object -Last 50) -join "%0A"
             Write-Host "::error::$summary"
             exit $result
           }

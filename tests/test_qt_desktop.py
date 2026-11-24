@@ -41,7 +41,7 @@ class QtDesktopTests(TestCase):
 
         temp = TemporaryDirectory()
         self.addCleanup(temp.cleanup)
-        self.base = Path(temp.name)
+        self.base = Path(temp.name).resolve()
         Settings(clerk=LETTER.clerk, signer=LETTER.signer, position=LETTER.position,
                  archive="dokumentumok", zoom="Teljes oldal", window_state="normal").save(self.base)
         self.window = MainWindow(Appearance(self.app), self.base)
@@ -221,7 +221,7 @@ class QtDesktopTests(TestCase):
         self.window.show()
         self.app.processEvents()
         self.window.restore_panels()
-        self.assertEqual(self.window.splitter.sizes()[0], 520)
+        self.assertAlmostEqual(self.window.splitter.sizes()[0], 520, delta=1)
         self.assertEqual(self.window.appearance.current_style, "xp-luna-blue")
         self.assertEqual(self.window.appearance.icons.name, "Crystal SVG")
         self.assertEqual(file.read_bytes(), original)

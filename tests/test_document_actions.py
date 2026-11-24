@@ -17,7 +17,7 @@ class DocumentActionsTests(TestCase):
     def setUp(self):
         directory = TemporaryDirectory()
         self.addCleanup(directory.cleanup)
-        self.root = Path(directory.name)
+        self.root = Path(directory.name).resolve()
         self.folder = self.root / "2026"
         self.folder.mkdir()
         self.docx = self.folder / "Minta levél.docx"
