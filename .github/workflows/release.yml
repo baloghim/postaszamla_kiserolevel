@@ -32,7 +32,8 @@ jobs:
         shell: pwsh
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
-          python -m pip install --only-binary=:all: ".[desktop]" "PyInstaller==6.11.1" "pyinstaller-hooks-contrib==2024.10"
+          python -m pip install --only-binary=:all: ".[desktop,edpd-compat]" "PyInstaller==6.11.1" "pyinstaller-hooks-contrib==2024.10"
+          python -c "import fitz; assert fitz.VersionBind == '1.23.26'"
           $PSNativeCommandUseErrorActionPreference = $false
           $tests = python -m unittest discover -s tests -v 2>&1
           $result = $LASTEXITCODE

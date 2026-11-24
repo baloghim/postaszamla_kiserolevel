@@ -17,10 +17,10 @@ def smoke_test() -> None:
     from postaszamla.archive import read_record, save_record
     from postaszamla.models import Cost, Costs
     from postaszamla.qt.app import create_application
-    from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, THEME
+    from postaszamla.qt.appearance import Appearance, FACTORY_STYLES, SURFACES, THEME
     from postaszamla.qt.window import MainWindow
     from postaszamla.records import Invoice, Record
-    from postaszamla.settings import DEFAULT_UI_STYLE, program_directory
+    from postaszamla.settings import DEFAULT_ICON_THEME, DEFAULT_UI_STYLE, program_directory
     from postaszamla.template import DEFAULT_TEMPLATE
 
     app = create_application()
@@ -37,9 +37,19 @@ def smoke_test() -> None:
         appearance.apply(key)
         if app.style().objectName().casefold() != key or app.styleSheet():
             raise RuntimeError(f"A csomagolt Qt 5 stílus nem tölthető be: {label}.")
-    appearance.apply(DEFAULT_UI_STYLE)
-    if app.property("surfaceTheme") != THEME or not app.styleSheet():
-        raise RuntimeError("A Luna felület nem állt vissza.")
+    for key, label in SURFACES.items():
+        appearance.apply(key)
+        if app.property("surfaceTheme") != label or not app.styleSheet():
+            raise RuntimeError(f"A csomagolt EDPD stílus nem tölthető be: {label}.")
+    themes = appearance.icons.choices()
+    if len(themes) != 12:
+        raise RuntimeError("A csomagolt ikontémák száma eltér a várt tizenkettőtől.")
+    for theme in themes:
+        appearance.apply(appearance.current_style, theme)
+        graphic = appearance.icon("refresh").pixmap(22, 22)
+        if graphic.isNull() or appearance.icons.sources["refresh"] != theme:
+            raise RuntimeError(f"A csomagolt ikontéma nem tölthető be: {theme}.")
+    appearance.apply(DEFAULT_UI_STYLE, DEFAULT_ICON_THEME)
     startup.close()
 
     zero = Cost(0, 0)

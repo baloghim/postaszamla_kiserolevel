@@ -1,0 +1,54 @@
+EDPD Menedzser
+
+A projekt saját kódjára a jogtulajdonos még nem választott terjesztési licencet.
+Ez a fájl nem ad külön felhasználási vagy terjesztési engedélyt.
+
+Külső komponensek:
+- PySide2 / Qt: LGPLv3, GPLv3 vagy kereskedelmi licenc, a komponens feltételei szerint.
+  https://doc.qt.io/qtforpython-6/licenses.html
+- PyMuPDF / MuPDF: GNU AGPLv3 vagy Artifex kereskedelmi licenc.
+  https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright
+- PyInstaller: GPLv2 a terjesztett alkalmazásra vonatkozó kivétellel.
+  https://pyinstaller.org/en/stable/license.html
+
+Terjesztés előtt a jogtulajdonos rendezze a saját kód és a csomagolt
+függőségek licencelését, valamint a szükséges licencszövegek átadását.
+
+Crystal Remix ikonok:
+- Eredeti Crystal Project / Crystal Clear ikonok: Everaldo Coelho.
+- Crystal Remix: Viet Dang (Đặng Việt Dũng).
+- https://github.com/dangvd/crystal-remix-icon-theme
+- GNU Lesser General Public License (LGPL), az upstream README nem rögzít verziót.
+- Az upstream README változatlan másolata és a LGPL 2.1 / LGPL 3.0
+  licencszövegek: licenses/crystal-remix/. Nem állítunk az upstream által
+  meg nem adott konkrét licencverziót.
+- Az EDPD színezett és kombinált származékokat is tartalmaz; a módosítások,
+  eredeti fájlok és újragenerálás: docs/ICONS.md és scripts/generate_icons.py.
+
+EDPD 2.4 további belső ikontémák (válogatott, eredeti upstream fájlok):
+- Nuvola: David Vignoni, LGPL-2.1-or-later; licenses/nuvola/.
+- KDE Modern Classic: Shaun Belcher, LGPL-3.0-or-later; történeti KDE Classic
+  elemekhez külön megengedő feltételek; licenses/modern-classic/. Az upstream
+  AI-segített rekonstrukcióként ismerteti a témát; a teljes tájékoztatást megőrizzük.
+- Papirus: Papirus Development Team, GPL-3.0; licenses/papirus/.
+- We10X: yeyushengfan258, Ubuntu Yaru közreműködők, GPL-3.0; licenses/we10x/.
+Pontos fájleredet, commitok, SHA-256, módosítások és licencértelmezés:
+assets/themes.json és docs/ICON-THEMES.md.
+
+EDPD 2.6.1 további válogatott ikonok:
+- Oxygen: The Oxygen Team, LGPL-3.0-or-later; licenses/oxygen/.
+- Win10Sur: yeyushengfan258, OSX_ONE kredit, GPL-3.0; licenses/win10sur/.
+- Oxylite: mx-2, Oxygen és Adwaita alkotók, fájlonként LGPL-3.0 / LGPL-3.0-or-later; licenses/oxylite/licenses.yml.
+- WhiteSur: Vince Liuice, GPL-3.0; licenses/whitesur/.
+- Diagonal: Tamás Csaba és a megőrzött upstream kreditek, ikonok CC-BY-4.0; licenses/diagonal/.
+- Modern Office Day: DrMcC0y, Breeze/Mint Breeze Light és a megőrzött alapforrások, GPL-3.0; licenses/modern-office/.
+Az azonos témán belüli eredeti mappa/törlésjelvény összetételeket és a PNG-konverziókat a manifest jelöli.
+A 2.6.1-be SE98 és Buuf For Many Desktops nem került be. Részletes ellenőrzés: docs/ICON-THEME-AUDIT-2.6.1.md.
+
+EDPD 2.6.2: SE98 válogatott ikonok, a felhasználó kifejezett kérésére.
+- Forrás: https://github.com/nestoris/Win98SE
+- Eredet az upstream szerint: nestoris, Microsoft Memphis / Windows 98 SE, ME, 2000, Chicago95, Faenza.
+- A tároló GPL-2.0 nyilatkozata megőrizve: licenses/se98/LICENSE.
+- Az egyedi Microsoft-eredetű fájlok továbbterjesztési jogát nem minősítjük igazoltnak.
+- A beépítés nem keletkeztet új engedélyt. Eredeti README, someicons.md és EDPD módosításjelzés: licenses/se98/.
+- Fájlútvonalak, commit, SHA-256 és fallback: assets/themes.json, docs/ICON-THEME-AUDIT-2.6.2.md.

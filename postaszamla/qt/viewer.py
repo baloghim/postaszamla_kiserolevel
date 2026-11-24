@@ -96,21 +96,20 @@ class DocumentViewer(QWidget):
             ("next", "Következő oldal", lambda: self.move(self.page + 1)),
             ("last", "Utolsó oldal", lambda: self.move(len(self.pdf) - 1) if self.pdf else None),
         ):
-            self.navigation.append(bar.addAction(appearance.icon(icon), text, action))
+            self.navigation.append(appearance.action(bar, icon, text, action))
         self.page_label = QLabel("—")
         self.page_label.setMinimumWidth(48)
         self.page_label.setAlignment(Qt.AlignCenter)
         bar.addWidget(self.page_label)
         bar.addSeparator()
         self.scale_actions = [
-            bar.addAction(appearance.icon("zoom-out"), "Kicsinyítés", lambda: self.step_zoom(-1)),
-            bar.addAction(appearance.icon("zoom-in"), "Nagyítás", lambda: self.step_zoom(1)),
+            appearance.action(bar, "zoom-out", "Kicsinyítés", lambda: self.step_zoom(-1)),
+            appearance.action(bar, "zoom-in", "Nagyítás", lambda: self.step_zoom(1)),
         ]
         self.fit_actions = {}
         for icon, text in (("fit-width", "Szélesség"), ("fit-page", "Teljes oldal")):
-            action = bar.addAction(appearance.icon(icon), text)
+            action = appearance.action(bar, icon, text, lambda checked=False, mode=text: self.set_zoom(mode))
             action.setCheckable(True)
-            action.triggered.connect(lambda checked=False, mode=text: self.set_zoom(mode))
             bar.widgetForAction(action).setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
             self.fit_actions[text] = action
         self.zoom = appearance.combo()

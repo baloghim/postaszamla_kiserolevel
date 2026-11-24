@@ -11,6 +11,7 @@ from uuid import uuid4
 from .template import DEFAULT_TEMPLATE
 
 DEFAULT_UI_STYLE = "xp-luna-blue"
+DEFAULT_ICON_THEME = "Crystal SVG"
 
 
 class InvalidSettings(ValueError):
@@ -55,6 +56,7 @@ class Settings:
     zoom: str = "Szélesség"
     last_year: str = ""
     ui_style: str = DEFAULT_UI_STYLE
+    icon_theme: str = DEFAULT_ICON_THEME
 
     def resolve(self, base: Path, value: str) -> Path:
         return base / Path(value).expanduser()

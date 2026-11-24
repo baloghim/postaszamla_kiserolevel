@@ -110,6 +110,8 @@ def show_amounts(table, costs):
 class LetterDialog(QDialog):
     def __init__(self, appearance, settings, save, parent=None, record=None):
         super().__init__(parent)
+        self.appearance = appearance
+        appearance.icons.bind(self, "edit" if record else "new", "setWindowIcon")
         self.save_record = save
         self.editing = record is not None
         self.saved_path = None
@@ -145,10 +147,9 @@ class LetterDialog(QDialog):
         self.feedback.setTextFormat(Qt.PlainText)
         row.addWidget(self.feedback, 1)
         buttons = QDialogButtonBox()
-        save_button = buttons.addButton("Mentés", QDialogButtonBox.AcceptRole)
-        save_button.setIcon(appearance.icon("docx"))
+        appearance.icons.bind(buttons.addButton("Mentés", QDialogButtonBox.AcceptRole), "save")
         buttons.accepted.connect(self.submit)
-        buttons.addButton("Mégse", QDialogButtonBox.RejectRole)
+        appearance.icons.bind(buttons.addButton("Mégse", QDialogButtonBox.RejectRole), "cancel")
         buttons.rejected.connect(self.reject)
         row.addWidget(buttons)
         layout.addLayout(row)
@@ -187,10 +188,10 @@ class LetterDialog(QDialog):
         self.tabs = QTabBar()
         self.tabs.setExpanding(False)
         top.addWidget(self.tabs, 1)
-        add = QPushButton(appearance.icon("new"), "Számla hozzáadása")
+        add = appearance.icons.bind(QPushButton("Számla hozzáadása"), "invoice-add")
         add.clicked.connect(self.add_invoice)
         top.addWidget(add)
-        self.remove_button = QPushButton("Számla eltávolítása")
+        self.remove_button = appearance.icons.bind(QPushButton("Számla eltávolítása"), "invoice-delete")
         self.remove_button.clicked.connect(self.remove_invoice)
         top.addWidget(self.remove_button)
         layout.addLayout(top)
@@ -250,8 +251,8 @@ class LetterDialog(QDialog):
         self.number.setFocus()
 
     def remove_invoice(self):
-        if len(self.invoices) < 2 or QMessageBox.question(
-            self, "Számla eltávolítása", "Eltávolítja a kijelölt számlát?",
+        if len(self.invoices) < 2 or self.appearance.message(
+            QMessageBox.Question, self, "Számla eltávolítása", "Eltávolítja a kijelölt számlát?",
             QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
         ) != QMessageBox.Yes:
             return
@@ -345,8 +346,8 @@ class LetterDialog(QDialog):
         try:
             record = self.draft()
             record.to_letter()
-            if self.editing and QMessageBox.question(
-                self, "Mentés megerősítése", "Menti a kijelölt kísérőlevél módosításait?",
+            if self.editing and self.appearance.message(
+                QMessageBox.Question, self, "Mentés megerősítése", "Menti a kijelölt kísérőlevél módosításait?",
                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
             ) != QMessageBox.Yes:
                 return

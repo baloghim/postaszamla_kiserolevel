@@ -8,10 +8,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
-from postaszamla.qt.appearance import ICON_NAMES, ICON_SIZES
-
 ROOT = Path(__file__).resolve().parent.parent
 APP = "Postaszamla"
+GRAPHICS = Path("postaszamla/qt/edpd_graphics/assets")
 
 
 def copy_notices(bundle: Path) -> None:
@@ -44,18 +43,16 @@ def verify(package: Path, directory: Path) -> None:
                         "/postaszamla/templates/minta.docx", "/docx/templates/default.docx",
                         "/pypdfium2/version.json",
                         "/pypdfium2_raw/version.json",
+                        f"/{GRAPHICS.as_posix()}/themes.json",
+                        f"/{GRAPHICS.as_posix()}/manifest.json",
                     ))):
                 raise RuntimeError(f"Váratlan adatfájl a Windows ZIP-ben: {filename}")
-        icons = f"{APP}/_internal/postaszamla/icons"
-        originals = (set(ICON_NAMES) - {"fit-width", "pdf-missing", "pdf-present"}) | {"add", "pdf"}
-        expected_icons = {
-            *(f"{icons}/png/{size}.png" for size in ICON_SIZES),
-            *(f"{icons}/original/{name}.png" for name in originals),
-            *(f"{icons}/{name}" for name in ("LGPL-2.1.txt", "LGPL-3.0.txt", "GPL-3.0.txt",
-                                           "UPSTREAM-README.md", "FORRAS.md")),
-        }
-        if missing := expected_icons - set(archive.namelist()):
-            raise RuntimeError(f"Az ikoncsomag hiányos: {', '.join(sorted(missing))}")
+        names = set(archive.namelist())
+        for resource in (ROOT / GRAPHICS).rglob("*"):
+            if resource.is_file():
+                filename = f"{APP}/_internal/{resource.relative_to(ROOT).as_posix()}"
+                if filename not in names or archive.read(filename) != resource.read_bytes():
+                    raise RuntimeError(f"Hiányzó vagy eltérő EDPD grafikai erőforrás: {filename}")
         filenames = {Path(name).name.casefold() for name in archive.namelist()}
         for required in ("qt5core.dll", "qt5widgets.dll", "qwindows.dll", "qwindowsvistastyle.dll"):
             if required not in filenames:
@@ -90,7 +87,7 @@ def main(tag: str, output: Path) -> None:
             "--paths", str(ROOT), "--distpath", str(temp / "dist"),
             "--workpath", str(temp / "work"), "--specpath", str(temp),
             "--add-data", f"{ROOT / 'postaszamla/templates/minta.docx'};postaszamla/templates",
-            "--add-data", f"{ROOT / 'postaszamla/icons'};postaszamla/icons",
+            "--add-data", f"{ROOT / GRAPHICS};{GRAPHICS.as_posix()}",
             "--collect-data", "pypdfium2", "--collect-all", "pypdfium2_raw",
             "--hidden-import", "win32timezone", "--exclude-module", "tkinter",
         ]

@@ -1,0 +1,2 @@
+# Preserve upstream artwork, manifests, and license files byte for byte.
+postaszamla/qt/edpd_graphics/assets/** -text

@@ -1,6 +1,6 @@
 [project]
 name = "postaszamla-kiserolevel"
-version = "0.6.0"
+version = "0.7.0"
 description = "Postaszámla-kísérőlevél generálása"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
@@ -11,13 +11,15 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["postaszamla", "postaszamla.qt"]
+packages = ["postaszamla", "postaszamla.qt", "postaszamla.qt.edpd_graphics", "postaszamla.qt.edpd_graphics.themes"]
 
 [tool.setuptools.package-data]
 postaszamla = ["templates/minta.docx", "icons/*", "icons/original/*.png", "icons/png/*.png"]
+"postaszamla.qt.edpd_graphics" = ["assets/*", "assets/**/*"]
 
 [project.optional-dependencies]
 desktop = ["PySide2==5.15.2.1", "shiboken2==5.15.2.1", "pypdfium2==5.15.2", "pywin32==311; sys_platform == 'win32'"]
+edpd-compat = ["PyMuPDF==1.23.26", "PyMuPDFb==1.23.22"]
 
 [project.gui-scripts]
 postaszamla = "postaszamla.gui:main"

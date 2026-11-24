@@ -13,12 +13,12 @@ from postaszamla.archive import documents, initial_year, read_record, save_recor
 from postaszamla.preview import word_action
 from postaszamla.settings import InvalidSettings, Settings, backup_settings, load_settings
 
-from .appearance import THEME, panel
+from .appearance import panel, style_choices
 from .editor import LetterDialog
 from .settings_dialog import SettingsDialog
 from .viewer import Preview
 
-VERSION = "0.6.0"
+VERSION = "0.7.0"
 
 
 def period_label(dates):
@@ -30,12 +30,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setObjectName("edpd-window")
         self.setWindowTitle("Postaszámla – Kísérőlevelek")
-        self.setWindowIcon(appearance.icon("docx"))
         self.setMinimumSize(720, 500)
         self.appearance, self.base = appearance, Path(base)
         self.settings_writable = True
         self.settings = self.start_settings()
-        appearance.apply(self.settings.ui_style)
+        appearance.apply(self.settings.ui_style, self.settings.icon_theme)
+        appearance.icons.bind(self, "docx", "setWindowIcon")
         self.visible_rows = []
         self.current = None
         self.metadata = None
@@ -81,17 +81,18 @@ class MainWindow(QMainWindow):
             try:
                 backup = backup_settings(self.base)
                 prompt = f"{error}\n\nBiztonsági másolat: {backup.name}\n\nVisszaállítja az alapbeállításokat?"
-                self.settings_writable = QMessageBox.question(
-                    self, "Hibás beállítások", prompt, QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
+                self.settings_writable = self.appearance.message(
+                    QMessageBox.Question, self, "Hibás beállítások", prompt,
+                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
                 ) == QMessageBox.Yes
                 if self.settings_writable:
                     Settings().save(self.base)
             except OSError as failure:
                 self.settings_writable = False
-                QMessageBox.critical(self, "Beállítások", str(failure))
+                self.appearance.message(QMessageBox.Critical, self, "Beállítások", str(failure))
         except OSError as error:
             self.settings_writable = False
-            QMessageBox.critical(self, "Beállítások", str(error))
+            self.appearance.message(QMessageBox.Critical, self, "Beállítások", str(error))
         return Settings()
 
     def restore_geometry(self):
@@ -132,8 +133,7 @@ class MainWindow(QMainWindow):
             ("print", "Nyomtatás", lambda: self.open_in_word(printing=True)),
             ("refresh", "Frissítés", self.reload),
         ):
-            button = toolbar.addAction(self.appearance.icon(icon), text)
-            button.triggered.connect(action)
+            button = self.appearance.action(toolbar, icon, text, action)
             self.actions[icon] = button
             if icon == "new":
                 button.setShortcut("Ctrl+N")
@@ -144,14 +144,17 @@ class MainWindow(QMainWindow):
         toolbar.addWidget(spacer)
         for icon, text, callback in (
             ("settings", "Beállítások", self.configure),
-            ("about", "Névjegy", lambda: QMessageBox.information(
-                self, "Névjegy", f"Postaszámla – Kísérőlevelek v{VERSION}\nPySide2 · {THEME}")),
-            ("help", "Súgó", lambda: QMessageBox.information(
-                self, "Súgó", "A Beállításokban adja meg a dokumentumtárat és a Word-sablont. "
+            ("about", "Névjegy", self.about),
+            ("help", "Súgó", lambda: self.appearance.message(
+                QMessageBox.Information, self, "Súgó", "A Beállításokban adja meg a dokumentumtárat és a Word-sablont. "
                 "A leveleket év és fájlnév szerint keresheti.")),
         ):
-            action = toolbar.addAction(self.appearance.icon(icon), text)
-            action.triggered.connect(callback)
+            self.appearance.action(toolbar, icon, text, callback)
+
+    def about(self):
+        style = dict(style_choices())[self.appearance.current_style]
+        self.appearance.message(QMessageBox.Information, self, "Névjegy",
+                                f"Postaszámla – Kísérőlevelek v{VERSION}\nPySide2 · {style}\n{self.appearance.icons.name}")
 
     def build_archive(self):
         content = QWidget()
@@ -174,8 +177,6 @@ class MainWindow(QMainWindow):
         header.setSortIndicatorShown(True)
         header.setSortIndicator(self.sort_column, Qt.DescendingOrder)
         header.sectionClicked.connect(self.sort_by)
-        if self.appearance.source:
-            self.table.minimum_widths = (260, 190, 85, 52)
         self.table.setAlternatingRowColors(True)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -185,10 +186,19 @@ class MainWindow(QMainWindow):
         self.table.setIconSize(QSize(20, 20))
         self.table.cellDoubleClicked.connect(lambda *_: self.open_editor(use_selection=True))
         self.table.itemSelectionChanged.connect(self.select)
+        self.appearance.icons.subscribe(self.table, self.refresh_archive_icons)
         layout.addWidget(self.table, 1)
         self.year.currentTextChanged.connect(self.reload)
         self.search.textChanged.connect(lambda _: self.search_timer.start(230))
         return panel("Kísérőlevelek", content)
+
+    def refresh_archive_icons(self, table):
+        docx = self.appearance.icon("docx")
+        present = self.appearance.icon("pdf-present")
+        missing = self.appearance.icon("pdf-missing")
+        for row, entry in enumerate(self.visible_rows):
+            table.item(row, 0).setIcon(docx)
+            table.item(row, 3).setIcon(present if entry.pdf else missing)
 
     def build_details(self):
         content = QWidget()
@@ -310,8 +320,9 @@ class MainWindow(QMainWindow):
             return self.dialog
         previous = self.current.path if use_selection and self.current else None
         snapshot = self.metadata if use_selection else None
-        if use_selection and (not previous or not snapshot or QMessageBox.question(
-            self, "Szerkesztés megerősítése", "Biztosan szeretné szerkeszteni a kijelölt kísérőlevelet?",
+        if use_selection and (not previous or not snapshot or self.appearance.message(
+            QMessageBox.Question, self, "Szerkesztés megerősítése",
+            "Biztosan szeretné szerkeszteni a kijelölt kísérőlevelet?",
             QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
         ) != QMessageBox.Yes):
             return None
@@ -339,22 +350,22 @@ class MainWindow(QMainWindow):
     def open_in_word(self, checked=False, *, printing=False):
         if self.current:
             try:
-                if not printing or QMessageBox.question(
-                    self, "Nyomtatás", "Kinyomtatja a kijelölt kísérőlevelet?",
+                if not printing or self.appearance.message(
+                    QMessageBox.Question, self, "Nyomtatás", "Kinyomtatja a kijelölt kísérőlevelet?",
                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No,
                 ) == QMessageBox.Yes:
                     word_action(self.current.path, printing=printing)
             except OSError as error:
-                QMessageBox.critical(self, "Word-művelet", str(error))
+                self.appearance.message(QMessageBox.Critical, self, "Word-művelet", str(error))
 
     def configure(self):
-        dialog = SettingsDialog(self.settings, self.base, self)
+        dialog = SettingsDialog(self.settings, self.base, self.appearance, self)
         accepted = dialog.exec_() == QDialog.Accepted
         if accepted:
             previous_archive = self.archive
             self.settings = dialog.settings
             self.settings_writable = True
-            self.appearance.apply(self.settings.ui_style)
+            self.appearance.apply(self.settings.ui_style, self.settings.icon_theme)
             if dialog.reset_requested:
                 self.sash_moved = False
                 self.preview.viewer.set_zoom(self.settings.zoom)
@@ -384,5 +395,5 @@ class MainWindow(QMainWindow):
             if self.settings_writable:
                 self.settings.save(self.base)
         except OSError as error:
-            QMessageBox.critical(self, "Beállítások", f"A beállítások nem menthetők: {error}")
+            self.appearance.message(QMessageBox.Critical, self, "Beállítások", f"A beállítások nem menthetők: {error}")
         super().closeEvent(event)

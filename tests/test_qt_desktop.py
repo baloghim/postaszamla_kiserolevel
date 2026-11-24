@@ -1,5 +1,6 @@
 import json
 import os
+from hashlib import sha256
 from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
@@ -7,14 +8,14 @@ from unittest import TestCase, skipUnless
 from unittest.mock import patch
 
 try:
-    from PySide2.QtCore import QDate, Qt, qVersion
+    from PySide2.QtCore import QDate, QTimer, Qt, qVersion
     from PySide2.QtGui import QColor, QPainter, QPalette, QPdfWriter
     from PySide2.QtWidgets import QApplication, QDialogButtonBox, QMessageBox, QStyleFactory
 except ImportError:
     QApplication = None
 
 from postaszamla.archive import read_record, save_record
-from postaszamla.settings import DEFAULT_UI_STYLE, Settings, load_settings
+from postaszamla.settings import DEFAULT_ICON_THEME, DEFAULT_UI_STYLE, Settings, load_settings
 from postaszamla.template import DEFAULT_TEMPLATE
 
 from test_desktop import INVOICE, LETTER, SECOND
@@ -61,7 +62,7 @@ class QtDesktopTests(TestCase):
     def test_default_qt_entrypoint_and_luna(self):
         from postaszamla import gui
         from postaszamla.qt.app import main
-        from postaszamla.qt.appearance import THEME
+        from postaszamla.qt.appearance import SURFACES, THEME
 
         self.assertIs(gui.main, main)
         from postaszamla.__main__ import main as launch
@@ -104,7 +105,7 @@ class QtDesktopTests(TestCase):
         self.assertIn("—", dialog.file_preview.text())
         dialog.tabs.setCurrentIndex(1)
         self.assertEqual(dialog.editors[0][0].text(), "-23")
-        with patch.object(QMessageBox, "question", return_value=QMessageBox.Yes):
+        with patch.object(self.window.appearance, "message", return_value=QMessageBox.Yes):
             dialog.remove_invoice()
         self.assertEqual(dialog.summary.item(4, 3).text(), "700 Ft")
         self.assertEqual(dialog.number.text(), INVOICE.number)
@@ -117,9 +118,9 @@ class QtDesktopTests(TestCase):
         before = self.window.metadata
         self.assertTrue(self.window.current.pdf)
         self.assertTrue(self.window.actions["edit"].isEnabled())
-        with patch.object(QMessageBox, "question", return_value=QMessageBox.No):
+        with patch.object(self.window.appearance, "message", return_value=QMessageBox.No):
             self.assertIsNone(self.window.open_editor(use_selection=True))
-        with patch.object(QMessageBox, "question", return_value=QMessageBox.Yes):
+        with patch.object(self.window.appearance, "message", return_value=QMessageBox.Yes):
             editor = self.window.open_editor(use_selection=True)
             editor.common["reference"].setText("MINTA/5")
             editor.submit()
@@ -131,7 +132,7 @@ class QtDesktopTests(TestCase):
     def test_settings_dialog_and_pdf_view(self):
         from postaszamla.qt.settings_dialog import SettingsDialog
 
-        settings = SettingsDialog(self.window.settings, self.base)
+        settings = SettingsDialog(self.window.settings, self.base, self.window.appearance)
         (self.base / "levelek").mkdir()
         settings.fields["archive"].setText("levelek")
         settings.fields["position"].setText("új beosztás")
@@ -171,7 +172,7 @@ class QtDesktopTests(TestCase):
         self.assertEqual(page.pixelColor(page.width() // 2, page.height() // 2), QColor(Qt.blue))
 
     def test_live_style_selection_keeps_archive_and_settings(self):
-        from postaszamla.qt.appearance import THEME
+        from postaszamla.qt.appearance import SURFACES, THEME
         from postaszamla.qt.settings_dialog import SettingsDialog
 
         keys = {key.casefold() for key in QStyleFactory.keys() if QStyleFactory.create(key) is not None}
@@ -185,11 +186,13 @@ class QtDesktopTests(TestCase):
         editor = self.window.open_editor()
         confirmation = QMessageBox(self.window)
 
-        for style in (*styles, DEFAULT_UI_STYLE, *reversed(styles), DEFAULT_UI_STYLE):
+        from postaszamla.qt.edpd_graphics.themes.styles import stylesheet
+
+        for style in (*styles, *SURFACES, *reversed(styles), DEFAULT_UI_STYLE):
             with self.subTest(style=style):
                 def choose(dialog):
                     self.assertEqual([dialog.style_choice.itemData(i) for i in range(dialog.style_choice.count())],
-                                     [DEFAULT_UI_STYLE, *styles])
+                                     [*SURFACES, *styles])
                     dialog.style_choice.setCurrentIndex(dialog.style_choice.findData(style))
                     dialog.findChild(QDialogButtonBox).accepted.emit()
                     return dialog.result()
@@ -204,13 +207,15 @@ class QtDesktopTests(TestCase):
                 self.assertEqual(self.window.appearance.current_style, style)
                 for widget in (self.window, self.window.table, self.window.preview.viewer, editor, confirmation):
                     self.assertEqual(widget.style().objectName(), self.app.style().objectName())
-                opened = SettingsDialog(self.window.settings, self.base)
+                opened = SettingsDialog(self.window.settings, self.base, self.window.appearance)
                 self.assertEqual(opened.style().objectName(), self.app.style().objectName())
                 self.assertEqual(opened.style_choice.currentData(), style)
-                if style == DEFAULT_UI_STYLE:
-                    self.assertEqual(self.app.property("surfaceTheme"), THEME)
-                    self.assertEqual(self.app.styleSheet(), luna_stylesheet)
-                    self.assertEqual(self.app.palette(), luna_palette)
+                if style in SURFACES:
+                    self.assertEqual(self.app.property("surfaceTheme"), SURFACES[style])
+                    self.assertEqual(self.app.styleSheet(), stylesheet(SURFACES[style]))
+                    if style == DEFAULT_UI_STYLE:
+                        self.assertEqual(self.app.styleSheet(), luna_stylesheet)
+                        self.assertEqual(self.app.palette(), luna_palette)
                 else:
                     self.assertEqual(self.app.style().objectName().casefold(), style)
                     self.assertEqual(self.app.styleSheet(), "")
@@ -228,6 +233,7 @@ class QtDesktopTests(TestCase):
 
         def cancel(dialog):
             dialog.style_choice.setCurrentIndex(dialog.style_choice.findData("windows"))
+            dialog.icon_choice.setCurrentText("Oxygen")
             dialog.findChild(QDialogButtonBox).rejected.emit()
             return dialog.result()
 
@@ -235,19 +241,103 @@ class QtDesktopTests(TestCase):
             self.window.configure()
         self.assertEqual(config.read_bytes(), before)
         self.assertEqual(self.window.appearance.current_style, DEFAULT_UI_STYLE)
+        self.assertEqual(self.window.appearance.icons.name, DEFAULT_ICON_THEME)
 
         self.window.settings.ui_style = "windows"
+        self.window.settings.icon_theme = "Oxygen"
         self.window.close()
         self.window = MainWindow(Appearance(self.app), self.base)
         self.assertEqual(self.window.appearance.current_style, "windows")
+        self.assertEqual(self.window.appearance.icons.name, "Oxygen")
         self.assertEqual(self.app.style().objectName().casefold(), "windows")
         self.window.close()
         config.unlink()
         self.window = MainWindow(Appearance(self.app), self.base)
         self.assertEqual(self.app.property("surfaceTheme"), THEME)
         self.assertEqual(load_settings(self.base).ui_style, DEFAULT_UI_STYLE)
+        self.assertEqual(load_settings(self.base).icon_theme, DEFAULT_ICON_THEME)
 
         legacy = json.loads(before)
         del legacy["ui_style"]
+        del legacy["icon_theme"]
         config.write_text(json.dumps(legacy), encoding="utf-8")
         self.assertEqual(load_settings(self.base).ui_style, DEFAULT_UI_STYLE)
+        self.assertEqual(load_settings(self.base).icon_theme, DEFAULT_ICON_THEME)
+
+    def test_edpd_sources_and_all_icon_themes(self):
+        from postaszamla.qt.edpd_graphics.icons import ASSETS
+
+        icons = self.window.appearance.icons
+        names = ("Crystal SVG", "Nuvola", "KDE Modern Classic", "Papirus", "We10X", "Oxygen", "Win10Sur",
+                 "Oxylite", "WhiteSur", "Diagonal", "Modern Office Day", "SE98")
+        self.assertEqual(icons.choices(), names)
+        crystal = json.loads((ASSETS / "manifest.json").read_text(encoding="utf-8"))
+        for role in crystal["icons"]:
+            self.assertTrue((ASSETS / "icons" / "22" / f"{role}.png").is_file())
+            self.assertTrue((ASSETS / "original" / "22" / f"{role}.png").is_file())
+        for name, theme in icons.themes.items():
+            with self.subTest(theme=name):
+                notice = "crystal-remix" if name == DEFAULT_ICON_THEME else theme["id"]
+                self.assertTrue(any((ASSETS / "notices" / notice).iterdir()))
+                self.assertTrue(theme["license"] and theme["source"])
+                self.assertEqual(icons.set_theme(name), name)
+                for role, metadata in theme["icons"].items():
+                    for source in (metadata, metadata.get("badge"), metadata.get("editable_source")):
+                        if source:
+                            original = ASSETS / "themes" / theme["id"] / "original" / source["original"]
+                            self.assertEqual(sha256(original.read_bytes()).hexdigest(), source["sha256"])
+                    for size in (22, 40):
+                        self.assertTrue((ASSETS / "themes" / theme["id"] / str(size) / f"{role}.png").is_file())
+                    self.assertFalse(icons.icon(role).pixmap(22, 22).isNull())
+                    self.assertEqual(icons.sources[role], name)
+                for role in theme["fallback_roles"]:
+                    self.assertFalse(icons.icon(role).pixmap(22, 22).isNull())
+                    self.assertEqual(icons.sources[role], DEFAULT_ICON_THEME)
+                self.assertFalse(icons.icon("open").isNull())
+                self.assertEqual(icons.sources["open"], "Qt standard")
+                self.assertFalse(icons.icon("pdf-present").isNull())
+        self.assertEqual(icons.set_theme("nem létező téma"), DEFAULT_ICON_THEME)
+
+    def test_icons_update_without_refreshing_documents(self):
+        from postaszamla.qt.settings_dialog import SettingsDialog
+
+        window = self.window
+        window.archive.mkdir()
+        path = save_record(window.archive, DEFAULT_TEMPLATE, LETTER)
+        path.with_suffix(".pdf").write_bytes(b"fiktiv")
+        window.reload(preferred=path)
+        initial_token = window.preview.token
+        editor = window.open_editor()
+        active_settings = SettingsDialog(window.settings, self.base, window.appearance)
+        save = next(button for button in active_settings.findChild(QDialogButtonBox).buttons() if button.text() == "Mentés")
+        for widget, role in ((window.actions["refresh"], "refresh"), (window.preview.viewer.navigation[0], "first"),
+                             (editor.remove_button, "invoice-delete"), (save, "save")):
+            self.assertEqual(widget.icon().cacheKey(), window.appearance.icon(role).cacheKey())
+        original_preview = window.table.item(0, 3).icon().cacheKey()
+
+        def choose(dialog):
+            dialog.style_choice.setCurrentIndex(dialog.style_choice.findData("longhorn-blue"))
+            dialog.icon_choice.setCurrentText("Papirus")
+            dialog.save()
+            return dialog.result()
+
+        with patch.object(SettingsDialog, "exec_", choose), patch.object(window, "reload") as reload:
+            window.configure()
+            reload.assert_not_called()
+        self.assertIs(initial_token, window.preview.token)
+        self.assertIs(editor, window.dialog)
+        self.assertEqual(window.current.path, path)
+        self.assertEqual(load_settings(self.base).icon_theme, "Papirus")
+        self.assertEqual(self.app.property("surfaceTheme"), "Longhorn Blue")
+        for widget, role in ((window.actions["refresh"], "refresh"), (window.preview.viewer.navigation[0], "first"),
+                             (editor.remove_button, "invoice-delete"), (save, "save")):
+            self.assertEqual(widget.icon().cacheKey(), window.appearance.icon(role).cacheKey())
+        self.assertNotEqual(original_preview, window.table.item(0, 3).icon().cacheKey())
+
+        def confirm():
+            box = self.app.activeModalWidget()
+            box.done(QMessageBox.Yes)
+
+        QTimer.singleShot(0, confirm)
+        self.assertEqual(window.appearance.message(QMessageBox.Question, window, "Minta", "Folytatja?",
+                                                   QMessageBox.Yes | QMessageBox.No), QMessageBox.Yes)
